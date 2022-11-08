@@ -20,17 +20,15 @@ class OnboadingViewController: UIViewController{
         button.layer.cornerRadius = 20
         return button
     }()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         [pageViewController.view, pageViewControl, button].forEach {
             view.addSubview($0)
         }
-
         setConstraints()
         initPageViewController()
-        
         pageViewControl.numberOfPages = pageViewControllerList.count
     }
     
