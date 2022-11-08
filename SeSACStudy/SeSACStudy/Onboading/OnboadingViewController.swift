@@ -24,12 +24,27 @@ class OnboadingViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        button.addTarget(self, action: #selector(pressButton(button: )), for: .touchUpInside)
         [pageViewController.view, pageViewControl, button].forEach {
             view.addSubview($0)
         }
         setConstraints()
         initPageViewController()
         pageViewControl.numberOfPages = pageViewControllerList.count
+    }
+    
+    @objc func pressButton(button: UIButton){
+        print("button clicked")
+
+        UserDefaults.standard.set(true, forKey: "First")
+        let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene
+        let sceneDelegate = windowScene?.delegate as? SceneDelegate
+        
+        let vc = LoginViewController()
+        let nav = UINavigationController(rootViewController: vc)
+        
+        sceneDelegate?.window?.rootViewController = nav
+        sceneDelegate?.window?.makeKeyAndVisible()
     }
     
     func setConstraints() {
@@ -61,7 +76,6 @@ class OnboadingViewController: UIViewController{
         pageViewControllerList = [firstVC, secondVC, thirdVC]
         guard let firstView = pageViewControllerList.first else { return }
         pageViewController.setViewControllers([firstView], direction: .forward, animated: true)
-        
     }
 }
 

@@ -8,9 +8,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        window?.makeKeyAndVisible()
-        window?.rootViewController = OnboadingViewController()
         
+        if UserDefaults.standard.bool(forKey: "First") {
+            let vc = LoginViewController()
+            let nav = UINavigationController(rootViewController: vc)
+            window?.rootViewController = nav
+        } else {
+            let vc = OnboadingViewController()
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+        }
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
