@@ -13,6 +13,11 @@ class LoginView: BaseView{
         return textField
     }()
     
+    let numberView: UIView = {
+        let view = UIView()
+        return view
+    }()
+    
     let certificationButton: UIButton = {
         let button = UIButton()
         return button
@@ -44,6 +49,13 @@ class LoginView: BaseView{
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(48)
         }
+        
+        numberTextField.snp.makeConstraints { make in
+            make.top.equalTo(numberTextLabel.snp.bottom).offset(1)
+            make.leading.trailing.equalToSuperview().inset(16)
+            make.height.equalTo(1)
+        }
+
         
         certificationButton.snp.makeConstraints { make in
             make.top.equalTo(numberTextField.snp.bottom).offset(72)

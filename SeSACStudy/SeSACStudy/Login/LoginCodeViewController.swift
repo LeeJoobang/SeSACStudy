@@ -26,14 +26,12 @@ class LoginCodeViewController: BaseViewController {
         loginView.numberTextLabel.numberOfLines = 0
         loginView.numberTextLabel.font = UIFont(name: "NotoSansKR-Regular", size: 20)
         loginView.numberTextLabel.text = "인증문자를 발송하였습니다."
-        loginView.numberTextLabel.setLineSpacing(spacing: 15.0)
+        loginView.numberTextLabel.setLineSpacing(spacing: 2)
         loginView.numberTextLabel.textAlignment = .center
         
         loginView.numberTextField.placeholder = "인증번호"
         
-        loginView.certificationButton.backgroundColor = .customGreen
-        //        loginView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
-        
+        loginView.certificationButton.backgroundColor = .customGreen        
         resend()
     }
     
