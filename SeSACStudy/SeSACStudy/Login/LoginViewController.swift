@@ -17,8 +17,8 @@ class LoginViewController: BaseViewController {
     
     override func configure() {
         loginView.numberTextLabel.numberOfLines = 0
-        loginView.numberTextLabel.font = loginView.numberTextLabel.font.withSize(20)
-        loginView.numberTextLabel.text = "새싹 서비스 이용을 위해 \n휴대폰 번호를 입력해 주세요"
+        loginView.numberTextLabel.font = UIFont(name: "NotoSansKR-Regular", size: 20)
+        loginView.numberTextLabel.text = "새싹 서비스 이용을 위해 \n 휴대폰 번호를 입력해 주세요"
         loginView.numberTextLabel.setLineSpacing(spacing: 15.0)
         loginView.numberTextLabel.textAlignment = .center
         
