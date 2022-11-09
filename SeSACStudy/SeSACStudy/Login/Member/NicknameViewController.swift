@@ -1,7 +1,5 @@
 import UIKit
 
-import FirebaseAuth
-
 class NicknameViewController: BaseViewController {
 
     let nicknameView = LoginView()
@@ -10,7 +8,6 @@ class NicknameViewController: BaseViewController {
         super.viewDidLoad()
         self.view = nicknameView
         nicknameView.backgroundColor = .white
-
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -29,7 +26,6 @@ class NicknameViewController: BaseViewController {
         nicknameView.numberTextLabel.textAlignment = .center
         
         nicknameView.numberTextField.placeholder = "10자 이내로 입력"
-        nicknameView.numberTextField.keyboardType = .numberPad
         
         nicknameView.certificationButton.backgroundColor = .customGray6
         nicknameView.certificationButton.titleLabel?.font = UIFont(name: UIFont.notoMedium, size: 14)
@@ -40,23 +36,9 @@ class NicknameViewController: BaseViewController {
     }
     
     @objc func buttonClicked(button: UIButton){
-        print("button clicked")
-        let phoneNumber = "+821033225679"
-        
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
-        
-        PhoneAuthProvider.provider()
-          .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
-              if let error = error {
-                print("error: \(error)")
-                return
-              }
-              print("성공 - verificationID : \(verificationID)")
-              UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-              
-              let vc = LoginCodeViewController()
-              self.navigationController?.pushViewController(vc, animated: true)
-          }
+        let vc = BirthiewController()
+        self.navigationController?.pushViewController(vc, animated: true)
+
     }
 }
 
