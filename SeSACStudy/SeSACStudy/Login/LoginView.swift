@@ -32,7 +32,7 @@ class LoginView: BaseView{
     }
     
     override func configure() {
-        [numberTextLabel, numberTextField, certificationButton].forEach {
+        [numberTextLabel, numberView, numberTextField, certificationButton].forEach {
             self.addSubview($0)
         }
     }
@@ -44,21 +44,20 @@ class LoginView: BaseView{
             make.height.equalTo(64)
         }
         
-        numberTextField.snp.makeConstraints { make in
+        numberView.snp.makeConstraints { make in
             make.top.equalTo(numberTextLabel.snp.bottom).offset(64)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(48)
         }
         
         numberTextField.snp.makeConstraints { make in
-            make.top.equalTo(numberTextLabel.snp.bottom).offset(1)
+            make.top.equalTo(numberTextLabel.snp.bottom).offset(64)
             make.leading.trailing.equalToSuperview().inset(16)
-            make.height.equalTo(1)
+            make.height.equalTo(48)
         }
-
         
         certificationButton.snp.makeConstraints { make in
-            make.top.equalTo(numberTextField.snp.bottom).offset(72)
+            make.top.equalTo(numberTextField.snp.bottom).offset(60)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(48)
         }

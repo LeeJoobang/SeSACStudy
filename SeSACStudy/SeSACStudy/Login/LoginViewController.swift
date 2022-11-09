@@ -11,7 +11,15 @@ class LoginViewController: BaseViewController {
         super.viewDidLoad()
         self.view = loginView
         loginView.backgroundColor = .white
+
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let customGray3 = UIColor.customGray3 else { return }
+        loginView.numberView.layer.addBorder([.bottom], color: customGray3, width: 1.0)
+    }
+    
     
     
     override func configure() {
@@ -23,9 +31,13 @@ class LoginViewController: BaseViewController {
         loginView.numberTextLabel.textAlignment = .center
         
         loginView.numberTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
-        loginView.numberTextField.useUnderLine()
+        loginView.numberTextField.keyboardType = .numberPad
         
-        loginView.certificationButton.backgroundColor = .customGreen
+        loginView.certificationButton.backgroundColor = .customGray6
+        loginView.certificationButton.titleLabel?.font = UIFont(name: UIFont.notoMedium, size: 14)
+        loginView.certificationButton.setTitle("인증 번호 받기", for: .normal)
+        loginView.certificationButton.tintColor = .customGray3
+        loginView.certificationButton.layer.cornerRadius = 5
         loginView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
     
