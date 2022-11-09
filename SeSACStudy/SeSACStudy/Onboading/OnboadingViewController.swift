@@ -2,7 +2,7 @@ import UIKit
 
 import SnapKit
 
-class OnboadingViewController: UIViewController{
+class OnboadingViewController: BaseViewController{
     var pageViewControllerList: [UIViewController] = []
     
     let pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
@@ -28,7 +28,7 @@ class OnboadingViewController: UIViewController{
         [pageViewController.view, pageViewControl, button].forEach {
             view.addSubview($0)
         }
-        setConstraints()
+        setLayout()
         initPageViewController()
         pageViewControl.numberOfPages = pageViewControllerList.count
     }
@@ -47,7 +47,7 @@ class OnboadingViewController: UIViewController{
         sceneDelegate?.window?.makeKeyAndVisible()
     }
     
-    func setConstraints() {
+    func setLayout() {
         pageViewController.view.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).multipliedBy(0.1)
             make.leading.trailing.bottom.equalTo(view)

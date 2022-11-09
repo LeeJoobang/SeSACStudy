@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		372FEF20291B700C004F3B16 /* Color + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF1F291B700C004F3B16 /* Color + extension.swift */; };
 		373AFBD62918D8C40019EB00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFBD52918D8C40019EB00 /* AppDelegate.swift */; };
 		373AFBD82918D8C40019EB00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFBD72918D8C40019EB00 /* SceneDelegate.swift */; };
 		373AFBDA2918D8C40019EB00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFBD92918D8C40019EB00 /* ViewController.swift */; };
@@ -24,9 +25,11 @@
 		373AFC2929197EFD0019EB00 /* OnboadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC2829197EFD0019EB00 /* OnboadingViewController.swift */; };
 		373AFC3B291984380019EB00 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC3A291984380019EB00 /* FirstViewController.swift */; };
 		373AFC41291A3FE80019EB00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC40291A3FE80019EB00 /* LoginViewController.swift */; };
+		373AFC43291A9A990019EB00 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC42291A9A980019EB00 /* LoginView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		372FEF1F291B700C004F3B16 /* Color + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + extension.swift"; sourceTree = "<group>"; };
 		373AFBD22918D8C40019EB00 /* SeSACStudy.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSACStudy.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		373AFBD52918D8C40019EB00 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		373AFBD72918D8C40019EB00 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +48,7 @@
 		373AFC2829197EFD0019EB00 /* OnboadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboadingViewController.swift; sourceTree = "<group>"; };
 		373AFC3A291984380019EB00 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		373AFC40291A3FE80019EB00 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		373AFC42291A9A980019EB00 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		372FEF1E291B6FDA004F3B16 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				372FEF1F291B700C004F3B16 /* Color + extension.swift */,
+			);
+			path = Custom;
+			sourceTree = "<group>";
+		};
 		373AFBC92918D8C40019EB00 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +91,7 @@
 		373AFBD42918D8C40019EB00 /* SeSACStudy */ = {
 			isa = PBXGroup;
 			children = (
+				372FEF1E291B6FDA004F3B16 /* Custom */,
 				373AFBF62918EC930019EB00 /* Contant */,
 				373AFC3F291A3B070019EB00 /* Login */,
 				373AFBF32918EA780019EB00 /* Onboading */,
@@ -127,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				373AFC40291A3FE80019EB00 /* LoginViewController.swift */,
+				373AFC42291A9A980019EB00 /* LoginView.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -219,6 +233,8 @@
 				373AFBD82918D8C40019EB00 /* SceneDelegate.swift in Sources */,
 				373AFC202919445F0019EB00 /* ThirdViewController.swift in Sources */,
 				373AFC2929197EFD0019EB00 /* OnboadingViewController.swift in Sources */,
+				373AFC43291A9A990019EB00 /* LoginView.swift in Sources */,
+				372FEF20291B700C004F3B16 /* Color + extension.swift in Sources */,
 				373AFC1E291944550019EB00 /* SecondViewController.swift in Sources */,
 				373AFBF82918ECA70019EB00 /* BaseViewController.swift in Sources */,
 			);
@@ -380,7 +396,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jooyoung.SeSACStudy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.memolease.sesacslp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -408,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jooyoung.SeSACStudy;
+				PRODUCT_BUNDLE_IDENTIFIER = com.memolease.sesacslp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

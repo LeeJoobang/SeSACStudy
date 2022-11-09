@@ -2,7 +2,7 @@ import UIKit
 
 import SnapKit
 
-class FirstViewController: UIViewController{
+class FirstViewController: BaseViewController{
     let textImage: UIImageView = {
         let image = UIImageView()
         image.image = UIImage(named: "text_img1")

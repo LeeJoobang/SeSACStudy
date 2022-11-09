@@ -2,7 +2,7 @@ import UIKit
 
 import SnapKit
 
-class SecondViewController: UIViewController{
+class SecondViewController: BaseViewController{
     
     let textImage: UIImageView = {
         let image = UIImageView()

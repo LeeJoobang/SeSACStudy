@@ -10,6 +10,11 @@ class LoginViewController: BaseViewController {
         loginView.backgroundColor = .white
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loginView.numberTextField.useUnderLine()
+    }
+    
     override func configure() {
         loginView.numberTextLabel.numberOfLines = 0
         loginView.numberTextLabel.font = loginView.numberTextLabel.font.withSize(20)
@@ -18,8 +23,13 @@ class LoginViewController: BaseViewController {
         loginView.numberTextLabel.textAlignment = .center
         
         loginView.numberTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
+        loginView.numberTextField.useUnderLine()
     }
+    
+    
 }
+
+
 extension UILabel {
     func setLineSpacing(spacing: CGFloat){
         guard let text = text else { return }
@@ -28,5 +38,17 @@ extension UILabel {
         style.lineSpacing = spacing
         attributeString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: attributeString.length))
         attributedText = attributeString
+    }
+}
+
+extension UITextField{
+    func useUnderLine(){
+        let border = CALayer()
+        let width = CGFloat(2.0)
+        border.borderColor = UIColor.black.cgColor
+        border.frame = CGRect(x: 0, y: self.frame.size.height - width, width: self.frame.size.width, height: self.frame.size.height)
+        border.borderWidth = width
+        self.layer.addSublayer(border)
+        self.layer.masksToBounds = true
     }
 }
