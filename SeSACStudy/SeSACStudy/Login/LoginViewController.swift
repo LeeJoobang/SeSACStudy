@@ -1,5 +1,7 @@
 import UIKit
 
+import FirebaseAuth
+
 class LoginViewController: BaseViewController {
 
     let loginView = LoginView()
@@ -10,10 +12,6 @@ class LoginViewController: BaseViewController {
         loginView.backgroundColor = .white
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        loginView.numberTextField.useUnderLine()
-    }
     
     override func configure() {
         loginView.numberTextLabel.numberOfLines = 0
@@ -24,6 +22,34 @@ class LoginViewController: BaseViewController {
         
         loginView.numberTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
         loginView.numberTextField.useUnderLine()
+        
+        loginView.certificationButton.backgroundColor = .customGreen
+        loginView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
+    }
+    
+    @objc func buttonClicked(button: UIButton){
+        print("button clicked")
+        let phoneNumber = "+821033225679"
+        
+        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        
+        PhoneAuthProvider.provider()
+          .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+              if let error = error {
+                print("error: \(error)")
+                return
+              }
+              print("성공 - verificationID : \(verificationID)")
+              UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+              
+              
+              let vc = LoginCodeViewController()
+              self.navigationController?.pushViewController(vc, animated: true)
+              
+          }
+        
+        
+        
     }
     
     

@@ -47,7 +47,7 @@ class LoginView: BaseView{
         
         certificationButton.snp.makeConstraints { make in
             make.top.equalTo(numberTextField.snp.bottom).offset(72)
-            make.centerX.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(48)
         }
     }
