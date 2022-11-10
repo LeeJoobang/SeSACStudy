@@ -16,12 +16,12 @@
 		372FEF53291BA8EE004F3B16 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 372FEF52291BA8EE004F3B16 /* FirebaseAuth */; };
 		372FEF55291BBCC1004F3B16 /* LoginCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF54291BBCC1004F3B16 /* LoginCodeViewController.swift */; };
 		372FEF57291BEEAA004F3B16 /* UILabel + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF56291BEEA9004F3B16 /* UILabel + Extension.swift */; };
-		372FEF59291BEEDC004F3B16 /* UITextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF58291BEEDC004F3B16 /* UITextField + Extension.swift */; };
 		372FEF5E291BF57F004F3B16 /* Layer + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF5D291BF57F004F3B16 /* Layer + Extension.swift */; };
 		372FEF63291C039C004F3B16 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF62291C039C004F3B16 /* NicknameViewController.swift */; };
 		372FEF65291C0561004F3B16 /* BirthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF64291C0561004F3B16 /* BirthViewController.swift */; };
 		372FEF67291C09B2004F3B16 /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF66291C09B2004F3B16 /* EmailViewController.swift */; };
 		372FEF69291C0ACF004F3B16 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF68291C0ACF004F3B16 /* GenderViewController.swift */; };
+		373119D7291CC39700B4CA8D /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 373119D6291CC39700B4CA8D /* IQKeyboardManagerSwift */; };
 		373AFBD62918D8C40019EB00 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFBD52918D8C40019EB00 /* AppDelegate.swift */; };
 		373AFBD82918D8C40019EB00 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFBD72918D8C40019EB00 /* SceneDelegate.swift */; };
 		373AFBDA2918D8C40019EB00 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFBD92918D8C40019EB00 /* ViewController.swift */; };
@@ -50,7 +50,6 @@
 		372FEF4D291BA817004F3B16 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		372FEF54291BBCC1004F3B16 /* LoginCodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCodeViewController.swift; sourceTree = "<group>"; };
 		372FEF56291BEEA9004F3B16 /* UILabel + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel + Extension.swift"; sourceTree = "<group>"; };
-		372FEF58291BEEDC004F3B16 /* UITextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Extension.swift"; sourceTree = "<group>"; };
 		372FEF5D291BF57F004F3B16 /* Layer + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layer + Extension.swift"; sourceTree = "<group>"; };
 		372FEF62291C039C004F3B16 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		372FEF64291C0561004F3B16 /* BirthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthViewController.swift; sourceTree = "<group>"; };
@@ -83,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				373AFBF22918E8820019EB00 /* SnapKit in Frameworks */,
+				373119D7291CC39700B4CA8D /* IQKeyboardManagerSwift in Frameworks */,
 				372FEF53291BA8EE004F3B16 /* FirebaseAuth in Frameworks */,
 				372FEF51291BA8EE004F3B16 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
 			);
@@ -97,7 +97,6 @@
 				372FEF1F291B700C004F3B16 /* Color + Extension.swift */,
 				372FEF26291B790A004F3B16 /* Font + Extension.swift */,
 				372FEF56291BEEA9004F3B16 /* UILabel + Extension.swift */,
-				372FEF58291BEEDC004F3B16 /* UITextField + Extension.swift */,
 				372FEF5D291BF57F004F3B16 /* Layer + Extension.swift */,
 			);
 			path = Custom;
@@ -221,6 +220,7 @@
 				373AFBF12918E8820019EB00 /* SnapKit */,
 				372FEF50291BA8EE004F3B16 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				372FEF52291BA8EE004F3B16 /* FirebaseAuth */,
+				373119D6291CC39700B4CA8D /* IQKeyboardManagerSwift */,
 			);
 			productName = SeSACStudy;
 			productReference = 373AFBD22918D8C40019EB00 /* SeSACStudy.app */;
@@ -253,6 +253,7 @@
 			packageReferences = (
 				373AFBF02918E8820019EB00 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				372FEF4F291BA8EE004F3B16 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				373119D5291CC39700B4CA8D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 373AFBD32918D8C40019EB00 /* Products */;
 			projectDirPath = "";
@@ -306,7 +307,6 @@
 				372FEF27291B790A004F3B16 /* Font + Extension.swift in Sources */,
 				372FEF65291C0561004F3B16 /* BirthViewController.swift in Sources */,
 				373AFBF82918ECA70019EB00 /* BaseViewController.swift in Sources */,
-				372FEF59291BEEDC004F3B16 /* UITextField + Extension.swift in Sources */,
 				372FEF63291C039C004F3B16 /* NicknameViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +535,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		373119D5291CC39700B4CA8D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.10;
+			};
+		};
 		373AFBF02918E8820019EB00 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit";
@@ -555,6 +563,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 372FEF4F291BA8EE004F3B16 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		373119D6291CC39700B4CA8D /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 373119D5291CC39700B4CA8D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 		373AFBF12918E8820019EB00 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
