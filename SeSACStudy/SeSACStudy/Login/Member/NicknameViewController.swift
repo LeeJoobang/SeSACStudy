@@ -12,7 +12,7 @@ class NicknameViewController: BaseViewController {
 
     }
     
-    // MARK: 핸드폰 번호 실시간 반영 및 버튼 컬러 변경
+    // MARK: 닉네임 실시간 반영 및 버튼 컬러 변경
     @objc func textfieldDidChange(_ textfield: UITextField){
         guard let nicknameText = nicknameView.numberTextField.text else { return }
         print(nicknameText)

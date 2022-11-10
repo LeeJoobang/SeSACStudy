@@ -8,6 +8,23 @@ class EmailViewController: BaseViewController {
         super.viewDidLoad()
         self.view = emailView
         emailView.backgroundColor = .white
+        emailView.numberTextField.addTarget(self, action: #selector(EmailViewController.textfieldDidChange(_:)), for: UIControl.Event.allEditingEvents)
+
+    }
+    
+    // MARK: 닉네임 실시간 반영 및 버튼 컬러 변경
+    @objc func textfieldDidChange(_ textfield: UITextField){
+        guard let emailText = emailView.numberTextField.text else { return }
+        print(emailText)
+        let result = isEmail(candidate: emailText)
+        print(result)
+        if result {
+            emailView.certificationButton.backgroundColor = .customGreen
+            emailView.certificationButton.isEnabled = true
+        } else {
+            emailView.certificationButton.backgroundColor = .customGray3
+            emailView.certificationButton.isEnabled = false
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -39,6 +56,13 @@ class EmailViewController: BaseViewController {
         let vc = GenderViewController()
         self.navigationController?.pushViewController(vc, animated: true)
 
+    }
+    
+    func isEmail(candidate: String) -> Bool {
+        let regex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        let isValid = phonePredicate.evaluate(with: candidate)
+        return isValid
     }
 }
 
