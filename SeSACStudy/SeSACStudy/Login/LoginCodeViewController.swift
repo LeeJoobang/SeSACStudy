@@ -1,10 +1,3 @@
-//
-//  LoginCodeViewController.swift
-//  SeSACStudy
-//
-//  Created by Jooyoung Lee on 2022/11/09.
-//
-
 import UIKit
 
 import FirebaseAuth

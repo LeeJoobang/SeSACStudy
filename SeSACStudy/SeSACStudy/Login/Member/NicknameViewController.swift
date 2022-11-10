@@ -8,13 +8,34 @@ class NicknameViewController: BaseViewController {
         super.viewDidLoad()
         self.view = nicknameView
         nicknameView.backgroundColor = .white
+        nicknameView.numberTextField.addTarget(self, action: #selector(NicknameViewController.textfieldDidChange(_:)), for: UIControl.Event.allEditingEvents)
+
     }
+    
+    // MARK: 핸드폰 번호 실시간 반영 및 버튼 컬러 변경
+    @objc func textfieldDidChange(_ textfield: UITextField){
+        guard let nicknameText = nicknameView.numberTextField.text else { return }
+        print(nicknameText)
+        let result = isNickname(candidate: nicknameText)
+        print(result)
+        if result {
+            nicknameView.certificationButton.backgroundColor = .customGreen
+            nicknameView.certificationButton.isEnabled = true
+        } else {
+            nicknameView.certificationButton.backgroundColor = .customGray3
+            nicknameView.certificationButton.isEnabled = false
+        }
+    }
+
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard let customGray3 = UIColor.customGray3 else { return }
         nicknameView.numberView.layer.addBorder([.bottom], color: customGray3, width: 1.0)
     }
+    
+    
+    
     
     
     
@@ -39,6 +60,13 @@ class NicknameViewController: BaseViewController {
         let vc = BirthiewController()
         self.navigationController?.pushViewController(vc, animated: true)
 
+    }
+    
+    func isNickname(candidate: String) -> Bool {
+        let regex = "[가-힣A-Za-z0-9]{1,10}"
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", regex)
+        let isValid = phonePredicate.evaluate(with: candidate)
+        return isValid
     }
 }
 

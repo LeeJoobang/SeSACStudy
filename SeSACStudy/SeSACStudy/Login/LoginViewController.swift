@@ -98,10 +98,6 @@ class LoginViewController: BaseViewController {
         let isValid = phonePredicate.evaluate(with: candidate)
         return isValid
     }
-    
-    
-    
-    
-    
+   
 }
 

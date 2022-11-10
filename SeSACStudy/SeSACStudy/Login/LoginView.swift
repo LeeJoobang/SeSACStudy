@@ -57,9 +57,10 @@ class LoginView: BaseView{
         }
         
         certificationButton.snp.makeConstraints { make in
-            make.top.equalTo(numberTextField.snp.bottom).offset(60)
+            make.top.lessThanOrEqualTo(numberTextField.snp.bottom).offset(72)
             make.leading.trailing.equalToSuperview().inset(16)
             make.height.equalTo(48)
+            make.bottom.lessThanOrEqualTo(self.keyboardLayoutGuide.snp.top).offset(-10)
         }
     }
 }
