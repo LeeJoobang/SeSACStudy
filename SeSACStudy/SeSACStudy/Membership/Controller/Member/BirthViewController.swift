@@ -3,17 +3,16 @@ import UIKit
 class BirthiewController: BaseViewController {
     
     let birthView = BirthView()
-    
     private let datePicker = UIDatePicker()
-    private let monthPicker = UIDatePicker()
-    private let dayPicker = UIDatePicker()
-
     private var date: Data?
+    
        
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = birthView
         view.backgroundColor = .white
+        //첫화면 - datepicker 등장
+        // 만 나이 17세 버튼 활성화
         configureDatePicker()
     }
     

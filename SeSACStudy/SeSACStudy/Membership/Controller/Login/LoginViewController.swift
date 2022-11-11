@@ -57,19 +57,20 @@ class LoginViewController: BaseViewController {
         loginView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
     
-    
-    
     @objc func buttonClicked(button: UIButton){
         let phoneNumber = "+821033225679"
-        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        
+//        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
-                if let error = error {
+                if error != nil {
                     print("error: \(error)")
                     return
                 }
                 print("성공 - verificationID : \(verificationID)")
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
+
                 let vc = LoginCodeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
