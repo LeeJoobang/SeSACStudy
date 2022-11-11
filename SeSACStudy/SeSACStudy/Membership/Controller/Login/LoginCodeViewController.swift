@@ -38,49 +38,27 @@ class LoginCodeViewController: BaseViewController {
         loginCodeView.certificationButton.tintColor = .customGray3
         loginCodeView.certificationButton.layer.cornerRadius = 5
         loginCodeView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
-        resend()
-//        checkMessage()
     }
     
     @objc func buttonClicked(button: UIButton){
         print("button clicked")
-        let vc = NicknameViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
-    
-    func resend(){
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else { return print("somthing weird") }
-        
         print("resend - verificationID: \(verificationID)")
-
-        let testVerificationCode = "123456"
+        let textfieldText = loginCodeView.numberTextField.text
+        print(textfieldText)
+        guard let testVerificationCode = textfieldText else {
+            // data 미입력에 대한 토스트 메세지 출력
+            return
+        }
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: testVerificationCode)
-        
         Auth.auth().signIn(with: credential) { authData, error in
             if (error != nil) {
                 print("testVerificationCode incorrect")
                 return
             }
             print("인증완료: \(String(describing: authData?.user.uid))")
+            let vc = NicknameViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         }
     }
-    
-//    func checkMessage(){
-//        guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else { return print("somthing weird") }
-//
-////        self.verifyID = verificationID
-//
-//        print("check - verificationID: \(verificationID)")
-//
-//        PhoneAuthProvider.provider().verifyPhoneNumber("+821033225679", uiDelegate: nil) { (verification, error) in
-//            if (error == nil) {
-//                verification
-//            } else {
-//                print("phone verfication error: \(error.debugDescription) ")
-//            }
-//        }
-//
-//    }
-    
-    
 }

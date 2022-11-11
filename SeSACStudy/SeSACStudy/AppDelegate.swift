@@ -2,7 +2,6 @@ import UIKit
 
 import FirebaseCore
 import IQKeyboardManagerSwift
-import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
