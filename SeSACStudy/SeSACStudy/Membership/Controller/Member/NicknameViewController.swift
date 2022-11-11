@@ -34,11 +34,6 @@ class NicknameViewController: BaseViewController {
         nicknameView.numberView.layer.addBorder([.bottom], color: customGray3, width: 1.0)
     }
     
-    
-    
-    
-    
-    
     override func configure() {
         let text = "닉네임을 입력해 주세요"
         nicknameView.numberTextLabel.numberOfLines = 0

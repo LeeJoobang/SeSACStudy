@@ -1,6 +1,5 @@
 import UIKit
 
-
 class LoginView: BaseView{
     
     let numberTextLabel: UILabel = {
