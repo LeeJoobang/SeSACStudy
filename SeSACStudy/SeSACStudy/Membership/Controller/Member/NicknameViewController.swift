@@ -21,13 +21,14 @@ class NicknameViewController: BaseViewController {
         if result {
             nicknameView.certificationButton.backgroundColor = .customGreen
             nicknameView.certificationButton.isEnabled = true
+            nicknameView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
+
         } else {
             nicknameView.certificationButton.backgroundColor = .customGray3
             nicknameView.certificationButton.isEnabled = false
         }
     }
 
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         guard let customGray3 = UIColor.customGray3 else { return }
@@ -48,7 +49,7 @@ class NicknameViewController: BaseViewController {
         nicknameView.certificationButton.setTitle("다음", for: .normal)
         nicknameView.certificationButton.tintColor = .customGray3
         nicknameView.certificationButton.layer.cornerRadius = 5
-        nicknameView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
+//        nicknameView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
     
     @objc func buttonClicked(button: UIButton){
