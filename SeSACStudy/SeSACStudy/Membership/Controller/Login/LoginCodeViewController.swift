@@ -1,6 +1,8 @@
 import UIKit
 
 import FirebaseAuth
+import Alamofire
+
 
 
 class LoginCodeViewController: BaseViewController {
@@ -66,25 +68,36 @@ class LoginCodeViewController: BaseViewController {
             }
             print("인증완료: \(String(describing: authData?.user.uid))")
             
+            // MARK: sesac 서버로부터 인증번호 - 미가입, 가입 유저 확인
             let currentUser = Auth.auth().currentUser
             currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
                 if let error = error {
-                    // Handle error
                     print("error 발생")
                     return
                 }
+                // MARK: 미가입유저 - 회원가입 로직 진행, 가입유저 - 로그인 로직
                 print("성공: \(idToken)")
                 
-                let vc = NicknameViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-                
+                guard let idToken = idToken else { return }
+                if idToken != "" {
+                    print("idtoken 값이 있음.")
+                    let apiService = APIService()
+                    apiService.profile(id: idToken) { code in
+                        guard let code = code else { return }
+                        switch code {
+                        case 200:
+                            print("가입")
+                        case 406:
+                            print("미가입")
+                            let vc = NicknameViewController()
+                            self.navigationController?.pushViewController(vc, animated: true)
+                        default:
+                            print("오류")
+                        }
+                    }
+                    
+                } 
             }
-            
-            
-            
         }
-        
-        
     }
-    
 }

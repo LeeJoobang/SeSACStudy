@@ -67,7 +67,7 @@ class LoginViewController: BaseViewController {
     
     // 로직 진행을 위한 잠시 주석 처리
     @objc func buttonClicked(button: UIButton){
-        let phoneNumber = "+821033225679"
+        let phoneNumber = "+821022359727"
 //        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
