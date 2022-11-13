@@ -57,18 +57,18 @@ class LoginViewController: BaseViewController {
         loginView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
     
+    /* 로직 진행을 위한 잠시 주석처리
     @objc func buttonClicked(button: UIButton){
-       
+
                 let vc = LoginCodeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
     }
+     */
     
-    /* 로직 진행을 위한 잠시 주석 처리
+    // 로직 진행을 위한 잠시 주석 처리
     @objc func buttonClicked(button: UIButton){
         let phoneNumber = "+821033225679"
-        
 //        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
-        
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
                 if error != nil {
@@ -82,7 +82,6 @@ class LoginViewController: BaseViewController {
                 self.navigationController?.pushViewController(vc, animated: true)
             }
     }
-     */
     
     // MARK: 전화번호 변경
     private func phoneNumberformat(with mask: String, phone: String) -> String {

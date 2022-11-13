@@ -118,7 +118,7 @@ class BirthiewController: BaseViewController {
 
         // MARK: 만 계산 세부 로직(선택 월일과 오늘 월일을 비교함)
         if americanAge >= 17 {
-            if selectDay > today {
+            if selectDay < today { 
                 print("만 17세 미만이다.")
                 result = false
             } else {

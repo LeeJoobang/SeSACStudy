@@ -39,34 +39,52 @@ class LoginCodeViewController: BaseViewController {
         loginCodeView.certificationButton.layer.cornerRadius = 5
         loginCodeView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
-    
-    @objc func buttonClicked(button: UIButton){
-        print("button clicked")
-        
-        let vc = NicknameViewController()
-        self.navigationController?.pushViewController(vc, animated: true)
-    }
     /* 로직 검사를 위해 임시적으로 주석처리
      @objc func buttonClicked(button: UIButton){
      print("button clicked")
-     guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else { return print("somthing weird") }
-     print("resend - verificationID: \(verificationID)")
-     let textfieldText = loginCodeView.numberTextField.text
-     print(textfieldText)
-     guard let testVerificationCode = textfieldText else {
-     // data 미입력에 대한 토스트 메세지 출력
-     return
-     }
-     let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: testVerificationCode)
-     Auth.auth().signIn(with: credential) { authData, error in
-     if (error != nil) {
-     print("testVerificationCode incorrect")
-     return
-     }
-     print("인증완료: \(String(describing: authData?.user.uid))")
+     
      let vc = NicknameViewController()
      self.navigationController?.pushViewController(vc, animated: true)
      }
-     }
      */
+    // 로직 검사를 위해 임시적으로 주석처리
+    @objc func buttonClicked(button: UIButton){
+        print("button clicked")
+        guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else { return print("somthing weird") }
+        print("resend - verificationID: \(verificationID)")
+        let textfieldText = loginCodeView.numberTextField.text
+        print(textfieldText)
+        guard let testVerificationCode = textfieldText else {
+            // data 미입력에 대한 토스트 메세지 출력
+            return
+        }
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: testVerificationCode)
+        Auth.auth().signIn(with: credential) { authData, error in
+            if (error != nil) {
+                print("testVerificationCode incorrect")
+                return
+            }
+            print("인증완료: \(String(describing: authData?.user.uid))")
+            
+            let currentUser = Auth.auth().currentUser
+            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+                if let error = error {
+                    // Handle error
+                    print("error 발생")
+                    return
+                }
+                print("성공: \(idToken)")
+                
+                let vc = NicknameViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
+                
+            }
+            
+            
+            
+        }
+        
+        
+    }
+    
 }
