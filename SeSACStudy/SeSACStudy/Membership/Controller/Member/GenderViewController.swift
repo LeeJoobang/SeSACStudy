@@ -1,5 +1,7 @@
 import UIKit
 
+import Alamofire
+
 class GenderViewController: BaseViewController {
 
     let gendernameView = GenderView()
@@ -31,9 +33,16 @@ class GenderViewController: BaseViewController {
     
     @objc func buttonClicked(button: UIButton){
         // MARK: 회원가입 신청
+        print("회원가입 버튼 클릭")
         let apiService = APIService()
+        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
+        apiService.signup(id: idToken)
+//        guard let fcmToken = UserDefaults.standard.string(forKey: "fcmToken") else { return print("somthing weird") }
+//        print(fcmToken)
         
     }
+    
+    
     
     
 }

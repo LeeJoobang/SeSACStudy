@@ -2,20 +2,6 @@ import Foundation
 
 import Alamofire
 
-enum SeSACAPI {
-    case signUP(phoneNumber: String, email: String, password: String)
-    case login(email: String, password: String)
-    case profile
-}
-
-//"phoneNumber" : "+821012345678",
-//  "FCMtoken" : "dzjnejNDh0d0u1aLzfS547:APA91bFvQSjDVFC4-2IA0QQ08KqsEKwIoK2hFBZIfdyNLPd22PvgLD6YM_kyQgv0BIK-1zjltbbKYQTGK50Pn21bctsuEC46qo7RDkcImbzyZBe0-ffMqhFhL4DO5tbP0Ri_Wn-vRVF5",
-//  "nick": "고래밥",
-//  "birth": "2002-01-16T09:23:44.054Z",
-//  "email": "user@example.com",
-//  "gender" : 0
-
-
 struct Profile: Codable{
     let user: User
 }
@@ -80,13 +66,26 @@ class APIService{
             }
     }
     
-    func signup(){
-//        let api = SeSACAPI.signUP(username: "testjoo1", email: "testjoo1@testjoo1.com", password: "12345678")
-//        AF.request(api.url, method: .post, parameters: api.parameters, headers: api.headers).responseString {
-//            response in
-//            print(response)
-//            print(response.response?.statusCode)
-//        }
+    func signup(id idToken: String){
+        guard let fcmToken = UserDefaults.standard.string(forKey: "fcmToken") else { return print("somthing weird") }
+        let api = SeSACAPI.signUP(phoneNumber: "+821033225679", FCMtoken: fcmToken, nick: "이주방", birth: "1990-01-16T09:23:44.054Z", Email: "hii5074@gmail.com", gender: 0)
+        let apiURL = URL(string: "http://api.sesac.co.kr:1207/v1/user")!
+        
+        let apiHeaders: HTTPHeaders = [
+            "Content-Type": "application/x-www-form-urlencoded",
+            "idtoken": idToken
+        ]
+        
+        print("api.parameters: \(api.parameters)")
+        print("api: \(api)")
+
+        
+        AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseString {
+            response in
+            print("APIService - Signup: 등록완료")
+            print(response)
+            print(response.response?.statusCode)
+        }
     }
 
     

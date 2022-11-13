@@ -71,19 +71,28 @@ class LoginCodeViewController: BaseViewController {
                     print("error 발생")
                     return
                 }
+                
                 // MARK: 미가입유저 - 회원가입 로직 진행, 가입유저 - 로그인 로직
-                print("성공: \(idToken)")
+                print("성공: \(idToken!)")
                 guard let idToken = idToken else { return }
+                
+
                 if idToken != "" {
+                    // MARK: idToken 값 userDefault 저장
                     print("idtoken 값이 있음.")
+                    print("idtoken: \(idToken)")
+                    UserDefaults.standard.set(idToken, forKey: "idToken")
+
                     // MARK: 가입 유저 유무 확인 로직
                     let apiService = APIService()
                     apiService.profile(id: idToken) { code in
                         guard let code = code else { return }
                         switch code {
-                        case 200:
+                        case 200...299:
+                            print("code number: \(code)")
                             print("가입 유저입니다.")
-                        case 406:
+                        case 400...499:
+                            print("code number: \(code)")
                             print("미가입 유저입니다.")
                             let vc = NicknameViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
