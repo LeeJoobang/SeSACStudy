@@ -6,13 +6,11 @@ class LoginViewController: BaseViewController {
     
     let loginView = LoginView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = loginView
         loginView.backgroundColor = .white
         loginView.numberTextField.addTarget(self, action: #selector(LoginViewController.textfieldDidChange(_:)), for: UIControl.Event.allEditingEvents)
-
     }
     
     // MARK: 핸드폰 번호 실시간 반영 및 버튼 컬러 변경

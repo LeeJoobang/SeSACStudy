@@ -9,7 +9,6 @@ class BirthiewController: BaseViewController {
     private var month = String()
     private var day = String()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = birthView
@@ -99,7 +98,6 @@ class BirthiewController: BaseViewController {
             birthView.certificationButton.backgroundColor = .customGray3
             birthView.certificationButton.isEnabled = false
         }
-
     }
     
     // MARK: 만나이 계산 진행

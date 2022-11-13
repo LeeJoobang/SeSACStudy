@@ -14,8 +14,6 @@ class GenderViewController: BaseViewController {
         super.viewDidAppear(animated)
     }
     
-    
-    
     override func configure() {
         let text = "성별을 선택해 주세요 \n 새싹 찾기 기능을 이용하기 위해서 필요해요."
         gendernameView.GenderTextLabel.numberOfLines = 0
@@ -32,7 +30,11 @@ class GenderViewController: BaseViewController {
     }
     
     @objc func buttonClicked(button: UIButton){
-
+        // MARK: 회원가입 신청
+        let apiService = APIService()
+        
     }
+    
+    
 }
 

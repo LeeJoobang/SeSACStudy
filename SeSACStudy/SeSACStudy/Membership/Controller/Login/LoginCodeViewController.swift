@@ -10,13 +10,10 @@ class LoginCodeViewController: BaseViewController {
     let loginCodeView = LoginView()
     var verifyID: String?
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = loginCodeView
         loginCodeView.backgroundColor = .white
-        
     }
     
     override func viewWillLayoutSubviews() {
@@ -24,7 +21,6 @@ class LoginCodeViewController: BaseViewController {
         guard let customGray3 = UIColor.customGray3 else { return }
         loginCodeView.numberView.layer.addBorder([.bottom], color: customGray3, width: 1.0)
     }
-    
     
     override func configure() {
         loginCodeView.numberTextLabel.numberOfLines = 0
@@ -77,25 +73,24 @@ class LoginCodeViewController: BaseViewController {
                 }
                 // MARK: 미가입유저 - 회원가입 로직 진행, 가입유저 - 로그인 로직
                 print("성공: \(idToken)")
-                
                 guard let idToken = idToken else { return }
                 if idToken != "" {
                     print("idtoken 값이 있음.")
+                    // MARK: 가입 유저 유무 확인 로직
                     let apiService = APIService()
                     apiService.profile(id: idToken) { code in
                         guard let code = code else { return }
                         switch code {
                         case 200:
-                            print("가입")
+                            print("가입 유저입니다.")
                         case 406:
-                            print("미가입")
+                            print("미가입 유저입니다.")
                             let vc = NicknameViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
                         default:
                             print("오류")
                         }
                     }
-                    
                 } 
             }
         }

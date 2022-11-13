@@ -33,8 +33,6 @@ class EmailViewController: BaseViewController {
         emailView.numberView.layer.addBorder([.bottom], color: customGray3, width: 1.0)
     }
     
-    
-    
     override func configure() {
         let text = "이메일을 입력해주세요 \n 휴대폰 번호 변경시 인증을 위해 사용해요"
         emailView.numberTextLabel.numberOfLines = 0
@@ -55,7 +53,6 @@ class EmailViewController: BaseViewController {
     @objc func buttonClicked(button: UIButton){
         let vc = GenderViewController()
         self.navigationController?.pushViewController(vc, animated: true)
-
     }
     
     func isEmail(candidate: String) -> Bool {

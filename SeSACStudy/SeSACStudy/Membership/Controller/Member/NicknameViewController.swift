@@ -9,7 +9,6 @@ class NicknameViewController: BaseViewController {
         self.view = nicknameView
         nicknameView.backgroundColor = .white
         nicknameView.numberTextField.addTarget(self, action: #selector(NicknameViewController.textfieldDidChange(_:)), for: UIControl.Event.allEditingEvents)
-
     }
     
     // MARK: 닉네임 실시간 반영 및 버튼 컬러 변경
@@ -22,7 +21,6 @@ class NicknameViewController: BaseViewController {
             nicknameView.certificationButton.backgroundColor = .customGreen
             nicknameView.certificationButton.isEnabled = true
             nicknameView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
-
         } else {
             nicknameView.certificationButton.backgroundColor = .customGray3
             nicknameView.certificationButton.isEnabled = false
@@ -55,7 +53,6 @@ class NicknameViewController: BaseViewController {
     @objc func buttonClicked(button: UIButton){
         let vc = BirthiewController()
         self.navigationController?.pushViewController(vc, animated: true)
-
     }
     
     func isNickname(candidate: String) -> Bool {
