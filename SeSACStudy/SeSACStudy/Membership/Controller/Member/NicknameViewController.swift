@@ -1,7 +1,7 @@
 import UIKit
 
 class NicknameViewController: BaseViewController {
-
+    
     let nicknameView = LoginView()
     
     override func viewDidLoad() {
@@ -14,10 +14,10 @@ class NicknameViewController: BaseViewController {
     // MARK: 닉네임 실시간 반영 및 버튼 컬러 변경
     @objc func textfieldDidChange(_ textfield: UITextField){
         guard let nicknameText = nicknameView.numberTextField.text else { return }
-        print(nicknameText)
         let result = isNickname(candidate: nicknameText)
-        print(result)
         if result {
+            print("🌹nickname: \(nicknameText)")
+            UserDefaults.standard.set(nicknameText, forKey: "nickName")
             nicknameView.certificationButton.backgroundColor = .customGreen
             nicknameView.certificationButton.isEnabled = true
             nicknameView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
@@ -47,10 +47,10 @@ class NicknameViewController: BaseViewController {
         nicknameView.certificationButton.setTitle("다음", for: .normal)
         nicknameView.certificationButton.tintColor = .customGray3
         nicknameView.certificationButton.layer.cornerRadius = 5
-//        nicknameView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
     
     @objc func buttonClicked(button: UIButton){
+        print("🟢 nicknameView.numberTextField.text: \(nicknameView.numberTextField.text!)")
         let vc = BirthiewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

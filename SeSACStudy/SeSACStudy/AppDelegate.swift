@@ -36,15 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: 메시지 대리자 설정
         Messaging.messaging().delegate = self
         
-        // MARK: 현재 등록 토큰 가져오기 - 주석처리 가능
-        Messaging.messaging().token { token, error in
-            if let error = error {
-                print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-                print("FCM registration token: \(token)")
-            }
-        }
-        
+//        // MARK: 현재 등록 토큰 가져오기 - 주석처리 가능
+//        Messaging.messaging().token { token, error in
+//            if let error = error {
+//                print("Error fetching FCM registration token: \(error)")
+//            } else if let token = token {
+//                print("FCM registration token: \(token)")
+//            }
+//        }
+//
         return true
     }
     
@@ -78,7 +78,15 @@ extension AppDelegate: MessagingDelegate {
     // MARK: 토큰 갱신 모니터링, 토큰 정보가 언제 바뀔까?
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("Firebase registration token: \(String(describing: fcmToken))")
-        UserDefaults.standard.set(fcmToken, forKey: "fcmToken")
+        
+        if UserDefaults.standard.string(forKey: "fcmToken") != nil {
+            print("🌹 FCM 이미 발급 되었습니다. ")
+            print(UserDefaults.standard.string(forKey: "fcmToken"))
+        } else {
+            print("🌹 FCM 발급하였습니다. ")
+            UserDefaults.standard.set(fcmToken, forKey: "fcmToken")
+        }
+
         
         let dataDict: [String: String] = ["token": fcmToken ?? ""]
         NotificationCenter.default.post(

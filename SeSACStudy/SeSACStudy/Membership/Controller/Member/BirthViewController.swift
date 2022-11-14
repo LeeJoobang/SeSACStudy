@@ -120,6 +120,9 @@ class BirthiewController: BaseViewController {
                 print("만 17세 미만이다.")
                 result = false
             } else {
+                let birth = "\(year)-\(month)-\(day)T09:23:44.054Z"
+                print("🌹birth: \(birth)")
+                UserDefaults.standard.set(birth, forKey: "birth")
                 print("만 17세 이상이다.")
                 result = true
             }

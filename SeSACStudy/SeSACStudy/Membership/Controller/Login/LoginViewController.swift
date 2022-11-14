@@ -17,9 +17,9 @@ class LoginViewController: BaseViewController {
     @objc func textfieldDidChange(_ textfield: UITextField){
         guard let phonetext = loginView.numberTextField.text else { return }
         let phoneFormat = phoneNumberformat(with: "XXX-XXXX-XXXX", phone: phonetext)
-
+        
         let result = isPhone(candidate: phoneNumberformat(with: "XXX-XXXX-XXXX", phone: phonetext))
-
+        
         if result {
             loginView.certificationButton.backgroundColor = .customGreen
             loginView.numberTextField.text = phoneFormat
@@ -55,18 +55,20 @@ class LoginViewController: BaseViewController {
         loginView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
     
-    /* 로직 진행을 위한 잠시 주석처리
-    @objc func buttonClicked(button: UIButton){
-
-                let vc = LoginCodeViewController()
-                self.navigationController?.pushViewController(vc, animated: true)
-    }
-     */
+    // 로직 진행을 위한 잠시 주석처리
+    //    @objc func buttonClicked(button: UIButton){
+    //        let vc = LoginCodeViewController()
+    //        self.navigationController?.pushViewController(vc, animated: true)
+    //    }
     
-    // 로직 진행을 위한 잠시 주석 처리
+    //     로직 진행을 위한 잠시 주석 처리
+    
+    // MARK: phoneNumber 저장 
     @objc func buttonClicked(button: UIButton){
-        let phoneNumber = "+821033225679"
-//        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+        guard let textNumber = loginView.numberTextField.text else { return }
+        let sliceNumber = textNumber.components(separatedBy: ["-"]).joined().dropFirst()
+        let phoneNumber = "+82"+sliceNumber
+        //        Auth.auth().settings?.isAppVerificationDisabledForTesting = true
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
                 if error != nil {
@@ -75,7 +77,8 @@ class LoginViewController: BaseViewController {
                 }
                 print("성공 - verificationID : \(verificationID)")
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-
+                print("🌹 phoneNumber  저장: \(String(describing: phoneNumber))")
+                UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
                 let vc = LoginCodeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }
@@ -104,6 +107,6 @@ class LoginViewController: BaseViewController {
         let isValid = phonePredicate.evaluate(with: candidate)
         return isValid
     }
-   
+    
 }
 

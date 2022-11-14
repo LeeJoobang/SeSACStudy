@@ -19,6 +19,9 @@ class EmailViewController: BaseViewController {
         let result = isEmail(candidate: emailText)
         print(result)
         if result {
+            print("🌹email: \(emailText)")
+            UserDefaults.standard.set(emailText, forKey: "email")
+
             emailView.certificationButton.backgroundColor = .customGreen
             emailView.certificationButton.isEnabled = true
         } else {

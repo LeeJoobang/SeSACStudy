@@ -37,14 +37,13 @@ class LoginCodeViewController: BaseViewController {
         loginCodeView.certificationButton.layer.cornerRadius = 5
         loginCodeView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
-    /* 로직 검사를 위해 임시적으로 주석처리
-     @objc func buttonClicked(button: UIButton){
-     print("button clicked")
-     
-     let vc = NicknameViewController()
-     self.navigationController?.pushViewController(vc, animated: true)
-     }
-     */
+    // 로직 검사를 위해 임시적으로 주석처리
+//     @objc func buttonClicked(button: UIButton){
+//         print("button clicked")
+//         let vc = NicknameViewController()
+//         self.navigationController?.pushViewController(vc, animated: true)
+//     }
+    
     // 로직 검사를 위해 임시적으로 주석처리
     @objc func buttonClicked(button: UIButton){
         print("button clicked")
@@ -63,7 +62,7 @@ class LoginCodeViewController: BaseViewController {
                 return
             }
             print("인증완료: \(String(describing: authData?.user.uid))")
-            
+
             // MARK: sesac 서버로부터 인증번호 - 미가입, 가입 유저 확인
             let currentUser = Auth.auth().currentUser
             currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
@@ -71,16 +70,15 @@ class LoginCodeViewController: BaseViewController {
                     print("error 발생")
                     return
                 }
-                
+
                 // MARK: 미가입유저 - 회원가입 로직 진행, 가입유저 - 로그인 로직
-                print("성공: \(idToken!)")
+                print("idToken 성공: \(idToken!)")
                 guard let idToken = idToken else { return }
-                
+
 
                 if idToken != "" {
                     // MARK: idToken 값 userDefault 저장
-                    print("idtoken 값이 있음.")
-                    print("idtoken: \(idToken)")
+                    print("🌹idtoken: \(idToken)")
                     UserDefaults.standard.set(idToken, forKey: "idToken")
 
                     // MARK: 가입 유저 유무 확인 로직
@@ -89,10 +87,10 @@ class LoginCodeViewController: BaseViewController {
                         guard let code = code else { return }
                         switch code {
                         case 200...299:
-                            print("code number: \(code)")
+                            print("🌹 code number: \(code)")
                             print("가입 유저입니다.")
                         case 400...499:
-                            print("code number: \(code)")
+                            print("🌹 code number: \(code)")
                             print("미가입 유저입니다.")
                             let vc = NicknameViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
@@ -100,8 +98,17 @@ class LoginCodeViewController: BaseViewController {
                             print("오류")
                         }
                     }
-                } 
+                }
             }
+        }
+    }
+    
+    func deleteUserDefault(){
+        print("🌹deleteUserDefault - 넣을지 고민중")
+
+        let keyName = ["nickName", "birth", "email", "gender"]
+        for key in keyName {
+                    UserDefaults.standard.removeObject(forKey: key)
         }
     }
 }

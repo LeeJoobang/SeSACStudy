@@ -61,34 +61,36 @@ class APIService{
                     print("실패")
                     print(response.response?.statusCode)
                     completion(statusCode)
-
                 }
             }
     }
     
-    func signup(id idToken: String){
-        guard let fcmToken = UserDefaults.standard.string(forKey: "fcmToken") else { return print("somthing weird") }
-        let api = SeSACAPI.signUP(phoneNumber: "+821033225679", FCMtoken: fcmToken, nick: "이주방", birth: "1990-01-16T09:23:44.054Z", Email: "hii5074@gmail.com", gender: 0)
+    func signup(){
+        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
+        guard let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") else { return  }
+        guard let fcmToken = UserDefaults.standard.string(forKey: "fcmToken") else { return }
+        guard let nick = UserDefaults.standard.string(forKey: "nickName") else { return }
+        guard let birth = UserDefaults.standard.string(forKey: "birth") else { return }
+        guard let email = UserDefaults.standard.string(forKey: "email") else { return }
+        print("🌹 idtoken: \(String(describing: idToken))")
+        print("🌹 phoneNumber: \(String(describing: phoneNumber))")
+        print("🌹 FCMtoken: \(String(describing: fcmToken))")
+        print("🌹 nickName: \(String(describing: nick))")
+        print("🌹 birth: \(String(describing: birth))")
+        print("🌹 email: \(String(describing: email))")
+        print("🌹 gender: \(String(describing: phoneNumber))")
+
+        let api = SeSACAPI.signUP(phoneNumber: phoneNumber, FCMtoken: fcmToken, nick: nick, birth: birth, Email: email, gender: 0)
         let apiURL = URL(string: "http://api.sesac.co.kr:1207/v1/user")!
-        
         let apiHeaders: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded",
             "idtoken": idToken
         ]
-        
-        print("api.parameters: \(api.parameters)")
-        print("api: \(api)")
-
-        
         AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseString {
             response in
-            print("APIService - Signup: 등록완료")
             print(response)
             print(response.response?.statusCode)
+            print("🌹APIService - Signup: 등록완료")
         }
     }
-
-    
-    
-    
 }
