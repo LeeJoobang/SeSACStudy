@@ -56,10 +56,10 @@ class LoginViewController: BaseViewController {
     }
     
     // 로직 진행을 위한 잠시 주석처리
-    //    @objc func buttonClicked(button: UIButton){
-    //        let vc = LoginCodeViewController()
-    //        self.navigationController?.pushViewController(vc, animated: true)
-    //    }
+//    @objc func buttonClicked(button: UIButton){
+//        let vc = LoginCodeViewController()
+//        self.navigationController?.pushViewController(vc, animated: true)
+//    }
     
     //     로직 진행을 위한 잠시 주석 처리
     
@@ -75,9 +75,7 @@ class LoginViewController: BaseViewController {
                     print("error: \(error)")
                     return
                 }
-                print("성공 - verificationID : \(verificationID)")
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
-                print("🌹 phoneNumber  저장: \(String(describing: phoneNumber))")
                 UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
                 let vc = LoginCodeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)

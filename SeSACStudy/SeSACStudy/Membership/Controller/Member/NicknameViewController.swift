@@ -16,7 +16,6 @@ class NicknameViewController: BaseViewController {
         guard let nicknameText = nicknameView.numberTextField.text else { return }
         let result = isNickname(candidate: nicknameText)
         if result {
-            print("🌹nickname: \(nicknameText)")
             UserDefaults.standard.set(nicknameText, forKey: "nickName")
             nicknameView.certificationButton.backgroundColor = .customGreen
             nicknameView.certificationButton.isEnabled = true
@@ -50,7 +49,6 @@ class NicknameViewController: BaseViewController {
     }
     
     @objc func buttonClicked(button: UIButton){
-        print("🟢 nicknameView.numberTextField.text: \(nicknameView.numberTextField.text!)")
         let vc = BirthiewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }

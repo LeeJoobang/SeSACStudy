@@ -7,27 +7,34 @@ class GenderView: BaseView{
         return label
     }()
 
-    let leftView: GenderSubView = {
-        let view = GenderSubView()
-        view.backgroundColor = .gray
-        view.imageView.image = UIImage(named: "man")
-        view.label.text = "남자"
-        view.label.textAlignment = .center
+    let leftButton: UIButton = {
+        var button = UIButton.Configuration.filled()
+        button.baseBackgroundColor = .white
+        button.image = UIImage(named: "man")
+        button.title = "남자"
+        button.baseForegroundColor = .black
+        button.imagePlacement = .top
+        button.background.strokeWidth = 1
+        button.background.strokeColor = .gray
+        let view = UIButton(configuration: button)
         return view
     }()
 
-    let rightView: GenderSubView = {
-        let view = GenderSubView()
-        view.backgroundColor = .gray
-        view.imageView.image = UIImage(named: "woman")
-        view.label.text = "여자"
-        view.label.textAlignment = .center
-
+    let rightButton: UIButton = {
+        var button = UIButton.Configuration.filled()
+        button.baseBackgroundColor = .white
+        button.image = UIImage(named: "woman")
+        button.title = "여자"
+        button.baseForegroundColor = .black
+        button.imagePlacement = .top
+        button.background.strokeWidth = 1
+        button.background.strokeColor = .gray
+        let view = UIButton(configuration: button)
         return view
     }()
     
     lazy var stackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [leftView, rightView])
+        let view = UIStackView(arrangedSubviews: [leftButton, rightButton])
         view.backgroundColor = .clear
         view.axis = .horizontal
         view.alignment = .fill
@@ -59,7 +66,7 @@ class GenderView: BaseView{
             self.addSubview($0)
         }
         
-        [leftView, rightView].forEach {
+        [leftButton, rightButton].forEach {
             self.stackView.addArrangedSubview($0)
         }
     }

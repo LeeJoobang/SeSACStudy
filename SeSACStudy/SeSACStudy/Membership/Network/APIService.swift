@@ -72,20 +72,23 @@ class APIService{
         guard let nick = UserDefaults.standard.string(forKey: "nickName") else { return }
         guard let birth = UserDefaults.standard.string(forKey: "birth") else { return }
         guard let email = UserDefaults.standard.string(forKey: "email") else { return }
+        let gender = UserDefaults.standard.integer(forKey: "gender")
+
         print("🌹 idtoken: \(String(describing: idToken))")
         print("🌹 phoneNumber: \(String(describing: phoneNumber))")
         print("🌹 FCMtoken: \(String(describing: fcmToken))")
         print("🌹 nickName: \(String(describing: nick))")
         print("🌹 birth: \(String(describing: birth))")
         print("🌹 email: \(String(describing: email))")
-        print("🌹 gender: \(String(describing: phoneNumber))")
+        print("🌹 gender: \(String(describing: gender))")
 
-        let api = SeSACAPI.signUP(phoneNumber: phoneNumber, FCMtoken: fcmToken, nick: nick, birth: birth, Email: email, gender: 0)
+        let api = SeSACAPI.signUP(phoneNumber: phoneNumber, FCMtoken: fcmToken, nick: nick, birth: birth, Email: email, gender: gender)
         let apiURL = URL(string: "http://api.sesac.co.kr:1207/v1/user")!
         let apiHeaders: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded",
             "idtoken": idToken
         ]
+        
         AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseString {
             response in
             print(response)

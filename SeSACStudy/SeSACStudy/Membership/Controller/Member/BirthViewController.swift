@@ -89,7 +89,6 @@ class BirthiewController: BaseViewController {
         
         // MARK: 만나이 계산 호출
         let result = iscalculateAge(yy: year, mm: month, dd: day)
-        print("result: \(result)")
         if result {
             birthView.certificationButton.backgroundColor = .customGreen
             birthView.certificationButton.isEnabled = true
@@ -121,7 +120,6 @@ class BirthiewController: BaseViewController {
                 result = false
             } else {
                 let birth = "\(year)-\(month)-\(day)T09:23:44.054Z"
-                print("🌹birth: \(birth)")
                 UserDefaults.standard.set(birth, forKey: "birth")
                 print("만 17세 이상이다.")
                 result = true
@@ -132,6 +130,5 @@ class BirthiewController: BaseViewController {
         }
         return result
     }
-    
 }
 

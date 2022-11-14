@@ -3,8 +3,6 @@ import UIKit
 import FirebaseAuth
 import Alamofire
 
-
-
 class LoginCodeViewController: BaseViewController {
     
     let loginCodeView = LoginView()
@@ -46,11 +44,8 @@ class LoginCodeViewController: BaseViewController {
     
     // 로직 검사를 위해 임시적으로 주석처리
     @objc func buttonClicked(button: UIButton){
-        print("button clicked")
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else { return print("somthing weird") }
-        print("resend - verificationID: \(verificationID)")
         let textfieldText = loginCodeView.numberTextField.text
-        print(textfieldText)
         guard let testVerificationCode = textfieldText else {
             // data 미입력에 대한 토스트 메세지 출력
             return
@@ -61,8 +56,6 @@ class LoginCodeViewController: BaseViewController {
                 print("testVerificationCode incorrect")
                 return
             }
-            print("인증완료: \(String(describing: authData?.user.uid))")
-
             // MARK: sesac 서버로부터 인증번호 - 미가입, 가입 유저 확인
             let currentUser = Auth.auth().currentUser
             currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
@@ -72,15 +65,10 @@ class LoginCodeViewController: BaseViewController {
                 }
 
                 // MARK: 미가입유저 - 회원가입 로직 진행, 가입유저 - 로그인 로직
-                print("idToken 성공: \(idToken!)")
                 guard let idToken = idToken else { return }
-
-
                 if idToken != "" {
                     // MARK: idToken 값 userDefault 저장
-                    print("🌹idtoken: \(idToken)")
                     UserDefaults.standard.set(idToken, forKey: "idToken")
-
                     // MARK: 가입 유저 유무 확인 로직
                     let apiService = APIService()
                     apiService.profile(id: idToken) { code in
@@ -88,10 +76,8 @@ class LoginCodeViewController: BaseViewController {
                         switch code {
                         case 200...299:
                             print("🌹 code number: \(code)")
-                            print("가입 유저입니다.")
                         case 400...499:
                             print("🌹 code number: \(code)")
-                            print("미가입 유저입니다.")
                             let vc = NicknameViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
                         default:
@@ -105,7 +91,6 @@ class LoginCodeViewController: BaseViewController {
     
     func deleteUserDefault(){
         print("🌹deleteUserDefault - 넣을지 고민중")
-
         let keyName = ["nickName", "birth", "email", "gender"]
         for key in keyName {
                     UserDefaults.standard.removeObject(forKey: key)

@@ -9,19 +9,14 @@ class EmailViewController: BaseViewController {
         self.view = emailView
         emailView.backgroundColor = .white
         emailView.numberTextField.addTarget(self, action: #selector(EmailViewController.textfieldDidChange(_:)), for: UIControl.Event.allEditingEvents)
-
     }
     
     // MARK: 닉네임 실시간 반영 및 버튼 컬러 변경
     @objc func textfieldDidChange(_ textfield: UITextField){
         guard let emailText = emailView.numberTextField.text else { return }
-        print(emailText)
         let result = isEmail(candidate: emailText)
-        print(result)
         if result {
-            print("🌹email: \(emailText)")
             UserDefaults.standard.set(emailText, forKey: "email")
-
             emailView.certificationButton.backgroundColor = .customGreen
             emailView.certificationButton.isEnabled = true
         } else {
