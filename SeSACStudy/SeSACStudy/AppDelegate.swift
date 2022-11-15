@@ -9,6 +9,14 @@ import IQKeyboardManagerSwift
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        let backImageInsets = UIEdgeInsets(top: 0, left: -15, bottom: 0, right: 0)
+        let backButtonImage = UIImage(named: "BackButton")?.withRenderingMode(.alwaysOriginal).withAlignmentRectInsets(backImageInsets)
+        UINavigationBar.appearance().tintColor = .black
+        UINavigationBar.appearance().backIndicatorImage = backButtonImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backButtonImage
+
+        
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.enableAutoToolbar = false
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
@@ -36,15 +44,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // MARK: 메시지 대리자 설정
         Messaging.messaging().delegate = self
         
-//        // MARK: 현재 등록 토큰 가져오기 - 주석처리 가능
-//        Messaging.messaging().token { token, error in
-//            if let error = error {
-//                print("Error fetching FCM registration token: \(error)")
-//            } else if let token = token {
-//                print("FCM registration token: \(token)")
-//            }
-//        }
-//
         return true
     }
     

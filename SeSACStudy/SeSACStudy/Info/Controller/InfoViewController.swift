@@ -5,14 +5,22 @@ class InfoViewController: BaseViewController{
     let infoTableView = InfoTableView()
     let infoList = ["김새싹", "공지사항", "자주 묻는 질문", "1:1 문의", "알림 설정", "이용 약관"]
     let infoImage = ["profile", "faq", "notice", "permit", "qna", "setting_alarm"]
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = infoTableView
+        infoTableView.backgroundColor = .white
         infoTableView.tableView.backgroundColor = .white
         infoTableView.tableView.delegate = self
         infoTableView.tableView.dataSource = self
         
         self.infoTableView.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: InfoTableViewCell.reuseIdentifier)
+        
+       
+        
+
+        navigationItem.title = "설정"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
 
     }
 }
@@ -47,6 +55,8 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource{
         case 0:
             print("🌹내정보 이동")
 
+            let vc = InfoDetailViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
         case 1...5:
             print("1-5 row click")
         default:

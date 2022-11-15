@@ -44,6 +44,9 @@
 		37EE4FF0292354CD00523BDD /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FEF292354CD00523BDD /* InfoTableViewCell.swift */; };
 		37EE4FF2292354DD00523BDD /* BaseTablewViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FF1292354DD00523BDD /* BaseTablewViewCell.swift */; };
 		37EE4FF729235C4E00523BDD /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FF629235C4E00523BDD /* ReusableProtocol.swift */; };
+		37EE4FF92923901B00523BDD /* InfoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FF82923901B00523BDD /* InfoDetailViewController.swift */; };
+		37EE4FFD292390F200523BDD /* InfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FFC292390F200523BDD /* InfoDetailView.swift */; };
+		37EE4FFF2923911F00523BDD /* InfoDetailViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FFE2923911F00523BDD /* InfoDetailViewCell.swift */; };
 		37F3EEC5291FC342002F2597 /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F3EEC4291FC342002F2597 /* GenderView.swift */; };
 		37F3EEC92920C6E9002F2597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37F3EEC82920C6E9002F2597 /* GoogleService-Info.plist */; };
 		37F3EECC2920D6C5002F2597 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 37F3EECB2920D6C5002F2597 /* Alamofire */; };
@@ -93,6 +96,9 @@
 		37EE4FEF292354CD00523BDD /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
 		37EE4FF1292354DD00523BDD /* BaseTablewViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTablewViewCell.swift; sourceTree = "<group>"; };
 		37EE4FF629235C4E00523BDD /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		37EE4FF82923901B00523BDD /* InfoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailViewController.swift; sourceTree = "<group>"; };
+		37EE4FFC292390F200523BDD /* InfoDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailView.swift; sourceTree = "<group>"; };
+		37EE4FFE2923911F00523BDD /* InfoDetailViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoDetailViewCell.swift; sourceTree = "<group>"; };
 		37F3EEC4291FC342002F2597 /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
 		37F3EEC82920C6E9002F2597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37F3EECE2920D800002F2597 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
@@ -268,8 +274,8 @@
 		37EE4FF4292356A700523BDD /* View */ = {
 			isa = PBXGroup;
 			children = (
-				37EE4FED2923541C00523BDD /* InfoTableView.swift */,
-				37EE4FEF292354CD00523BDD /* InfoTableViewCell.swift */,
+				37EE4FFB292390DE00523BDD /* InfoDetail */,
+				37EE4FFA292390D100523BDD /* Info */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -278,8 +284,27 @@
 			isa = PBXGroup;
 			children = (
 				37EE4FE8292352AA00523BDD /* InfoViewController.swift */,
+				37EE4FF82923901B00523BDD /* InfoDetailViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		37EE4FFA292390D100523BDD /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				37EE4FED2923541C00523BDD /* InfoTableView.swift */,
+				37EE4FEF292354CD00523BDD /* InfoTableViewCell.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		37EE4FFB292390DE00523BDD /* InfoDetail */ = {
+			isa = PBXGroup;
+			children = (
+				37EE4FFC292390F200523BDD /* InfoDetailView.swift */,
+				37EE4FFE2923911F00523BDD /* InfoDetailViewCell.swift */,
+			);
+			path = InfoDetail;
 			sourceTree = "<group>";
 		};
 		37F3EEC1291FC0B7002F2597 /* Common */ = {
@@ -406,6 +431,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				373AFC41291A3FE80019EB00 /* LoginViewController.swift in Sources */,
+				37EE4FFD292390F200523BDD /* InfoDetailView.swift in Sources */,
 				373AFBDA2918D8C40019EB00 /* ViewController.swift in Sources */,
 				373AFBFE2918F8D00019EB00 /* BaseCollectionViewCell.swift in Sources */,
 				378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */,
@@ -414,12 +440,14 @@
 				372FEF69291C0ACF004F3B16 /* GenderViewController.swift in Sources */,
 				373AFBEE2918D9BF0019EB00 /* APIKey.swift in Sources */,
 				373AFC3B291984380019EB00 /* FirstViewController.swift in Sources */,
+				37EE4FFF2923911F00523BDD /* InfoDetailViewCell.swift in Sources */,
 				373AFBFA2918ECE00019EB00 /* BaseView.swift in Sources */,
 				372FEF5E291BF57F004F3B16 /* Layer + Extension.swift in Sources */,
 				37EE4FE9292352AA00523BDD /* InfoViewController.swift in Sources */,
 				373AFBD82918D8C40019EB00 /* SceneDelegate.swift in Sources */,
 				371878E9291D1D6C00B91F98 /* BirthView.swift in Sources */,
 				372FEF67291C09B2004F3B16 /* EmailViewController.swift in Sources */,
+				37EE4FF92923901B00523BDD /* InfoDetailViewController.swift in Sources */,
 				372FEF57291BEEAA004F3B16 /* UILabel + Extension.swift in Sources */,
 				373AFC202919445F0019EB00 /* ThirdViewController.swift in Sources */,
 				373AFC2929197EFD0019EB00 /* OnboadingViewController.swift in Sources */,
