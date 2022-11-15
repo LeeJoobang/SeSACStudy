@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3709773B2923AFF400A6CA52 /* BaseTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709773A2923AFF400A6CA52 /* BaseTabBarViewController.swift */; };
+		3709773D2923B55000A6CA52 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709773C2923B55000A6CA52 /* HomeViewController.swift */; };
+		3709773F2923B55900A6CA52 /* ShopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709773E2923B55900A6CA52 /* ShopViewController.swift */; };
+		370977412923B56D00A6CA52 /* FriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 370977402923B56D00A6CA52 /* FriendViewController.swift */; };
 		371878E9291D1D6C00B91F98 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371878E8291D1D6C00B91F98 /* BirthView.swift */; };
 		372FEF20291B700C004F3B16 /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF1F291B700C004F3B16 /* Color + Extension.swift */; };
 		372FEF24291B76A6004F3B16 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 372FEF22291B76A6004F3B16 /* NotoSansKR-Medium.otf */; };
@@ -58,6 +62,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3709773A2923AFF400A6CA52 /* BaseTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTabBarViewController.swift; sourceTree = "<group>"; };
+		3709773C2923B55000A6CA52 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		3709773E2923B55900A6CA52 /* ShopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopViewController.swift; sourceTree = "<group>"; };
+		370977402923B56D00A6CA52 /* FriendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendViewController.swift; sourceTree = "<group>"; };
 		3713F99F291E385B00436DBA /* SeSACStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSACStudy.entitlements; sourceTree = "<group>"; };
 		371878E8291D1D6C00B91F98 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		372FEF1F291B700C004F3B16 /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
@@ -285,6 +293,10 @@
 			children = (
 				37EE4FE8292352AA00523BDD /* InfoViewController.swift */,
 				37EE4FF82923901B00523BDD /* InfoDetailViewController.swift */,
+				3709773A2923AFF400A6CA52 /* BaseTabBarViewController.swift */,
+				3709773C2923B55000A6CA52 /* HomeViewController.swift */,
+				3709773E2923B55900A6CA52 /* ShopViewController.swift */,
+				370977402923B56D00A6CA52 /* FriendViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -433,15 +445,19 @@
 				373AFC41291A3FE80019EB00 /* LoginViewController.swift in Sources */,
 				37EE4FFD292390F200523BDD /* InfoDetailView.swift in Sources */,
 				373AFBDA2918D8C40019EB00 /* ViewController.swift in Sources */,
+				3709773D2923B55000A6CA52 /* HomeViewController.swift in Sources */,
 				373AFBFE2918F8D00019EB00 /* BaseCollectionViewCell.swift in Sources */,
+				3709773B2923AFF400A6CA52 /* BaseTabBarViewController.swift in Sources */,
 				378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */,
 				37EE4FF2292354DD00523BDD /* BaseTablewViewCell.swift in Sources */,
 				373AFBD62918D8C40019EB00 /* AppDelegate.swift in Sources */,
 				372FEF69291C0ACF004F3B16 /* GenderViewController.swift in Sources */,
+				3709773F2923B55900A6CA52 /* ShopViewController.swift in Sources */,
 				373AFBEE2918D9BF0019EB00 /* APIKey.swift in Sources */,
 				373AFC3B291984380019EB00 /* FirstViewController.swift in Sources */,
 				37EE4FFF2923911F00523BDD /* InfoDetailViewCell.swift in Sources */,
 				373AFBFA2918ECE00019EB00 /* BaseView.swift in Sources */,
+				370977412923B56D00A6CA52 /* FriendViewController.swift in Sources */,
 				372FEF5E291BF57F004F3B16 /* Layer + Extension.swift in Sources */,
 				37EE4FE9292352AA00523BDD /* InfoViewController.swift in Sources */,
 				373AFBD82918D8C40019EB00 /* SceneDelegate.swift in Sources */,

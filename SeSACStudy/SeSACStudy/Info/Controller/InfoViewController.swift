@@ -16,9 +16,6 @@ class InfoViewController: BaseViewController{
         
         self.infoTableView.tableView.register(InfoTableViewCell.self, forCellReuseIdentifier: InfoTableViewCell.reuseIdentifier)
         
-       
-        
-
         navigationItem.title = "설정"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
 

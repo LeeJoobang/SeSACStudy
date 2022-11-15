@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         if UserDefaults.standard.bool(forKey: "First") {
-            let vc = InfoViewController()
+            let vc = BaseTabBarController()
             let nav = UINavigationController(rootViewController: vc)
             window?.rootViewController = nav
         } else {

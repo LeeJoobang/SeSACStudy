@@ -9,7 +9,23 @@ class InfoDetailViewController: BaseViewController{
         self.view = infoDetailView
         infoDetailView.backgroundColor = .white
         self.infoDetailView.tableView.register(InfoDetailViewCell.self, forCellReuseIdentifier: InfoDetailViewCell.reuseIdentifier)
-        
+
+    }
+    
+    override func configure() {
+        navigationInfo()
+    }
+    
+    private func navigationInfo(){
+        navigationItem.title = "정보 관리"
+        self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
+        navigationItem.rightBarButtonItem =
+        UIBarButtonItem(title: "저장", style: .plain, target: nil, action: #selector(clickedButton))
+        self.navigationItem.rightBarButtonItem?.tintColor = .black
+    }
+    
+    @objc func clickedButton(button: UIButton){
+        print("다음버튼 클릭")
     }
     
     
