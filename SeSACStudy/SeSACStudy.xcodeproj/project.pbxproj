@@ -40,7 +40,6 @@
 		373AFC43291A9A990019EB00 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC42291A9A980019EB00 /* LoginView.swift */; };
 		378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C15A3291D23AD0016D72A /* BirthSubView.swift */; };
 		37F3EEC5291FC342002F2597 /* GenderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F3EEC4291FC342002F2597 /* GenderView.swift */; };
-		37F3EEC7291FC3AD002F2597 /* GenderSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F3EEC6291FC3AD002F2597 /* GenderSubView.swift */; };
 		37F3EEC92920C6E9002F2597 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 37F3EEC82920C6E9002F2597 /* GoogleService-Info.plist */; };
 		37F3EECC2920D6C5002F2597 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 37F3EECB2920D6C5002F2597 /* Alamofire */; };
 		37F3EECF2920D800002F2597 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37F3EECE2920D800002F2597 /* APIService.swift */; };
@@ -85,7 +84,6 @@
 		373AFC42291A9A980019EB00 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		378C15A3291D23AD0016D72A /* BirthSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthSubView.swift; sourceTree = "<group>"; };
 		37F3EEC4291FC342002F2597 /* GenderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderView.swift; sourceTree = "<group>"; };
-		37F3EEC6291FC3AD002F2597 /* GenderSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenderSubView.swift; sourceTree = "<group>"; };
 		37F3EEC82920C6E9002F2597 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		37F3EECE2920D800002F2597 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		37F3EED729211281002F2597 /* EndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPoint.swift; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				37F3EEC4291FC342002F2597 /* GenderView.swift */,
-				37F3EEC6291FC3AD002F2597 /* GenderSubView.swift */,
 			);
 			path = Gender;
 			sourceTree = "<group>";
@@ -385,7 +382,6 @@
 				372FEF57291BEEAA004F3B16 /* UILabel + Extension.swift in Sources */,
 				373AFC202919445F0019EB00 /* ThirdViewController.swift in Sources */,
 				373AFC2929197EFD0019EB00 /* OnboadingViewController.swift in Sources */,
-				37F3EEC7291FC3AD002F2597 /* GenderSubView.swift in Sources */,
 				373AFC43291A9A990019EB00 /* LoginView.swift in Sources */,
 				372FEF55291BBCC1004F3B16 /* LoginCodeViewController.swift in Sources */,
 				372FEF20291B700C004F3B16 /* Color + Extension.swift in Sources */,
