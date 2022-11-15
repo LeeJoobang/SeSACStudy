@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         if UserDefaults.standard.bool(forKey: "First") {
-            let vc = LoginViewController()
+            let vc = InfoViewController()
             let nav = UINavigationController(rootViewController: vc)
             window?.rootViewController = nav
         } else {
