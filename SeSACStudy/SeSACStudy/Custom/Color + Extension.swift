@@ -11,6 +11,8 @@ enum Color {
     static let gray4 = "grayscalegray4"
     static let gray5 = "grayscalegray5"
     static let gray6 = "grayscalegray6"
+    static let gray7 = "grayscalegray7"
+
 
     static let systemerror = "systemerror"
     static let systemfocus = "systemfocus"

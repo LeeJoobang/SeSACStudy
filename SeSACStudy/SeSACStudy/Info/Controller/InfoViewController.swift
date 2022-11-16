@@ -3,8 +3,8 @@ import UIKit
 class InfoViewController: BaseViewController{
     
     let infoTableView = InfoTableView()
-    let infoList = ["김새싹", "공지사항", "자주 묻는 질문", "1:1 문의", "알림 설정", "이용 약관"]
-    let infoImage = ["profile", "faq", "notice", "permit", "qna", "setting_alarm"]
+    private let infoList = ["김새싹", "공지사항", "자주 묻는 질문", "1:1 문의", "알림 설정", "이용 약관"]
+    private let infoImage = ["profile", "faq", "notice", "permit", "qna", "setting_alarm"]
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +51,6 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource{
         switch indexPath.row{
         case 0:
             print("🌹내정보 이동")
-
             let vc = InfoDetailViewController()
             self.navigationController?.pushViewController(vc, animated: true)
         case 1...5:
