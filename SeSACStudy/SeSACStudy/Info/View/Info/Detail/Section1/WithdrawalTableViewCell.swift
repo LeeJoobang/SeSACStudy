@@ -2,6 +2,12 @@ import UIKit
 
 class WithdrawalTableViewCell: BaseTableViewCell {
     
+    
+    let label: UILabel = {
+        let label = UILabel()
+        return label
+    }()
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -12,11 +18,16 @@ class WithdrawalTableViewCell: BaseTableViewCell {
     }
     
     override func configure() {
-        //        self.contentView.addSubview()
+        
+        self.contentView.addSubview(label)
 
     }
     
     override func setConstraints() {
         
+        label.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+
     }
 }
