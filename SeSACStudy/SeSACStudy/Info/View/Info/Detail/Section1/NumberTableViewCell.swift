@@ -24,7 +24,8 @@ class NumberTableViewCell: BaseTableViewCell {
     
     override func setConstraints() {
         label.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.centerY.equalTo(self.contentView.snp.centerY)
+            make.leading.equalTo(self.contentView.snp.leading).offset(16)
         }
 
     }

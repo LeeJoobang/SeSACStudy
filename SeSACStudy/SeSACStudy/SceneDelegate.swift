@@ -9,14 +9,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        if UserDefaults.standard.bool(forKey: "First") {
-            let vc = BaseTabBarController()
-            let nav = UINavigationController(rootViewController: vc)
-            window?.rootViewController = nav
-        } else {
-            let vc = OnboadingViewController()
-            window?.rootViewController = UINavigationController(rootViewController: vc)
-        }
+        let vc = BaseTabBarController()
+        let nav = UINavigationController(rootViewController: vc)
+        window?.rootViewController = nav
+        
+//        if UserDefaults.standard.bool(forKey: "First") {
+//            let vc = BaseTabBarController()
+//            let nav = UINavigationController(rootViewController: vc)
+//            window?.rootViewController = nav
+//        } else {
+//            let vc = OnboadingViewController()
+//            window?.rootViewController = UINavigationController(rootViewController: vc)
+//        }
+        
         window?.makeKeyAndVisible()
     }
 

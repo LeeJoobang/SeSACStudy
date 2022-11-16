@@ -9,20 +9,27 @@ class GenderTableViewCell: BaseTableViewCell {
     
     let leftButton: UIButton = {
         var button = UIButton.Configuration.filled()
+        var title = AttributedString.init("남자")
+        title.font = UIFont(name: UIFont.notoRegular, size: 14)
+        button.attributedTitle = title
         button.baseBackgroundColor = .white
-        button.title = "남자"
+        button.buttonSize = .small
         button.baseForegroundColor = .black
         button.imagePlacement = .top
         button.background.strokeWidth = 1
         button.background.strokeColor = .gray
+        
         let view = UIButton(configuration: button)
         return view
     }()
     
     let rightButton: UIButton = {
         var button = UIButton.Configuration.filled()
+        var title = AttributedString.init("여자")
+        title.font = UIFont(name: UIFont.notoRegular, size: 14)
+        button.attributedTitle = title
         button.baseBackgroundColor = .white
-        button.title = "여자"
+        button.buttonSize = .small
         button.baseForegroundColor = .black
         button.imagePlacement = .top
         button.background.strokeWidth = 1
@@ -89,7 +96,7 @@ class GenderTableViewCell: BaseTableViewCell {
         if state == true{
             rightButton.configuration?.baseBackgroundColor = .customGreen
         } else {
-            rightButton.configuration?.baseBackgroundColor = .white
+            rightButton.configuration?.baseBackgroundColor  = .white
         }
     }
 }

@@ -25,7 +25,6 @@ class InfoDetailViewController: BaseViewController{
         }
     }
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = infoDetailView
@@ -33,6 +32,13 @@ class InfoDetailViewController: BaseViewController{
         infoDetailView.tableView.delegate = self
         infoDetailView.tableView.dataSource = self
         registerCell()
+        infoDetailView.tableView.separatorStyle = .none
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+
     }
     
     func registerCell(){
@@ -47,6 +53,8 @@ class InfoDetailViewController: BaseViewController{
     
     override func configure() {
         navigationInfo()
+        
+
     }
     
     private func navigationInfo(){
@@ -93,6 +101,7 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NameTableViewCell.reuseIdentifier, for: indexPath) as! NameTableViewCell
                 cell.infoLabel.text = "김새싹"
+                cell.infoLabel.font = UIFont(name: UIFont.notoRegular, size: 14)
                 cell.arrowView.image = UIImage(named: "arror")
                 return cell
             default:
@@ -103,30 +112,44 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: GenderTableViewCell.reuseIdentifier, for: indexPath) as! GenderTableViewCell
                 cell.label.text = "내성별"
+                cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
+
                 cell.leftButtonClicked(state: leftButtonState)
                 cell.rightButtonClicked(state: rightButtonState)
                 cell.leftButton.addTarget(self, action: #selector(leftButtonToggle), for: .touchUpInside)
                 cell.rightButton.addTarget(self, action: #selector(rightButtonToggle), for: .touchUpInside)
-
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: StudyTableViewCell.reuseIdentifier, for: indexPath) as! StudyTableViewCell
-                cell.label.text = "스터디"
+                guard let customGray3 = UIColor.customGray3 else { return UITableViewCell() }
+                
+                cell.label.text = "자주 하는 스터디"
+                cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
 
+                cell.textfield.placeholder = "스터디를 입력해 주세요"
+                cell.textfield.font = UIFont(name: UIFont.notoRegular, size: 14)
+
+                cell.textfield.textAlignment = .center
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NumberTableViewCell.reuseIdentifier, for: indexPath) as! NumberTableViewCell
-                cell.label.text = "넘버"
+                cell.label.text = "내 번호 검색 허용"
+                cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
+
 
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: AgeTableViewCell.reuseIdentifier, for: indexPath) as! AgeTableViewCell
-                cell.label.text = "나이"
+                cell.label.text = "상대방 연령대"
+                cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
+
 
                 return cell
             case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: WithdrawalTableViewCell.reuseIdentifier, for: indexPath) as! WithdrawalTableViewCell
-                cell.label.text = "탈퇴"
+                cell.label.text = "회원탈퇴"
+                cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
+
 
                 return cell
             default:
