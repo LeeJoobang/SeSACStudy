@@ -46,7 +46,7 @@ class AlertViewController: BaseViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor(white: 1, alpha: 0.9)
+        view.backgroundColor = UIColor(white: 0, alpha: 0.5)
         buttonAction()
     }
     
@@ -91,9 +91,14 @@ class AlertViewController: BaseViewController{
     
     func buttonAction(){
         cancelButton.addTarget(self, action: #selector(cancelButtonClicked), for: .touchUpInside)
+        confirmButton.addTarget(self, action: #selector(confirmButtonClicked), for: .touchUpInside)
+
     }
     
     @objc func cancelButtonClicked(){
+        dismiss(animated: true)
+    }
+    @objc func confirmButtonClicked(){
         dismiss(animated: true)
     }
 }
