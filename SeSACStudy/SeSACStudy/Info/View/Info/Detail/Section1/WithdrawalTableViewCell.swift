@@ -2,7 +2,6 @@ import UIKit
 
 class WithdrawalTableViewCell: BaseTableViewCell {
     
-    
     let label: UILabel = {
         let label = UILabel()
         return label
@@ -18,9 +17,7 @@ class WithdrawalTableViewCell: BaseTableViewCell {
     }
     
     override func configure() {
-        
         self.contentView.addSubview(label)
-
     }
     
     override func setConstraints() {

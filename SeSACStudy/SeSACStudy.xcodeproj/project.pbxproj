@@ -48,6 +48,7 @@
 		373AFC3B291984380019EB00 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC3A291984380019EB00 /* FirstViewController.swift */; };
 		373AFC41291A3FE80019EB00 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC40291A3FE80019EB00 /* LoginViewController.swift */; };
 		373AFC43291A9A990019EB00 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC42291A9A980019EB00 /* LoginView.swift */; };
+		377963412927AB1400B3C89B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377963402927AB1400B3C89B /* TestViewController.swift */; };
 		378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C15A3291D23AD0016D72A /* BirthSubView.swift */; };
 		37EE4FE9292352AA00523BDD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FE8292352AA00523BDD /* InfoViewController.swift */; };
 		37EE4FEE2923541C00523BDD /* InfoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FED2923541C00523BDD /* InfoTableView.swift */; };
@@ -109,6 +110,7 @@
 		373AFC3A291984380019EB00 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
 		373AFC40291A3FE80019EB00 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		373AFC42291A9A980019EB00 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		377963402927AB1400B3C89B /* TestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
 		378C15A3291D23AD0016D72A /* BirthSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthSubView.swift; sourceTree = "<group>"; };
 		37EE4FE8292352AA00523BDD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		37EE4FED2923541C00523BDD /* InfoTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableView.swift; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 		373AFBD42918D8C40019EB00 /* SeSACStudy */ = {
 			isa = PBXGroup;
 			children = (
+				3779633F2927AB0200B3C89B /* Test */,
 				3713F99F291E385B00436DBA /* SeSACStudy.entitlements */,
 				373AFBEF2918D9EB0019EB00 /* Key */,
 				372FEF1E291B6FDA004F3B16 /* Custom */,
@@ -308,6 +311,14 @@
 				371878E5291D03F000B91F98 /* Controller */,
 			);
 			path = Membership;
+			sourceTree = "<group>";
+		};
+		3779633F2927AB0200B3C89B /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				377963402927AB1400B3C89B /* TestViewController.swift */,
+			);
+			path = Test;
 			sourceTree = "<group>";
 		};
 		37EE4FF32923565E00523BDD /* Info */ = {
@@ -506,6 +517,7 @@
 				371878E9291D1D6C00B91F98 /* BirthView.swift in Sources */,
 				372FEF67291C09B2004F3B16 /* EmailViewController.swift in Sources */,
 				37EE4FF92923901B00523BDD /* InfoDetailViewController.swift in Sources */,
+				377963412927AB1400B3C89B /* TestViewController.swift in Sources */,
 				372FEF57291BEEAA004F3B16 /* UILabel + Extension.swift in Sources */,
 				373AFC202919445F0019EB00 /* ThirdViewController.swift in Sources */,
 				373AFC2929197EFD0019EB00 /* OnboadingViewController.swift in Sources */,

@@ -83,7 +83,6 @@ class GenderTableViewCell: BaseTableViewCell {
     }
     
     func leftButtonClicked(state: Bool){
-        print("왼쪽 버튼 클릭")
         if state == true {
             leftButton.configuration?.baseBackgroundColor = .customGreen
         } else {
@@ -92,7 +91,6 @@ class GenderTableViewCell: BaseTableViewCell {
     }
     
     func rightButtonClicked(state: Bool){
-        print("오른쪽 버튼 클릭")
         if state == true{
             rightButton.configuration?.baseBackgroundColor = .customGreen
         } else {

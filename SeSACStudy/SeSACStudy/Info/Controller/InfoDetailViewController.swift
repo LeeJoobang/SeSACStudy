@@ -5,7 +5,6 @@ class InfoDetailViewController: BaseViewController{
     let infoDetailView = InfoTableView()
     private let infoDetailList = ["내 성별", "자주 하는 스터디", "내 번호 검색 허용", "상대방 연령대", "회원탈퇴"]
     
-    
     private var leftButtonState: Bool = true {
         didSet{
             if leftButtonState {
@@ -20,7 +19,6 @@ class InfoDetailViewController: BaseViewController{
             if rightButtonState {
                 leftButtonState = false
                 infoDetailView.tableView.reloadData()
-
             }
         }
     }
@@ -35,12 +33,6 @@ class InfoDetailViewController: BaseViewController{
         infoDetailView.tableView.separatorStyle = .none
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-
-    }
-    
     func registerCell(){
         self.infoDetailView.tableView.register(BackgroundTableViewCell.self, forCellReuseIdentifier: BackgroundTableViewCell.reuseIdentifier)
         self.infoDetailView.tableView.register(NameTableViewCell.self, forCellReuseIdentifier: NameTableViewCell.reuseIdentifier)
@@ -53,8 +45,6 @@ class InfoDetailViewController: BaseViewController{
     
     override func configure() {
         navigationInfo()
-        
-
     }
     
     private func navigationInfo(){
@@ -71,10 +61,12 @@ class InfoDetailViewController: BaseViewController{
 }
 
 extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
+    // MARK: section 2개 구분
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
     
+    // MARK: section별 row 갯수 적용
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -86,10 +78,8 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
     
+    // MARK: section - row별 각 cell 표시
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        print("🌹indexPath Section: \(indexPath.section)")
-        print("🌹indexPath row: \(indexPath.row)")
-
         switch indexPath.section {
             // MARK: case 0 - background Image, name + case 1 - gender etc.
         case 0:
@@ -113,7 +103,7 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 let cell = tableView.dequeueReusableCell(withIdentifier: GenderTableViewCell.reuseIdentifier, for: indexPath) as! GenderTableViewCell
                 cell.label.text = "내성별"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-
+                
                 cell.leftButtonClicked(state: leftButtonState)
                 cell.rightButtonClicked(state: rightButtonState)
                 cell.leftButton.addTarget(self, action: #selector(leftButtonToggle), for: .touchUpInside)
@@ -125,32 +115,29 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 
                 cell.label.text = "자주 하는 스터디"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-
+                
                 cell.textfield.placeholder = "스터디를 입력해 주세요"
                 cell.textfield.font = UIFont(name: UIFont.notoRegular, size: 14)
-
+                
                 cell.textfield.textAlignment = .center
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NumberTableViewCell.reuseIdentifier, for: indexPath) as! NumberTableViewCell
                 cell.label.text = "내 번호 검색 허용"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-
-
+                
+                cell.switchBox.isOn = true
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: AgeTableViewCell.reuseIdentifier, for: indexPath) as! AgeTableViewCell
                 cell.label.text = "상대방 연령대"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-
-
+                
                 return cell
             case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: WithdrawalTableViewCell.reuseIdentifier, for: indexPath) as! WithdrawalTableViewCell
                 cell.label.text = "회원탈퇴"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-
-
                 return cell
             default:
                 fatalError()
@@ -171,8 +158,16 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
             return 60
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.section == 1 {
+            if indexPath.row == 4 {
+            }
+        }
+    }
 }
 
+// MARK: 성별 toggle 반응에 따른 상태 변화
 extension InfoDetailViewController{
     @objc func leftButtonToggle() {
         leftButtonState.toggle()
