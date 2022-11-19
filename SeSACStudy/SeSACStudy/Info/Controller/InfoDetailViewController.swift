@@ -162,6 +162,9 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == 1 {
             if indexPath.row == 4 {
+                let vc = AlertViewController()
+                vc.modalPresentationStyle = .overFullScreen
+                self.present(vc, animated: true)
             }
         }
     }
