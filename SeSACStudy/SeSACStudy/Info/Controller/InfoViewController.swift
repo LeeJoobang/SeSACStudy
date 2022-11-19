@@ -18,7 +18,6 @@ class InfoViewController: BaseViewController{
         
         navigationItem.title = "설정"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
-
     }
 }
 
