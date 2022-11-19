@@ -133,6 +133,8 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.label.text = "상대방 연령대"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
                 
+                cell.ageLabel.text = "\(cell.startAge) - \(cell.endAge)"
+                
                 return cell
             case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: WithdrawalTableViewCell.reuseIdentifier, for: indexPath) as! WithdrawalTableViewCell

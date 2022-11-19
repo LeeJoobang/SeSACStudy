@@ -10,7 +10,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         
         let vc = BaseTabBarController()
-//        let vc = TestViewController()
+//        let vc = Test2ViewController()
 
         let nav = UINavigationController(rootViewController: vc)
         window?.rootViewController = nav

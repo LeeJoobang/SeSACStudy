@@ -50,6 +50,7 @@
 		373AFC43291A9A990019EB00 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 373AFC42291A9A980019EB00 /* LoginView.swift */; };
 		377963412927AB1400B3C89B /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377963402927AB1400B3C89B /* TestViewController.swift */; };
 		377963432928B37500B3C89B /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 377963422928B37500B3C89B /* AlertViewController.swift */; };
+		377963482928EEFB00B3C89B /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 377963472928EEFB00B3C89B /* MultiSlider */; };
 		378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C15A3291D23AD0016D72A /* BirthSubView.swift */; };
 		37EE4FE9292352AA00523BDD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FE8292352AA00523BDD /* InfoViewController.swift */; };
 		37EE4FEE2923541C00523BDD /* InfoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FED2923541C00523BDD /* InfoTableView.swift */; };
@@ -135,6 +136,7 @@
 				37F3EED629210714002F2597 /* FirebaseMessaging in Frameworks */,
 				37F3EECC2920D6C5002F2597 /* Alamofire in Frameworks */,
 				37F3EED429210714002F2597 /* FirebaseAuth in Frameworks */,
+				377963482928EEFB00B3C89B /* MultiSlider in Frameworks */,
 				373AFBF22918E8820019EB00 /* SnapKit in Frameworks */,
 				373119D7291CC39700B4CA8D /* IQKeyboardManagerSwift in Frameworks */,
 				37F3EED229210714002F2597 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
@@ -421,6 +423,7 @@
 				37F3EED129210714002F2597 /* FirebaseAnalyticsWithoutAdIdSupport */,
 				37F3EED329210714002F2597 /* FirebaseAuth */,
 				37F3EED529210714002F2597 /* FirebaseMessaging */,
+				377963472928EEFB00B3C89B /* MultiSlider */,
 			);
 			productName = SeSACStudy;
 			productReference = 373AFBD22918D8C40019EB00 /* SeSACStudy.app */;
@@ -455,6 +458,7 @@
 				373119D5291CC39700B4CA8D /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				37F3EECA2920D6C5002F2597 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				37F3EED029210714002F2597 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				377963462928EEFB00B3C89B /* XCRemoteSwiftPackageReference "MultiSlider" */,
 			);
 			productRefGroup = 373AFBD32918D8C40019EB00 /* Products */;
 			projectDirPath = "";
@@ -772,6 +776,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		377963462928EEFB00B3C89B /* XCRemoteSwiftPackageReference "MultiSlider" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/yonat/MultiSlider.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		37F3EECA2920D6C5002F2597 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire";
@@ -800,6 +812,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 373AFBF02918E8820019EB00 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		377963472928EEFB00B3C89B /* MultiSlider */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 377963462928EEFB00B3C89B /* XCRemoteSwiftPackageReference "MultiSlider" */;
+			productName = MultiSlider;
 		};
 		37F3EECB2920D6C5002F2597 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

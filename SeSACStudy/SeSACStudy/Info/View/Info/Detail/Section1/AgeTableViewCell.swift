@@ -1,9 +1,19 @@
 import UIKit
 
+import MultiSlider
+
 class AgeTableViewCell: BaseTableViewCell {
     
+    var startAge = Float()
+    var endAge = Float()
     
     let label: UILabel = {
+        let label = UILabel()
+        
+        return label
+    }()
+    
+    let ageLabel: UILabel = {
         let label = UILabel()
         return label
     }()
@@ -18,6 +28,35 @@ class AgeTableViewCell: BaseTableViewCell {
         return slider
     }()
     
+    // MARK: multislider - library 사용
+    let multislider: MultiSlider = {
+        let slider = MultiSlider()
+        slider.minimumValue = 18.0
+        slider.maximumValue = 35.0
+        slider.value = [18.0, 35.0]
+        
+        slider.orientation = .horizontal
+        slider.isVertical = false
+        
+        slider.tintColor = .customGreen
+        slider.outerTrackColor = .customGray3
+        slider.thumbTintColor = .customGreen
+        slider.addTarget(self, action: #selector(sliderChanged), for: .valueChanged)
+        
+        return slider
+    }()
+    
+    @objc func sliderChanged(slider: MultiSlider) {
+        print("thumb \(slider.draggedThumbIndex) moved")
+        print("now thumbs are at \(slider.value)") // e.g., [1.0, 4.5, 5.0]
+        startAge = Float(slider.value[0])
+        endAge = Float(slider.value[1])
+        
+        print("startAge : \(startAge)")
+        print("endAge : \(endAge)")
+
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -28,7 +67,7 @@ class AgeTableViewCell: BaseTableViewCell {
     }
     
     override func configure() {
-        [label, sliderImage].forEach {
+        [label, ageLabel, multislider].forEach {
             self.contentView.addSubview($0)
         }
     }
@@ -39,9 +78,14 @@ class AgeTableViewCell: BaseTableViewCell {
             make.leading.equalTo(self.contentView.snp.leading).offset(16)
         }
         
-        sliderImage.snp.makeConstraints { make in
-            make.centerY.equalTo(self.contentView.snp.centerY)
-            make.leading.trailing.equalToSuperview().inset(16)
+        ageLabel.snp.makeConstraints { make in
+            make.top.equalTo(self.contentView.snp.top)
+            make.trailing.equalTo(self.contentView.snp.trailing).offset(-16)
+        }
+        
+        multislider.snp.makeConstraints { make in
+            make.centerY.equalTo(self.contentView.snp.centerY).offset(8)
+            make.leading.trailing.equalToSuperview().inset(26)
         }
         
     }
