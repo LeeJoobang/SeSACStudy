@@ -4,8 +4,10 @@ import MultiSlider
 
 class AgeTableViewCell: BaseTableViewCell {
     
-    var startAge = Float()
-    var endAge = Float()
+
+    var startAge: Int = 18
+    
+    var endAge: Int = 35
     
     let label: UILabel = {
         let label = UILabel()
@@ -15,6 +17,8 @@ class AgeTableViewCell: BaseTableViewCell {
     
     let ageLabel: UILabel = {
         let label = UILabel()
+        label.font = UIFont(name: UIFont.notoMedium, size: 14)
+        label.textColor = UIColor.customGreen
         return label
     }()
     
@@ -32,7 +36,7 @@ class AgeTableViewCell: BaseTableViewCell {
     let multislider: MultiSlider = {
         let slider = MultiSlider()
         slider.minimumValue = 18.0
-        slider.maximumValue = 35.0
+        slider.maximumValue = 65.0
         slider.value = [18.0, 35.0]
         
         slider.orientation = .horizontal
@@ -49,12 +53,10 @@ class AgeTableViewCell: BaseTableViewCell {
     @objc func sliderChanged(slider: MultiSlider) {
         print("thumb \(slider.draggedThumbIndex) moved")
         print("now thumbs are at \(slider.value)") // e.g., [1.0, 4.5, 5.0]
-        startAge = Float(slider.value[0])
-        endAge = Float(slider.value[1])
+        startAge = Int(round(slider.value[0]))
+        endAge = Int(round(slider.value[1]))
         
-        print("startAge : \(startAge)")
-        print("endAge : \(endAge)")
-
+        ageLabel.text = "\(String(describing: startAge))-\(String(describing: endAge))"
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
