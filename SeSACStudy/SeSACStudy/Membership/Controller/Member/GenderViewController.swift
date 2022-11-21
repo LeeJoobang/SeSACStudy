@@ -96,7 +96,29 @@ class GenderViewController: BaseViewController {
                 UserDefaults.standard.set(0, forKey: "gender")
             }
             let apiService = APIService()
-            apiService.signup()
+            // MARK: 회원가입 성공 또는 실패에 대한 로직 반영
+            apiService.signup { code in
+                guard let code = code else { return }
+                switch code {
+                case 200:
+                    print("🌹회원가입 성공")
+//                    let vc = BaseTabBarController()
+//                    self.navigationController?.pushViewController(vc, animated: true)
+                    
+                    UserDefaults.standard.set(1, forKey: "success")
+                    let vc = BaseTabBarController()
+                    let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                    guard let delegate = sceneDelegate else { return }
+                    delegate.window?.rootViewController = vc
+                case 401:
+                    print("Firebase Token 만료")
+                default:
+                    fatalError()
+                    
+                }
+            }
+            
+            print("")
         } else {
             print("성별을 선택하지 않았습니다.")
         }

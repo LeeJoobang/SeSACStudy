@@ -44,6 +44,7 @@ class LoginCodeViewController: BaseViewController {
     
     // 로직 검사를 위해 임시적으로 주석처리
     @objc func buttonClicked(button: UIButton){
+        // MARK: idToken 발급
         guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else { return print("somthing weird") }
         let textfieldText = loginCodeView.numberTextField.text
         guard let testVerificationCode = textfieldText else {
@@ -76,6 +77,15 @@ class LoginCodeViewController: BaseViewController {
                         switch code {
                         case 200...299:
                             print("🌹 code number: \(code)")
+                            print(UserDefaults.standard.string(forKey: "idToken"))
+//                            let vc = BaseTabBarController()
+//                            self.navigationController?.pushViewController(vc, animated: true)
+                            
+                            let vc = BaseTabBarController()
+                            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                            guard let delegate = sceneDelegate else { return }
+                            delegate.window?.rootViewController = vc
+                            
                         case 400...499:
                             print("🌹 code number: \(code)")
                             let vc = NicknameViewController()

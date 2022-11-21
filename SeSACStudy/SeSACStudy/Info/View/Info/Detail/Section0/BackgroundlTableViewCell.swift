@@ -8,6 +8,11 @@ class BackgroundTableViewCell: BaseTableViewCell {
         return image
     }()
     
+    let sesacImage: UIImageView = {
+        let image = UIImageView()
+        return image
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -19,10 +24,17 @@ class BackgroundTableViewCell: BaseTableViewCell {
     
     override func configure() {
         self.contentView.addSubview(backgroundImage)
+        self.contentView.addSubview(sesacImage)
+//        self.backgroundImage.bringSubviewToFront(sesacImage)
     }
     
     override func setConstraints() {
         backgroundImage.snp.makeConstraints { make in
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
+        
+        sesacImage.snp.makeConstraints { make in
             make.top.bottom.equalToSuperview()
             make.leading.trailing.equalToSuperview().inset(16)
         }

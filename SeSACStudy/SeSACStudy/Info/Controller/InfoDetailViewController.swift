@@ -87,6 +87,8 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
             case 0:
                 let cell = tableView.dequeueReusableCell(withIdentifier: BackgroundTableViewCell.reuseIdentifier, for: indexPath) as! BackgroundTableViewCell
                 cell.backgroundImage.image = UIImage(named: "background1")
+                cell.sesacImage.image = UIImage(named: "sesac")
+
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NameTableViewCell.reuseIdentifier, for: indexPath) as! NameTableViewCell
@@ -118,21 +120,19 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 
                 cell.textfield.placeholder = "스터디를 입력해 주세요"
                 cell.textfield.font = UIFont(name: UIFont.notoRegular, size: 14)
-                
+
                 cell.textfield.textAlignment = .center
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NumberTableViewCell.reuseIdentifier, for: indexPath) as! NumberTableViewCell
                 cell.label.text = "내 번호 검색 허용"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-                
                 cell.switchBox.isOn = true
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: AgeTableViewCell.reuseIdentifier, for: indexPath) as! AgeTableViewCell
                 cell.label.text = "상대방 연령대"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-                
                 cell.ageLabel.text = "\(cell.startAge) - \(cell.endAge)"
                 
                 return cell
@@ -165,6 +165,7 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.section == 1 {
             if indexPath.row == 4 {
                 let vc = AlertViewController()
+                vc.modalTransitionStyle = .crossDissolve
                 vc.modalPresentationStyle = .overFullScreen
                 self.present(vc, animated: true)
             }

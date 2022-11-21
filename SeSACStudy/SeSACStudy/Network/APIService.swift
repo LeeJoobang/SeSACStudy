@@ -42,7 +42,7 @@ class APIService{
     // MARK: .get 을 유저 유무를 확인하는 메소드
     func profile(id idToken: String, completion: @escaping(Int?) -> Void) {
         //         let api = SeSACAPI.profile // api의 url과 header값이 필요하다.
-        let apiURL = URL(string: "http://api.sesac.co.kr:1207/v1/user")!
+        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user")!
         let apiHeaders: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded",
             "idtoken": idToken
@@ -65,7 +65,7 @@ class APIService{
             }
     }
     
-    func signup(){
+    func signup(completion: @escaping(Int?) -> Void){
         guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
         guard let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber") else { return  }
         guard let fcmToken = UserDefaults.standard.string(forKey: "fcmToken") else { return }
@@ -83,7 +83,7 @@ class APIService{
         print("🌹 gender: \(String(describing: gender))")
 
         let api = SeSACAPI.signUP(phoneNumber: phoneNumber, FCMtoken: fcmToken, nick: nick, birth: birth, Email: email, gender: gender)
-        let apiURL = URL(string: "http://api.sesac.co.kr:1207/v1/user")!
+        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user")!
         let apiHeaders: HTTPHeaders = [
             "Content-Type": "application/x-www-form-urlencoded",
             "idtoken": idToken
@@ -94,6 +94,7 @@ class APIService{
             print(response)
             print(response.response?.statusCode)
             print("🌹APIService - Signup: 등록완료")
+            completion(response.response?.statusCode)
         }
     }
 }

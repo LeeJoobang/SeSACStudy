@@ -6,9 +6,7 @@ class AgeTableViewCell: BaseTableViewCell {
     
 
     var startAge: Int = 18
-    
     var endAge: Int = 35
-    
     let label: UILabel = {
         let label = UILabel()
         
