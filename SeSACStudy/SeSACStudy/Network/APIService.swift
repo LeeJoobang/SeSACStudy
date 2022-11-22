@@ -77,6 +77,13 @@ class APIService{
                 case .failure(_:):
                     print("실패")
                     print(response.response?.statusCode)
+                    if response.response?.statusCode == 401 {
+                        print("실패 401 - userdefault 값 전체 삭제")
+                        for key in UserDefaults.standard.dictionaryRepresentation().keys {
+                                    UserDefaults.standard.removeObject(forKey: key.description)
+                                }
+
+                    }
                     completion(statusCode, nil)
                 }
             }

@@ -21,10 +21,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 print(id)
                 let api = APIService()
                 api.profile(id: id) { statusCode, userInfo in
+                    guard let userInfo = userInfo else { return }
                     print("🌹: \(statusCode)")
-                    print("🌹: \(userInfo)")
+                    print("🌹: \(userInfo.nick)")
+                    print("🌹: \(userInfo.ageMax)")
+                    let updateUser = UpdateInfo.shared
+                    updateUser.nick = userInfo.nick
+                    updateUser.ageMax = userInfo.ageMax
+                    updateUser.ageMin = userInfo.ageMin
+                    updateUser.gender = userInfo.gender
+                    updateUser.searchable = userInfo.searchable
+                    updateUser.phoneNumber = userInfo.phoneNumber
+                    updateUser.study = userInfo.study
+                    print("🌹: \(updateUser.nick)")
+                    print("🌹: \(updateUser.ageMax)")
                 }
-                
                 let vc = BaseTabBarController()
                 window?.rootViewController = vc
             } else {

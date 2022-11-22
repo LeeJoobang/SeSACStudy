@@ -4,7 +4,8 @@ import MultiSlider
 
 class AgeTableViewCell: BaseTableViewCell {
     
-
+    
+    let updateUserInfo = UpdateInfo.shared
     var startAge: Int = 18
     var endAge: Int = 35
     let label: UILabel = {
@@ -51,10 +52,16 @@ class AgeTableViewCell: BaseTableViewCell {
     @objc func sliderChanged(slider: MultiSlider) {
         print("thumb \(slider.draggedThumbIndex) moved")
         print("now thumbs are at \(slider.value)") // e.g., [1.0, 4.5, 5.0]
-        startAge = Int(round(slider.value[0]))
-        endAge = Int(round(slider.value[1]))
+        updateUserInfo.ageMin = Int(round(slider.value[0]))
+        updateUserInfo.ageMax = Int(round(slider.value[1]))
+        print("🍄updateUserInfo.ageMin: \(updateUserInfo.ageMin)")
+        print("🍄updateUserInfo.ageMax: \(updateUserInfo.ageMax)")
+
+        guard let updateUserAgeMin = updateUserInfo.ageMin else { return }
+        guard let updateUserAgeMax = updateUserInfo.ageMax else { return }
+
         
-        ageLabel.text = "\(String(describing: startAge))-\(String(describing: endAge))"
+        ageLabel.text = "\(String(describing: updateUserAgeMin))-\(String(describing: updateUserAgeMax))"
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

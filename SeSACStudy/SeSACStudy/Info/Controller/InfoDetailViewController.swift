@@ -3,13 +3,15 @@ import UIKit
 class InfoDetailViewController: BaseViewController{
     
     let infoDetailView = InfoTableView()
+    let updateUserInfo = UpdateInfo.shared
     private let infoDetailList = ["내 성별", "자주 하는 스터디", "내 번호 검색 허용", "상대방 연령대", "회원탈퇴"]
     
-    private var leftButtonState: Bool = true {
+    private var leftButtonState: Bool = true{
         didSet{
             if leftButtonState {
+                updateUserInfo.gender = 0
                 rightButtonState = false
-                infoDetailView.tableView.reloadData()
+                infoDetailView.tableView.reloadRows(at: [[1, 0]], with: .none)
             }
         }
     }
@@ -17,8 +19,9 @@ class InfoDetailViewController: BaseViewController{
     private var rightButtonState: Bool = false {
         didSet{
             if rightButtonState {
+                updateUserInfo.gender = 1
                 leftButtonState = false
-                infoDetailView.tableView.reloadData()
+                infoDetailView.tableView.reloadRows(at: [[1, 0]], with: .none)
             }
         }
     }
@@ -31,6 +34,17 @@ class InfoDetailViewController: BaseViewController{
         infoDetailView.tableView.dataSource = self
         registerCell()
         infoDetailView.tableView.separatorStyle = .none
+    
+        
+        getUserInfo()
+    }
+    
+    func getUserInfo(){
+        guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
+        let api = APIService()
+        api.profile(id: id) { statusCode, userInfo in
+            
+        }
     }
     
     func registerCell(){
@@ -51,12 +65,18 @@ class InfoDetailViewController: BaseViewController{
         navigationItem.title = "정보 관리"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
         navigationItem.rightBarButtonItem =
-        UIBarButtonItem(title: "저장", style: .plain, target: nil, action: #selector(clickedButton))
+        UIBarButtonItem(title: "저장", style: .plain, target: self, action: #selector(clickedButton))
         self.navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
-    @objc func clickedButton(button: UIButton){
-        print("다음버튼 클릭")
+    @objc func clickedButton(){
+        print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄 다음버튼 클릭")
+        print(updateUserInfo.gender!)
+        print(updateUserInfo.study!)
+        print(updateUserInfo.searchable!)
+        print(updateUserInfo.ageMin!)
+        print(updateUserInfo.ageMax!)
+
     }
 }
 
@@ -92,7 +112,7 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 return cell
             case 1:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NameTableViewCell.reuseIdentifier, for: indexPath) as! NameTableViewCell
-                cell.infoLabel.text = "김새싹"
+                cell.infoLabel.text = updateUserInfo.nick
                 cell.infoLabel.font = UIFont(name: UIFont.notoRegular, size: 14)
                 cell.arrowView.image = UIImage(named: "arror")
                 return cell
@@ -106,6 +126,15 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.label.text = "내성별"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
                 
+                //user.gneder
+                if updateUserInfo.gender == 0 {
+                    cell.leftButton.configuration?.baseBackgroundColor = .green
+                    cell.rightButton.configuration?.baseBackgroundColor = .white
+                } else {
+                    cell.rightButton.configuration?.baseBackgroundColor = .green
+                    cell.leftButton.configuration?.baseBackgroundColor = .white
+                }
+            
                 cell.leftButtonClicked(state: leftButtonState)
                 cell.rightButtonClicked(state: rightButtonState)
                 cell.leftButton.addTarget(self, action: #selector(leftButtonToggle), for: .touchUpInside)
@@ -117,24 +146,29 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 
                 cell.label.text = "자주 하는 스터디"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-                
                 cell.textfield.placeholder = "스터디를 입력해 주세요"
+                cell.textfield.addTarget(self, action: #selector(textFieldDidBeginEditing), for: .editingChanged)
                 cell.textfield.font = UIFont(name: UIFont.notoRegular, size: 14)
-
                 cell.textfield.textAlignment = .center
                 return cell
             case 2:
                 let cell = tableView.dequeueReusableCell(withIdentifier: NumberTableViewCell.reuseIdentifier, for: indexPath) as! NumberTableViewCell
                 cell.label.text = "내 번호 검색 허용"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-                cell.switchBox.isOn = true
+                if updateUserInfo.searchable == 1 {
+                    cell.switchBox.isOn = true
+                } else {
+                    cell.switchBox.isOn = false
+                    updateUserInfo.searchable = 0
+                }
                 return cell
             case 3:
                 let cell = tableView.dequeueReusableCell(withIdentifier: AgeTableViewCell.reuseIdentifier, for: indexPath) as! AgeTableViewCell
                 cell.label.text = "상대방 연령대"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-                cell.ageLabel.text = "\(cell.startAge) - \(cell.endAge)"
-                
+                guard let updateUserAgeMin = updateUserInfo.ageMin else { return UITableViewCell() }
+                guard let updateUserAgeMax = updateUserInfo.ageMax else { return UITableViewCell() }
+                cell.ageLabel.text = "\(updateUserAgeMin) - \(updateUserAgeMax)"
                 return cell
             case 4:
                 let cell = tableView.dequeueReusableCell(withIdentifier: WithdrawalTableViewCell.reuseIdentifier, for: indexPath) as! WithdrawalTableViewCell
@@ -149,7 +183,6 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
         }
         return UITableViewCell()
     }
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.section == 0 && (indexPath.row == 0) {
@@ -181,5 +214,12 @@ extension InfoDetailViewController{
     
     @objc func rightButtonToggle(){
         rightButtonState.toggle()
+    }
+}
+
+
+extension InfoDetailViewController: UITextFieldDelegate{
+    @objc func textFieldDidBeginEditing(_ textField: UITextField) {
+        updateUserInfo.study = textField.text
     }
 }

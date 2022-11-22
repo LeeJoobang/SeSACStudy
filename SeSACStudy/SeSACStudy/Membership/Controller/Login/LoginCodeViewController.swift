@@ -78,6 +78,7 @@ class LoginCodeViewController: BaseViewController {
                         case 200...299:
                             print("🌹 code number: \(code)")
                             print(UserDefaults.standard.string(forKey: "idToken"))
+                            UserDefaults.standard.set(1, forKey: "success")
 //                            let vc = BaseTabBarController()
 //                            self.navigationController?.pushViewController(vc, animated: true)
                             let vc = BaseTabBarController()
@@ -95,10 +96,6 @@ class LoginCodeViewController: BaseViewController {
                 }
             }
         }
-    }
-    
-    func getFCMToken(){
-        
     }
     
     func deleteUserDefault(){
