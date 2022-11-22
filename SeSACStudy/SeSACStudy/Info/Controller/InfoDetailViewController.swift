@@ -155,11 +155,11 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 let cell = tableView.dequeueReusableCell(withIdentifier: NumberTableViewCell.reuseIdentifier, for: indexPath) as! NumberTableViewCell
                 cell.label.text = "내 번호 검색 허용"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
+                
                 if updateUserInfo.searchable == 1 {
-                    cell.switchBox.isOn = true
-                } else {
-                    cell.switchBox.isOn = false
-                    updateUserInfo.searchable = 0
+                    cell.switchBox.addTarget(self, action: #selector(onClickSwitch), for: .valueChanged)
+                } else if updateUserInfo.searchable == 0{
+                    cell.switchBox.addTarget(self, action: #selector(onClickSwitch), for: .valueChanged)
                 }
                 return cell
             case 3:
@@ -222,4 +222,17 @@ extension InfoDetailViewController: UITextFieldDelegate{
     @objc func textFieldDidBeginEditing(_ textField: UITextField) {
         updateUserInfo.study = textField.text
     }
+}
+
+extension InfoDetailViewController{
+    // MARK: click 후 값 변경 반영
+    @objc func onClickSwitch() {
+        if updateUserInfo.searchable == 1 {
+            updateUserInfo.searchable = 0
+        } else {
+            updateUserInfo.searchable = 1
+        }
+    }
+    
+
 }
