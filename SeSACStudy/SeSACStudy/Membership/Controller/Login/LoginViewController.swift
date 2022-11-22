@@ -77,6 +77,7 @@ class LoginViewController: BaseViewController {
                 }
                 UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
                 UserDefaults.standard.set(phoneNumber, forKey: "phoneNumber")
+                print("🌹idToken: \(UserDefaults.standard.string(forKey: "idToken"))")
                 let vc = LoginCodeViewController()
                 self.navigationController?.pushViewController(vc, animated: true)
             }

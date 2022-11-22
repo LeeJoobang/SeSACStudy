@@ -7,7 +7,7 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         super.viewDidLoad()
         self.delegate = self
 
-        let homeVC = UINavigationController(rootViewController: HomeViewController())
+        let homeVC = UINavigationController(rootViewController: MapViewController())
         homeVC.tabBarItem.image = UIImage(named: "home")
         homeVC.tabBarItem.title = "홈"
         
