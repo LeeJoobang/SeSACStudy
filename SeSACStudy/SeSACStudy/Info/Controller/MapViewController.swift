@@ -5,7 +5,6 @@ import CoreLocation
 
 class MapViewController: UIViewController {
     
-    
     var mapView = MapView()
     
     let loctionManager = CLLocationManager()

@@ -72,7 +72,7 @@ class LoginCodeViewController: BaseViewController {
                     UserDefaults.standard.set(idToken, forKey: "idToken")
                     // MARK: 가입 유저 유무 확인 로직
                     let apiService = APIService()
-                    apiService.profile(id: idToken) { code in
+                    apiService.profile(id: idToken) { code, userInfo in
                         guard let code = code else { return }
                         switch code {
                         case 200...299:
@@ -80,12 +80,10 @@ class LoginCodeViewController: BaseViewController {
                             print(UserDefaults.standard.string(forKey: "idToken"))
 //                            let vc = BaseTabBarController()
 //                            self.navigationController?.pushViewController(vc, animated: true)
-                            
                             let vc = BaseTabBarController()
                             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                             guard let delegate = sceneDelegate else { return }
                             delegate.window?.rootViewController = vc
-                            
                         case 400...499:
                             print("🌹 code number: \(code)")
                             let vc = NicknameViewController()
@@ -97,6 +95,10 @@ class LoginCodeViewController: BaseViewController {
                 }
             }
         }
+    }
+    
+    func getFCMToken(){
+        
     }
     
     func deleteUserDefault(){

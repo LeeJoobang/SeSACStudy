@@ -9,25 +9,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         
-        let vc = BaseTabBarController()
+//        let vc = BaseTabBarController()
 //        let vc = Test2ViewController()
 //        let nav = UINavigationController(rootViewController: vc)
-        window?.rootViewController = vc
+//        window?.rootViewController = vc
         
 
-//        if UserDefaults.standard.bool(forKey: "First") {
-//            if UserDefaults.standard.bool(forKey: "success") {
-//                let vc = BaseTabBarController()
-//                window?.rootViewController = vc
-//            } else {
-//                let vc = LoginViewController()
-//                let nav = UINavigationController(rootViewController: vc)
-//                window?.rootViewController = nav
-//            }
-//        } else {
-//            let vc = OnboadingViewController()
-//            window?.rootViewController = UINavigationController(rootViewController: vc)
-//        }
+        if UserDefaults.standard.bool(forKey: "First") {
+            if UserDefaults.standard.bool(forKey: "success") {
+                guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
+                print(id)
+                let api = APIService()
+                api.profile(id: id) { statusCode, userInfo in
+                    print("🌹: \(statusCode)")
+                    print("🌹: \(userInfo)")
+                }
+                
+                let vc = BaseTabBarController()
+                window?.rootViewController = vc
+            } else {
+                let vc = LoginViewController()
+                let nav = UINavigationController(rootViewController: vc)
+                window?.rootViewController = nav
+            }
+        } else {
+            let vc = OnboadingViewController()
+            window?.rootViewController = UINavigationController(rootViewController: vc)
+        }
                 
         window?.makeKeyAndVisible()
     }

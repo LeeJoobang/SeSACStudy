@@ -97,14 +97,13 @@ class GenderViewController: BaseViewController {
             }
             let apiService = APIService()
             // MARK: 회원가입 성공 또는 실패에 대한 로직 반영
-            apiService.signup { code in
+            apiService.signup { code in // 성공후에 상태코드를 통해 분기처리함.
                 guard let code = code else { return }
                 switch code {
                 case 200:
                     print("🌹회원가입 성공")
 //                    let vc = BaseTabBarController()
 //                    self.navigationController?.pushViewController(vc, animated: true)
-                    
                     UserDefaults.standard.set(1, forKey: "success")
                     let vc = BaseTabBarController()
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate

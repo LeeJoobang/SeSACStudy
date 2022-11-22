@@ -18,18 +18,17 @@ class InfoViewController: BaseViewController{
         
         navigationItem.title = "설정"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
-        getProfileName()
+//        getProfileName()
     }
     
-    func getProfileName(){
-        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return print("somthing weird") }
-        let apiService = APIService()
-            APIService().profile(id: idToken) { code in
-                print(idToken)
-                print(code)
-            }
-        
-    }
+//    func getProfileName(){
+//        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return print("somthing weird") }
+//        let apiService = APIService()
+//            APIService().profile(id: idToken) { code in
+//                print(idToken)
+//                print(code)
+//            }
+//    }
     
     
 }
