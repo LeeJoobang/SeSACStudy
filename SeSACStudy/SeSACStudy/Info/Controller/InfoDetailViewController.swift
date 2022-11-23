@@ -69,6 +69,7 @@ class InfoDetailViewController: BaseViewController{
         self.navigationItem.rightBarButtonItem?.tintColor = .black
     }
     
+    // MARK: 새로운 회원 정보 업데이트 로직 반영 
     @objc func clickedButton(){
         print("🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄🍄 다음버튼 클릭")
         print(updateUserInfo.gender!)
@@ -76,7 +77,26 @@ class InfoDetailViewController: BaseViewController{
         print(updateUserInfo.searchable!)
         print(updateUserInfo.ageMin!)
         print(updateUserInfo.ageMax!)
-
+        
+        let apiService = APIService()
+        // MARK: 새로운 정보 업데이트 성공에 대한 응답 확인 로직 반영
+        apiService.saveInformation { response in
+            guard let response = response else { return }
+            switch response {
+            case 200:
+                print("🍄 새로운 정보 업데이트 성공")
+            case 401:
+                print("🍄 Firebase Token Error")
+            case 406:
+                print("🍄 미가입회원: 새싹 스터디 사이트 최종 가입이 안된 회원")
+            case 500:
+                print("🍄 Server Error")
+            case 501:
+                print("🍄 Client Error")
+            default:
+                fatalError()
+            }
+        }
     }
 }
 

@@ -121,4 +121,47 @@ class APIService{
             completion(response.response?.statusCode) // 등록이 완료되었을 때 코드를 불러와 적용
         }
     }
+    
+    /*
+     
+     {baseURL}/v1/user/mypage
+     
+     {
+     2   "searchable" : 1,
+     3   "ageMin" : 20,
+     4   "ageMax" : 30,
+     5   "gender" : 1,
+     6   "study" : "Coding"
+     7}
+     */
+    
+    
+    func saveInformation(completion: @escaping(Int?) -> Void){
+        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
+        guard let searchable = UpdateInfo.shared.searchable else
+        { return }
+        guard let ageMin = UpdateInfo.shared.ageMin else
+        { return }
+        guard let ageMax = UpdateInfo.shared.ageMax else
+        { return }
+        guard let gender = UpdateInfo.shared.gender else
+        { return }
+        guard let study = UpdateInfo.shared.study else
+        { return }
+
+        let api = SeSACAPI.saveInformation(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study)
+        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user/mypage")!
+        let apiHeaders: HTTPHeaders = [
+            "idtoken": idToken
+        ]
+        
+        AF.request(apiURL, method: .put, parameters: api.parameters, headers: apiHeaders).responseString {
+            response in
+            print(response)
+            print(response.response?.statusCode)
+            print("🌹APIService - 저장: 저장완료")
+            completion(response.response?.statusCode) // 등록이 완료되었을 때 코드를 불러와 적용
+        }
+        
+    }
 }
