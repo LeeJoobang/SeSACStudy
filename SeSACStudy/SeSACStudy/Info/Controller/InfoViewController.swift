@@ -42,6 +42,7 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoTableViewCell.reuseIdentifier, for: indexPath) as! InfoTableViewCell
         let user = UpdateInfo.shared
         print("🌕user.nick: \(user.nick)")
+        
         cell.infoLabel.text = indexPath.row ==  0 ?  user.nick : infoList[indexPath.row]
         cell.infoView.contentMode = .scaleAspectFit
         cell.infoView.image = UIImage(named: infoImage[indexPath.row])

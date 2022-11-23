@@ -34,9 +34,12 @@ class AgeTableViewCell: BaseTableViewCell {
     // MARK: multislider - library 사용
     let multislider: MultiSlider = {
         let slider = MultiSlider()
+        guard let ageMin = UpdateInfo.shared.ageMin else { return slider}
+        
+        guard let ageMax = UpdateInfo.shared.ageMax else { return slider}
         slider.minimumValue = 18.0
         slider.maximumValue = 65.0
-        slider.value = [18.0, 35.0]
+        slider.value = [CGFloat(ageMin), CGFloat(ageMax)]
         
         slider.orientation = .horizontal
         slider.isVertical = false

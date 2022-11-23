@@ -12,7 +12,7 @@ class GenderTableViewCell: BaseTableViewCell {
         var title = AttributedString.init("남자")
         title.font = UIFont(name: UIFont.notoRegular, size: 14)
         button.attributedTitle = title
-        button.baseBackgroundColor = .white
+//        button.baseBackgroundColor = .white
         button.buttonSize = .small
         button.baseForegroundColor = .black
         button.imagePlacement = .top
@@ -28,7 +28,7 @@ class GenderTableViewCell: BaseTableViewCell {
         var title = AttributedString.init("여자")
         title.font = UIFont(name: UIFont.notoRegular, size: 14)
         button.attributedTitle = title
-        button.baseBackgroundColor = .white
+//        button.baseBackgroundColor = .white
         button.buttonSize = .small
         button.baseForegroundColor = .black
         button.imagePlacement = .top
