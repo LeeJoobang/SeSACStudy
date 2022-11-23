@@ -3,11 +3,15 @@ import UIKit
 class InfoViewController: BaseViewController{
     
     let infoTableView = InfoTableView()
+    let updateUserInfo = UpdateInfo.shared
+
     private let infoList = ["김새싹", "공지사항", "자주 묻는 질문", "1:1 문의", "알림 설정", "이용 약관"]
     private let infoImage = ["profile", "faq", "notice", "permit", "qna", "setting_alarm"]
    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserInfo()
+
         self.view = infoTableView
         infoTableView.backgroundColor = .white
         infoTableView.tableView.backgroundColor = .white
@@ -18,17 +22,24 @@ class InfoViewController: BaseViewController{
         
         navigationItem.title = "설정"
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
-//        getProfileName()
     }
     
-//    func getProfileName(){
-//        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return print("somthing weird") }
-//        let apiService = APIService()
-//            APIService().profile(id: idToken) { code in
-//                print(idToken)
-//                print(code)
-//            }
-//    }
+    func getUserInfo(){
+        guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
+        let api = APIService()
+        api.profile(id: id) { statusCode, userInfo in
+            //성공 실패 데이터 받아오기
+            switch statusCode {
+            case 200:
+                self.updateUserInfo.nick = userInfo?.nick
+            case 401:
+                print("401 error가 발생하였습니다.")
+            default:
+                fatalError()
+            }
+            
+        }
+    }
     
     
 }

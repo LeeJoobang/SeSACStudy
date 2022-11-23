@@ -100,5 +100,27 @@ class AlertViewController: BaseViewController{
     }
     @objc func confirmButtonClicked(){
         dismiss(animated: true)
+        let apiService = APIService()
+        apiService.withdraw { code in
+            switch code {
+            case 200:
+                print("🍄 SeSAC Study 회원탈퇴 성공")
+                let vc = OnboadingViewController()
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                guard let delegate = sceneDelegate else { return }
+                delegate.window?.rootViewController = vc
+                
+            case 401:
+                print("🍄 Firebase Token Error")
+            case 406:
+                print("🍄 이미 탈퇴 처리된 회원/미가입 회원")
+            case 500:
+                print("🍄 Server Error")
+            case 501:
+                print("🍄 Client Error")
+            default:
+                fatalError()
+            }
+        }
     }
 }

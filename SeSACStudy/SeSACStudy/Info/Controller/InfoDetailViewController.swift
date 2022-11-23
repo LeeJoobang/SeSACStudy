@@ -6,26 +6,6 @@ class InfoDetailViewController: BaseViewController{
     let updateUserInfo = UpdateInfo.shared
     private let infoDetailList = ["내 성별", "자주 하는 스터디", "내 번호 검색 허용", "상대방 연령대", "회원탈퇴"]
     
-//    private var leftButtonState: Bool = true{
-//        didSet{
-//            if leftButtonState {
-//                updateUserInfo.gender = 0
-//                rightButtonState = false
-//                infoDetailView.tableView.reloadRows(at: [[1, 0]], with: .none)
-//            }
-//        }
-//    }
-//
-//    private var rightButtonState: Bool = false {
-//        didSet{
-//            if rightButtonState {
-//                updateUserInfo.gender = 1
-//                leftButtonState = false
-//                infoDetailView.tableView.reloadRows(at: [[1, 0]], with: .none)
-//            }
-//        }
-//    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserInfo()
@@ -36,7 +16,6 @@ class InfoDetailViewController: BaseViewController{
         infoDetailView.tableView.dataSource = self
         registerCell()
         infoDetailView.tableView.separatorStyle = .none
-        
         
     }
     
@@ -160,7 +139,6 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 let cell = tableView.dequeueReusableCell(withIdentifier: GenderTableViewCell.reuseIdentifier, for: indexPath) as! GenderTableViewCell
                 cell.label.text = "내성별"
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
-                
                 //user.gneder
                 if updateUserInfo.gender == 0 {
                     cell.leftButton.configuration?.baseBackgroundColor = .customGreen
@@ -171,9 +149,6 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                     
                 }
                 
-                
-//                cell.leftButtonClicked(state: leftButtonState)
-//                cell.rightButtonClicked(state: rightButtonState)
                 cell.leftButton.addTarget(self, action: #selector(leftButtonToggle), for: .touchUpInside)
                 cell.rightButton.addTarget(self, action: #selector(rightButtonToggle), for: .touchUpInside)
                 return cell
@@ -251,18 +226,14 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
 // MARK: 성별 toggle 반응에 따른 상태 변화
 extension InfoDetailViewController{
     @objc func leftButtonToggle() {
-//        leftButtonState.toggle()
         updateUserInfo.gender = 0
         infoDetailView.tableView.reloadRows(at: [[1, 0]], with: .none)
 
     }
     
     @objc func rightButtonToggle(){
-//        rightButtonState.toggle()
         updateUserInfo.gender = 1
         infoDetailView.tableView.reloadRows(at: [[1, 0]], with: .none)
-
-        
     }
 }
 

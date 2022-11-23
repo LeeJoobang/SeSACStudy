@@ -5,6 +5,8 @@ enum SeSACAPI {
     case signUP(phoneNumber: String, FCMtoken: String, nick: String, birth: String, Email: String, gender: Int)
     case saveInformation(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String)
     case profile
+    case withdraw
+    
 }
 
 extension SeSACAPI {

@@ -162,6 +162,24 @@ class APIService{
             print("🌹APIService - 저장: 저장완료")
             completion(response.response?.statusCode) // 등록이 완료되었을 때 코드를 불러와 적용
         }
+    }
+    
+    
+    func withdraw(completion: @escaping(Int?) -> Void){
+        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
+        
+        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user/withdraw")!
+        let apiHeaders: HTTPHeaders = [
+            "idtoken": idToken
+        ]
+        
+        AF.request(apiURL, method: .post, headers: apiHeaders).responseString {
+            response in
+            print(response)
+            print(response.response?.statusCode)
+            print("🌹APIService - 탈퇴: 탈퇴완료")
+            completion(response.response?.statusCode) // 등록이 완료되었을 때 코드를 불러와 적용
+        }
         
     }
 }
