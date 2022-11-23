@@ -197,8 +197,10 @@ extension InfoDetailViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.label.font = UIFont(name: UIFont.notoRegular, size: 14)
                 
                 if updateUserInfo.searchable == 1 {
+                    cell.switchBox.isOn = true
                     cell.switchBox.addTarget(self, action: #selector(onClickSwitch), for: .valueChanged)
                 } else if updateUserInfo.searchable == 0{
+                    cell.switchBox.isOn = false
                     cell.switchBox.addTarget(self, action: #selector(onClickSwitch), for: .valueChanged)
                 }
                 return cell
