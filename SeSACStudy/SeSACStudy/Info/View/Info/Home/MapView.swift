@@ -10,6 +10,14 @@ class MapView: BaseView{
         return map
     }()
     
+    let centerImage: UIImageView = {
+        let image = UIImageView()
+        image.image = UIImage(named: "centerImage")
+        image.contentMode = .scaleAspectFit
+        image.sizeToFit()
+        return image
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -20,6 +28,7 @@ class MapView: BaseView{
     
     override func configure() {
         self.addSubview(mapView)
+        self.addSubview(centerImage)
     }
     
     override func setConstraints() {
@@ -27,6 +36,12 @@ class MapView: BaseView{
             make.top.leading.trailing.equalToSuperview()
             make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom)
         }
+        
+        centerImage.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+        }
+        
+        
     }
     
 }

@@ -27,7 +27,6 @@ class MapViewController: UIViewController {
         mapView.mapView.setRegion(region, animated: true)
         let annotation = MKPointAnnotation()
         annotation.coordinate = center
-        
         mapView.mapView.addAnnotation(annotation)
     }
     

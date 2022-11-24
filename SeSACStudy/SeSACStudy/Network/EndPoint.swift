@@ -6,7 +6,6 @@ enum SeSACAPI {
     case saveInformation(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String)
     case profile
     case withdraw
-    
 }
 
 extension SeSACAPI {

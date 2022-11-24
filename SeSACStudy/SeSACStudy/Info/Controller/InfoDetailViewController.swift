@@ -9,8 +9,8 @@ class InfoDetailViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserInfo()
-
         self.view = infoDetailView
+        
         infoDetailView.backgroundColor = .white
         infoDetailView.tableView.delegate = self
         infoDetailView.tableView.dataSource = self

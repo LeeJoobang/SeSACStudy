@@ -1,7 +1,6 @@
 import Foundation
 
 // MARK: singleton pattern을 활용하여 데이터를 저장하고자 함.
-
 class UpdateInfo{
     
     static let shared = UpdateInfo()

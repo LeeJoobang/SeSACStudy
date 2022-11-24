@@ -4,7 +4,6 @@ class InfoTableView: BaseView{
     
     let tableView: UITableView = {
         let table = UITableView()
-        
         return table
     }()
     
