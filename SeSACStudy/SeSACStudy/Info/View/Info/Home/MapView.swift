@@ -18,6 +18,18 @@ class MapView: BaseView{
         return image
     }()
     
+    let locationButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = UIColor.white
+        button.setImage(UIImage(named: "place"), for: .normal)
+        button.layer.cornerRadius = 12
+        button.layer.shadowColor = UIColor.gray.cgColor
+        button.layer.shadowOpacity = 1.0
+        button.layer.shadowOffset = CGSize.zero
+        button.layer.shadowRadius = 6
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -29,6 +41,7 @@ class MapView: BaseView{
     override func configure() {
         self.addSubview(mapView)
         self.addSubview(centerImage)
+        self.addSubview(locationButton)
     }
     
     override func setConstraints() {
@@ -41,6 +54,11 @@ class MapView: BaseView{
             make.centerX.centerY.equalToSuperview()
         }
         
+        locationButton.snp.makeConstraints { make in
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
+            make.leading.equalTo(self.mapView.snp.leading).offset(12)
+            make.height.width.equalTo(48)
+        }
         
     }
     

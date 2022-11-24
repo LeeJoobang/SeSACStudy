@@ -12,10 +12,12 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = mapView
+        self.mapView.mapView.delegate = self
         mapView.backgroundColor = .white
         loctionManager.delegate = self
-        let center = CLLocationCoordinate2D(latitude: 37.3102, longitude: 126.5307)
+        let center = CLLocationCoordinate2D(latitude: 37.51806657869261, longitude: 126.88643304727526)
         setRegionAndAnnotation(center: center)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -32,6 +34,7 @@ class MapViewController: UIViewController {
     
 }
 extension MapViewController {
+    // MARK: 사용자의 위치서비스 onoff를 확인 후, 기기 위치서비스 onoff 유무 확인
     func checkUserDeviceLocationServiceAuthorization(){
         let authorizationStatus: CLAuthorizationStatus
         
@@ -40,6 +43,7 @@ extension MapViewController {
         } else {
             authorizationStatus = CLLocationManager.authorizationStatus()
         }
+        
         if CLLocationManager.locationServicesEnabled() {
             checkUserCurrentLocationAuthorization(authorizationStatus)
         } else {
@@ -57,6 +61,7 @@ extension MapViewController {
             print("DENIED, 아이폰 설정으로 유도")
         case .authorizedWhenInUse:
             print("WHEN IN USE")
+            // 실시간으로 현재 위치를 확인 후 centerimage가 위치할 수 있도록 함.
             loctionManager.startUpdatingLocation()
         default: print("DEFAULT")
         }
@@ -74,14 +79,11 @@ extension MapViewController {
         requestLocationServiceAlert.addAction(goSetting)
         present(requestLocationServiceAlert, animated: true, completion: nil)
     }
-    
-    
 }
 
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function, locations)
-        
         if let coordinate = locations.last?.coordinate {
             setRegionAndAnnotation(center: coordinate)
         }
@@ -104,7 +106,9 @@ extension MapViewController: CLLocationManagerDelegate {
 
 extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        loctionManager.startUpdatingLocation()
+        let centerLocation = self.mapView.mapView.centerCoordinate
+        print(centerLocation.longitude, centerLocation.latitude)
+
     }
 }
 
