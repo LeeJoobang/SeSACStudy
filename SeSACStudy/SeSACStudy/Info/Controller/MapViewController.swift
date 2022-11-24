@@ -17,7 +17,11 @@ class MapViewController: UIViewController {
         loctionManager.delegate = self
         let center = CLLocationCoordinate2D(latitude: 37.51806657869261, longitude: 126.88643304727526)
         setRegionAndAnnotation(center: center)
-
+        mapView.locationButton.addTarget(self, action: #selector(loactionButtonClicked), for: .touchUpInside)
+    }
+    
+    @objc func loactionButtonClicked(){
+        checkUserDeviceLocationServiceAuthorization()
     }
     
     override func viewDidAppear(_ animated: Bool) {
