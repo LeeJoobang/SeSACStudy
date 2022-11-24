@@ -54,6 +54,8 @@
 		3779634D292A4ED600B3C89B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3779634C292A4ED600B3C89B /* MapView.swift */; };
 		378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C15A3291D23AD0016D72A /* BirthSubView.swift */; };
 		37E0D48C292CD233005986BE /* UpadateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0D48B292CD233005986BE /* UpadateInfo.swift */; };
+		37EE1729292F628600886FDE /* TestCompositionLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */; };
+		37EE172B292F664D00886FDE /* TestCompostionLayoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */; };
 		37EE4FE9292352AA00523BDD /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FE8292352AA00523BDD /* InfoViewController.swift */; };
 		37EE4FEE2923541C00523BDD /* InfoTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FED2923541C00523BDD /* InfoTableView.swift */; };
 		37EE4FF0292354CD00523BDD /* InfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE4FEF292354CD00523BDD /* InfoTableViewCell.swift */; };
@@ -119,6 +121,8 @@
 		3779634C292A4ED600B3C89B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		378C15A3291D23AD0016D72A /* BirthSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthSubView.swift; sourceTree = "<group>"; };
 		37E0D48B292CD233005986BE /* UpadateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpadateInfo.swift; sourceTree = "<group>"; };
+		37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompositionLayoutViewController.swift; sourceTree = "<group>"; };
+		37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompostionLayoutViewCell.swift; sourceTree = "<group>"; };
 		37EE4FE8292352AA00523BDD /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		37EE4FED2923541C00523BDD /* InfoTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableView.swift; sourceTree = "<group>"; };
 		37EE4FEF292354CD00523BDD /* InfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewCell.swift; sourceTree = "<group>"; };
@@ -325,6 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				377963402927AB1400B3C89B /* TestViewController.swift */,
+				37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */,
+				37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */,
 			);
 			path = Test;
 			sourceTree = "<group>";
@@ -530,6 +536,7 @@
 				37EE4FE9292352AA00523BDD /* InfoViewController.swift in Sources */,
 				373AFBD82918D8C40019EB00 /* SceneDelegate.swift in Sources */,
 				371878E9291D1D6C00B91F98 /* BirthView.swift in Sources */,
+				37EE172B292F664D00886FDE /* TestCompostionLayoutViewCell.swift in Sources */,
 				372FEF67291C09B2004F3B16 /* EmailViewController.swift in Sources */,
 				37EE4FF92923901B00523BDD /* InfoDetailViewController.swift in Sources */,
 				377963412927AB1400B3C89B /* TestViewController.swift in Sources */,
@@ -539,6 +546,7 @@
 				373AFC43291A9A990019EB00 /* LoginView.swift in Sources */,
 				372FEF55291BBCC1004F3B16 /* LoginCodeViewController.swift in Sources */,
 				370977482924B01500A6CA52 /* StudyTableViewCell.swift in Sources */,
+				37EE1729292F628600886FDE /* TestCompositionLayoutViewController.swift in Sources */,
 				372FEF20291B700C004F3B16 /* Color + Extension.swift in Sources */,
 				37EE4FEE2923541C00523BDD /* InfoTableView.swift in Sources */,
 				37EE4FF729235C4E00523BDD /* ReusableProtocol.swift in Sources */,
