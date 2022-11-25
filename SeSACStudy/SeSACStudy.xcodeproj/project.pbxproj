@@ -53,6 +53,7 @@
 		377963482928EEFB00B3C89B /* MultiSlider in Frameworks */ = {isa = PBXBuildFile; productRef = 377963472928EEFB00B3C89B /* MultiSlider */; };
 		3779634D292A4ED600B3C89B /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3779634C292A4ED600B3C89B /* MapView.swift */; };
 		378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C15A3291D23AD0016D72A /* BirthSubView.swift */; };
+		37B134242930D1F50071E137 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B134232930D1F50071E137 /* API.swift */; };
 		37E0D48C292CD233005986BE /* UpadateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0D48B292CD233005986BE /* UpadateInfo.swift */; };
 		37EE1729292F628600886FDE /* TestCompositionLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */; };
 		37EE172B292F664D00886FDE /* TestCompostionLayoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */; };
@@ -120,6 +121,7 @@
 		377963422928B37500B3C89B /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		3779634C292A4ED600B3C89B /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		378C15A3291D23AD0016D72A /* BirthSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthSubView.swift; sourceTree = "<group>"; };
+		37B134232930D1F50071E137 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		37E0D48B292CD233005986BE /* UpadateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpadateInfo.swift; sourceTree = "<group>"; };
 		37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompositionLayoutViewController.swift; sourceTree = "<group>"; };
 		37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompostionLayoutViewCell.swift; sourceTree = "<group>"; };
@@ -416,6 +418,7 @@
 				37F3EECE2920D800002F2597 /* APIService.swift */,
 				37F3EED729211281002F2597 /* EndPoint.swift */,
 				37E0D48B292CD233005986BE /* UpadateInfo.swift */,
+				37B134232930D1F50071E137 /* API.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -560,6 +563,7 @@
 				373AFBF82918ECA70019EB00 /* BaseViewController.swift in Sources */,
 				37F3EED829211281002F2597 /* EndPoint.swift in Sources */,
 				372FEF63291C039C004F3B16 /* NicknameViewController.swift in Sources */,
+				37B134242930D1F50071E137 /* API.swift in Sources */,
 				3709774C2924B07F00A6CA52 /* AgeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

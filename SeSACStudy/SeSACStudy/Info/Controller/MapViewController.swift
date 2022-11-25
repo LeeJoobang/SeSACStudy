@@ -98,7 +98,7 @@ extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)
         //위치를 받아오지 못했을 경우, 새싹 캠퍼스로 표시
-        let center = CLLocationCoordinate2D(latitude: 37.51806657869261, longitude: 126.88643304727526)
+        let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.88627)
         setRegionAndAnnotation(center: center)
 
     }

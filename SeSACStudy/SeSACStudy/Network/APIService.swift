@@ -68,13 +68,13 @@ struct FromQueueDBRequested: Codable {
 }
 
 class APIService{
-    
     // MARK: .get 을 유저 유무를 확인하는 메소드
     func profile(id idToken: String, completion: @escaping(Int?, User?) -> Void) {
-        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user")!
+        let apiURL = URL(string: HTTPInfomation.apiBaseURL + HTTPPath.userPath)!
+        print("apiURL: \(apiURL)")
         let apiHeaders: HTTPHeaders = [
-            "Content-Type": "application/x-www-form-urlencoded",
-            "idtoken": idToken
+            HTTPInfomation.contentKey: HTTPInfomation.contentValue,
+            HTTPInfomation.idtokenKey: idToken
         ]
         AF.request(apiURL, method: .get, headers: apiHeaders)
             .responseDecodable(of: User.self) { response in
@@ -117,10 +117,10 @@ class APIService{
         print("🌹 gender: \(String(describing: gender))")
         
         let api = SeSACAPI.signUP(phoneNumber: phoneNumber, FCMtoken: fcmToken, nick: nick, birth: birth, Email: email, gender: gender)
-        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user")!
+        let apiURL = URL(string: HTTPInfomation.apiBaseURL + HTTPPath.userPath)!
         let apiHeaders: HTTPHeaders = [
-            "Content-Type": "application/x-www-form-urlencoded",
-            "idtoken": idToken
+            HTTPInfomation.contentKey: HTTPInfomation.contentValue,
+            HTTPInfomation.idtokenKey: idToken
         ]
         
         AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseString {
@@ -146,9 +146,9 @@ class APIService{
         { return }
 
         let api = SeSACAPI.saveInformation(searchable: searchable, ageMin: ageMin, ageMax: ageMax, gender: gender, study: study)
-        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user/mypage")!
+        let apiURL = URL(string: HTTPInfomation.apiBaseURL + HTTPPath.mypagePath)!
         let apiHeaders: HTTPHeaders = [
-            "idtoken": idToken
+            HTTPInfomation.idtokenKey: idToken
         ]
         
         AF.request(apiURL, method: .put, parameters: api.parameters, headers: apiHeaders).responseString {
@@ -164,9 +164,9 @@ class APIService{
     func withdraw(completion: @escaping(Int?) -> Void){
         guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
         
-        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/user/withdraw")!
+        let apiURL = URL(string: HTTPInfomation.apiBaseURL + HTTPPath.withdrawPath)!
         let apiHeaders: HTTPHeaders = [
-            "idtoken": idToken
+            HTTPInfomation.idtokenKey: idToken
         ]
         
         AF.request(apiURL, method: .post, headers: apiHeaders).responseString {
@@ -182,12 +182,13 @@ class APIService{
         guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
         
         let api = SeSACAPI.currentLocation(lat: lat, long: long) // parameter 받아와야 함.
-        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/queue/search")!
+        let apiURL = URL(string: HTTPInfomation.apiBaseURL + HTTPPath.searchPath)!
         let apiHeaders: HTTPHeaders = [
-            "idtoken": idToken
+            HTTPInfomation.idtokenKey: idToken
         ]
         
         AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseString { response in
+            print("🍁response: \(response.response?.statusCode)")
             print("🍁response: \(response)")
             completion(response.response?.statusCode)
         }
