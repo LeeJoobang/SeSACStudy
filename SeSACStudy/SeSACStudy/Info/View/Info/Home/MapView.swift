@@ -30,6 +30,13 @@ class MapView: BaseView{
         return button
     }()
     
+    let floatButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .black
+        button.layer.cornerRadius = 32
+        return button
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -42,6 +49,7 @@ class MapView: BaseView{
         self.addSubview(mapView)
         self.addSubview(centerImage)
         self.addSubview(locationButton)
+        self.addSubview(floatButton)
     }
     
     override func setConstraints() {
@@ -58,6 +66,12 @@ class MapView: BaseView{
             make.top.equalTo(self.safeAreaLayoutGuide.snp.top)
             make.leading.equalTo(self.mapView.snp.leading).offset(12)
             make.height.width.equalTo(48)
+        }
+        
+        floatButton.snp.makeConstraints { make in
+            make.bottom.equalTo(self.safeAreaLayoutGuide.snp.bottom).offset(-16)
+            make.trailing.equalTo(self.mapView.snp.trailing).offset(-12)
+            make.height.width.equalTo(64)
         }
         
     }

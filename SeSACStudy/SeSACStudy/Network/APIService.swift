@@ -33,6 +33,39 @@ struct User: Codable{
     let createdAt: String
 }
 
+struct SearchResult: Codable {
+    let fromRecommend: [String]
+    let fromQueueDB: [FromQueueDB]
+    let fromQueueDBRequested: [FromQueueDBRequested]
+}
+
+struct FromQueueDB: Codable {
+    let uid: String
+    let nick: String
+    let lat: Double
+    let long: Double
+    let reputation: [Int]
+    let studylist: [String]
+    let reviews: [String]
+    let gender: Int
+    let type: Int
+    let sesac: Int
+    let background: Int
+}
+
+struct FromQueueDBRequested: Codable {
+    let uid: String
+    let nick: String
+    let lat: Double
+    let long: Double
+    let reputation: [Int]
+    let studylist: [String]
+    let reviews: [String]
+    let gender: Int
+    let type: Int
+    let sesac: Int
+    let background: Int
+}
 
 class APIService{
     
@@ -142,6 +175,21 @@ class APIService{
             print(response.response?.statusCode)
             print("🌹APIService - 탈퇴: 탈퇴완료")
             completion(response.response?.statusCode) // 등록이 완료되었을 때 코드를 불러와 적용
+        }
+    }
+    
+    func currentLocation(lat lat: Double, long long: Double, completion: @escaping(Int?)->Void){
+        guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
+        
+        let api = SeSACAPI.currentLocation(lat: lat, long: long) // parameter 받아와야 함.
+        let apiURL = URL(string: "http://api.sesac.co.kr:1210/v1/queue/search")!
+        let apiHeaders: HTTPHeaders = [
+            "idtoken": idToken
+        ]
+        
+        AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseString { response in
+            print("🍁response: \(response)")
+            completion(response.response?.statusCode)
         }
     }
 }

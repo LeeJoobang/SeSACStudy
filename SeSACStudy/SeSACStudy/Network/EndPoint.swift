@@ -6,6 +6,7 @@ enum SeSACAPI {
     case saveInformation(searchable: Int, ageMin: Int, ageMax: Int, gender: Int, study: String)
     case profile
     case withdraw
+    case currentLocation(lat: Double, long: Double)
 }
 
 extension SeSACAPI {
@@ -28,7 +29,11 @@ extension SeSACAPI {
                 "gender" : gender,
                 "study" : study
             ]
-            
+        case .currentLocation(let lat, let long):
+            return [
+                "lat": lat,
+                "long": long
+            ]
         default: return ["":""]
         }
     }

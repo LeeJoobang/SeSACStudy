@@ -15,8 +15,7 @@ class MapViewController: UIViewController {
         self.mapView.mapView.delegate = self
         mapView.backgroundColor = .white
         loctionManager.delegate = self
-        let center = CLLocationCoordinate2D(latitude: 37.51806657869261, longitude: 126.88643304727526)
-        setRegionAndAnnotation(center: center)
+        
         mapView.locationButton.addTarget(self, action: #selector(loactionButtonClicked), for: .touchUpInside)
     }
     
@@ -31,9 +30,10 @@ class MapViewController: UIViewController {
     func setRegionAndAnnotation(center: CLLocationCoordinate2D){
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 100, longitudinalMeters: 100)
         mapView.mapView.setRegion(region, animated: true)
-        let annotation = MKPointAnnotation()
-        annotation.coordinate = center
-        mapView.mapView.addAnnotation(annotation)
+       
+        //let annotation = MKPointAnnotation()
+        //annotation.coordinate = center
+        //mapView.mapView.addAnnotation(annotation)
     }
     
 }
@@ -47,7 +47,6 @@ extension MapViewController {
         } else {
             authorizationStatus = CLLocationManager.authorizationStatus()
         }
-        
         if CLLocationManager.locationServicesEnabled() {
             checkUserCurrentLocationAuthorization(authorizationStatus)
         } else {
@@ -67,7 +66,8 @@ extension MapViewController {
             print("WHEN IN USE")
             // 실시간으로 현재 위치를 확인 후 centerimage가 위치할 수 있도록 함.
             loctionManager.startUpdatingLocation()
-        default: print("DEFAULT")
+        default:
+            print("DEFAULT")
         }
     }
 
@@ -88,6 +88,7 @@ extension MapViewController {
 extension MapViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function, locations)
+        //현재 위치값
         if let coordinate = locations.last?.coordinate {
             setRegionAndAnnotation(center: coordinate)
         }
@@ -96,6 +97,10 @@ extension MapViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)
+        //위치를 받아오지 못했을 경우, 새싹 캠퍼스로 표시
+        let center = CLLocationCoordinate2D(latitude: 37.51806657869261, longitude: 126.88643304727526)
+        setRegionAndAnnotation(center: center)
+
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -112,7 +117,26 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let centerLocation = self.mapView.mapView.centerCoordinate
         print(centerLocation.longitude, centerLocation.latitude)
-
+        // 위치 값이 변화할 때마다
+        
+        let api = APIService()
+        api.currentLocation(lat: centerLocation.latitude, long: centerLocation.longitude) { statusCode in
+            switch statusCode{
+            case 200:
+                print("🍁성공")
+            case 401:
+                print("🍁firebase token error")
+            case 406:
+                print("🍁미가입 회원")
+            case 500:
+                print("🍁Server Error")
+            case 501:
+                print("🍁Client Error")
+            default:
+                fatalError()
+            }
+        }
+        
     }
 }
 
