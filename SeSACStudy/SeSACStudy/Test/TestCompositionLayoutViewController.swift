@@ -73,7 +73,4 @@ extension TestCompositionLayoutViewController: UICollectionViewDelegate, UIColle
         return 1
     }
     
-    
-    
-    
 }

@@ -3,7 +3,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class MapViewController: UIViewController {
+class MapViewController: BaseViewController {
     
     var mapView = MapView()
     
@@ -17,6 +17,13 @@ class MapViewController: UIViewController {
         loctionManager.delegate = self
         
         mapView.locationButton.addTarget(self, action: #selector(loactionButtonClicked), for: .touchUpInside)
+        mapView.floatButton.addTarget(self, action: #selector(floatButtonClicked), for: .touchUpInside)
+    }
+    
+    @objc func floatButtonClicked(){
+        print("hi")
+        let vc = StudyGroupViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     @objc func loactionButtonClicked(){

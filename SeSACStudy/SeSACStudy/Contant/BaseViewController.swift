@@ -7,7 +7,6 @@ class BaseViewController: UIViewController {
         super.viewDidLoad()
         configure()
         setConstraints()
-        
         let backbutton = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backbutton
     }

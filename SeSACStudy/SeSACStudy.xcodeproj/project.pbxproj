@@ -18,6 +18,7 @@
 		3709774C2924B07F00A6CA52 /* AgeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709774B2924B07F00A6CA52 /* AgeTableViewCell.swift */; };
 		3709774E2924B0D300A6CA52 /* WithdrawalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3709774D2924B0D300A6CA52 /* WithdrawalTableViewCell.swift */; };
 		371878E9291D1D6C00B91F98 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371878E8291D1D6C00B91F98 /* BirthView.swift */; };
+		3727C10F29348D9F00DD0DA7 /* StudyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3727C10E29348D9F00DD0DA7 /* StudyGroupViewController.swift */; };
 		372FEF20291B700C004F3B16 /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF1F291B700C004F3B16 /* Color + Extension.swift */; };
 		372FEF24291B76A6004F3B16 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 372FEF22291B76A6004F3B16 /* NotoSansKR-Medium.otf */; };
 		372FEF25291B76A6004F3B16 /* NotoSansKR-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 372FEF23291B76A6004F3B16 /* NotoSansKR-Regular.otf */; };
@@ -87,6 +88,7 @@
 		3709774D2924B0D300A6CA52 /* WithdrawalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WithdrawalTableViewCell.swift; sourceTree = "<group>"; };
 		3713F99F291E385B00436DBA /* SeSACStudy.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SeSACStudy.entitlements; sourceTree = "<group>"; };
 		371878E8291D1D6C00B91F98 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
+		3727C10E29348D9F00DD0DA7 /* StudyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroupViewController.swift; sourceTree = "<group>"; };
 		372FEF1F291B700C004F3B16 /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
 		372FEF22291B76A6004F3B16 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
 		372FEF23291B76A6004F3B16 /* NotoSansKR-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Regular.otf"; sourceTree = "<group>"; };
@@ -212,6 +214,41 @@
 				37F3EEC1291FC0B7002F2597 /* Common */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		3727C10A29348D1B00DD0DA7 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				3709773C2923B55000A6CA52 /* MapViewController.swift */,
+				3727C10E29348D9F00DD0DA7 /* StudyGroupViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		3727C10B29348D2600DD0DA7 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				37EE4FE8292352AA00523BDD /* InfoViewController.swift */,
+				37EE4FF82923901B00523BDD /* InfoDetailViewController.swift */,
+				377963422928B37500B3C89B /* AlertViewController.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		3727C10C29348D4200DD0DA7 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				3709773E2923B55900A6CA52 /* ShopViewController.swift */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		3727C10D29348D5600DD0DA7 /* Friend */ = {
+			isa = PBXGroup;
+			children = (
+				370977402923B56D00A6CA52 /* FriendViewController.swift */,
+			);
+			path = Friend;
 			sourceTree = "<group>";
 		};
 		372FEF1E291B6FDA004F3B16 /* Custom */ = {
@@ -365,13 +402,11 @@
 		37EE4FF5292356AE00523BDD /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				37EE4FE8292352AA00523BDD /* InfoViewController.swift */,
-				37EE4FF82923901B00523BDD /* InfoDetailViewController.swift */,
 				3709773A2923AFF400A6CA52 /* BaseTabBarViewController.swift */,
-				3709773C2923B55000A6CA52 /* MapViewController.swift */,
-				3709773E2923B55900A6CA52 /* ShopViewController.swift */,
-				370977402923B56D00A6CA52 /* FriendViewController.swift */,
-				377963422928B37500B3C89B /* AlertViewController.swift */,
+				3727C10A29348D1B00DD0DA7 /* Home */,
+				3727C10D29348D5600DD0DA7 /* Friend */,
+				3727C10C29348D4200DD0DA7 /* Shop */,
+				3727C10B29348D2600DD0DA7 /* Info */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -558,6 +593,7 @@
 				372FEF27291B790A004F3B16 /* Font + Extension.swift in Sources */,
 				3779634D292A4ED600B3C89B /* MapView.swift in Sources */,
 				37F3EEC5291FC342002F2597 /* GenderView.swift in Sources */,
+				3727C10F29348D9F00DD0DA7 /* StudyGroupViewController.swift in Sources */,
 				37F3EECF2920D800002F2597 /* APIService.swift in Sources */,
 				372FEF65291C0561004F3B16 /* BirthViewController.swift in Sources */,
 				373AFBF82918ECA70019EB00 /* BaseViewController.swift in Sources */,

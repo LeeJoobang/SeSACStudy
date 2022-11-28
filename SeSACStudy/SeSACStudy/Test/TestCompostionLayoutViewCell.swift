@@ -36,9 +36,11 @@ final class TestCompostionLayoutViewCell: UICollectionViewCell {
         }
     }
     
-    func setupUI(borederCGColor: CGColor, textColor: UIColor) {
-        self.layer.borderColor = borederCGColor
-        self.studyTitleLabel.textColor = textColor
-    }
+//    func setupUI(borederCGColor: CGColor, textColor: UIColor) {
+//        self.layer.borderColor = borederCGColor
+//        self.studyTitleLabel.textColor = textColor
+//    }
+    
+    
 }
 
