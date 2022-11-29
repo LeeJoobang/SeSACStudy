@@ -8,7 +8,6 @@ final class StudyGroupViewCell: UICollectionViewCell{
     let studyTitleLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
-        label.backgroundColor = .green
         return label
     }()
     

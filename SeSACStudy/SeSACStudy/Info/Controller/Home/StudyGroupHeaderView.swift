@@ -8,17 +8,14 @@ final class StudyGroupHeaderView: UICollectionReusableView {
     
     lazy var label: UILabel = {
         let label = UILabel()
-        label.backgroundColor = .red
-        label.textColor = .white
+        label.textColor = .black
         label.numberOfLines = 0
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .gray
         setConstraint()
-
     }
     
     required init?(coder: NSCoder) {
@@ -28,7 +25,8 @@ final class StudyGroupHeaderView: UICollectionReusableView {
     func setConstraint(){
         self.addSubview(label)
         label.snp.makeConstraints { make in
-            make.edges.equalTo(self.safeAreaLayoutGuide.snp.edges)
+            make.top.equalTo(self.safeAreaLayoutGuide.snp.top).offset(0)
+            make.left.trailing.equalToSuperview().inset(0)
         }
     }
 }

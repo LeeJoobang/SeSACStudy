@@ -32,6 +32,7 @@ class MapView: BaseView{
     
     let floatButton: UIButton = {
         let button = UIButton()
+        button.setImage(UIImage(named: "magniglass"), for: .normal)
         button.backgroundColor = .black
         button.layer.cornerRadius = 32
         return button

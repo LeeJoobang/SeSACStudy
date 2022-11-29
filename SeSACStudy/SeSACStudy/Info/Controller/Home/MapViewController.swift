@@ -21,6 +21,7 @@ class MapViewController: BaseViewController {
     }
     
     @objc func floatButtonClicked(){
+        
         print("hi")
         let vc = StudyGroupViewController()
         self.navigationController?.pushViewController(vc, animated: true)
@@ -35,7 +36,7 @@ class MapViewController: BaseViewController {
     }
     
     func setRegionAndAnnotation(center: CLLocationCoordinate2D){
-        let region = MKCoordinateRegion(center: center, latitudinalMeters: 100, longitudinalMeters: 100)
+        let region = MKCoordinateRegion(center: center, latitudinalMeters: 700, longitudinalMeters: 700)
         mapView.mapView.setRegion(region, animated: true)
        
         //let annotation = MKPointAnnotation()
@@ -54,6 +55,7 @@ extension MapViewController {
         } else {
             authorizationStatus = CLLocationManager.authorizationStatus()
         }
+        
         if CLLocationManager.locationServicesEnabled() {
             checkUserCurrentLocationAuthorization(authorizationStatus)
         } else {
@@ -69,6 +71,8 @@ extension MapViewController {
             loctionManager.requestWhenInUseAuthorization()
         case .restricted, .denied:
             print("DENIED, 아이폰 설정으로 유도")
+//            loctionManager.startUpdatingLocation()
+            
         case .authorizedWhenInUse:
             print("WHEN IN USE")
             // 실시간으로 현재 위치를 확인 후 centerimage가 위치할 수 있도록 함.
@@ -93,19 +97,20 @@ extension MapViewController {
 }
 
 extension MapViewController: CLLocationManagerDelegate {
+    //위치값을 가져왔을 때 현재 위치값을 가져올 수 있게 된다.
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         print(#function, locations)
-        //현재 위치값
+        
         if let coordinate = locations.last?.coordinate {
             setRegionAndAnnotation(center: coordinate)
         }
         loctionManager.stopUpdatingLocation()
     }
     
+    //위치를 받아오지 못했을 경우, 새싹 캠퍼스로 표시
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(#function)
-        //위치를 받아오지 못했을 경우, 새싹 캠퍼스로 표시
-        let center = CLLocationCoordinate2D(latitude: 37.517829, longitude: 126.88627)
+        let center = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
         setRegionAndAnnotation(center: center)
 
     }
@@ -125,6 +130,7 @@ extension MapViewController: MKMapViewDelegate {
         let centerLocation = self.mapView.mapView.centerCoordinate
         print(centerLocation.longitude, centerLocation.latitude)
         // 위치 값이 변화할 때마다
+        
         
         let api = APIService()
         api.currentLocation(lat: centerLocation.latitude, long: centerLocation.longitude) { statusCode in

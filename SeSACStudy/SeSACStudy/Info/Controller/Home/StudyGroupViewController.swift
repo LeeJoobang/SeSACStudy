@@ -42,16 +42,20 @@ class StudyGroupViewController: UIViewController{
         let itemSize = NSCollectionLayoutSize(widthDimension: .estimated(60), heightDimension: .absolute(height))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.80), heightDimension: .absolute(height))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(height))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(spacing)
         
         
         let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 16+32, leading: 16, bottom: 8, trailing: 16)
         section.interGroupSpacing = spacing
         
-        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(100.0))
-        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(18)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top, absoluteOffset: CGPoint(x: 0, y: 32))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(40))
+//        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        
         section.boundarySupplementaryItems = [header]
 
         let layout = UICollectionViewCompositionalLayout(section: section)
@@ -60,7 +64,11 @@ class StudyGroupViewController: UIViewController{
     
     func setConstraint(){
         collectionView.snp.makeConstraints { make in
-            make.edges.equalTo(self.view.safeAreaLayoutGuide.snp.edges)
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top).offset(36)
+            make.leading.equalTo(self.view.snp.leading).offset(16)
+            make.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(0)
+
         }
         
     }
@@ -75,7 +83,24 @@ extension StudyGroupViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyGroupViewCell.id, for: indexPath) as? StudyGroupViewCell else { return UICollectionViewCell() }
-        cell.studyTitleLabel.text = text[indexPath.item]
+        switch indexPath.section{
+        case 0:
+            switch indexPath.item {
+            case 0...2:
+                cell.studyTitleLabel.text = text[indexPath.item]
+                cell.studyTitleLabel.textColor = .red
+                cell.layer.borderColor = UIColor.red.cgColor
+            case 3...7:
+                cell.studyTitleLabel.text = text[indexPath.item]
+                cell.layer.borderColor = UIColor.customGray4?.cgColor
+            default:
+                fatalError()
+            }
+        case 1:
+            print("해당없음")
+        default:
+            fatalError()
+        }
         return cell
     }
     
@@ -85,11 +110,6 @@ extension StudyGroupViewController: UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         print("kind: \(kind)")
-        
-//        guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StudyGroupHeaderView.id, for: indexPath) as? StudyGroupHeaderView else {return UICollectionReusableView()}
-//        header.prepare(text: "헤더 타이틀")
-//        return header
-//
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: StudyGroupHeaderView.id, for: indexPath) as! StudyGroupHeaderView
