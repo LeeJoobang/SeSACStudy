@@ -20,7 +20,6 @@
 		371878E9291D1D6C00B91F98 /* BirthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 371878E8291D1D6C00B91F98 /* BirthView.swift */; };
 		3727C10F29348D9F00DD0DA7 /* StudyGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3727C10E29348D9F00DD0DA7 /* StudyGroupViewController.swift */; };
 		3727C11329349ADC00DD0DA7 /* StudyGroupViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3727C11229349ADC00DD0DA7 /* StudyGroupViewCell.swift */; };
-		3727C1152934D1A300DD0DA7 /* StudyGroupReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3727C1142934D1A300DD0DA7 /* StudyGroupReusableView.swift */; };
 		3727C1172934D64E00DD0DA7 /* StudyGroupHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3727C1162934D64E00DD0DA7 /* StudyGroupHeaderView.swift */; };
 		372FEF20291B700C004F3B16 /* Color + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 372FEF1F291B700C004F3B16 /* Color + Extension.swift */; };
 		372FEF24291B76A6004F3B16 /* NotoSansKR-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 372FEF22291B76A6004F3B16 /* NotoSansKR-Medium.otf */; };
@@ -93,7 +92,6 @@
 		371878E8291D1D6C00B91F98 /* BirthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthView.swift; sourceTree = "<group>"; };
 		3727C10E29348D9F00DD0DA7 /* StudyGroupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroupViewController.swift; sourceTree = "<group>"; };
 		3727C11229349ADC00DD0DA7 /* StudyGroupViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroupViewCell.swift; sourceTree = "<group>"; };
-		3727C1142934D1A300DD0DA7 /* StudyGroupReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroupReusableView.swift; sourceTree = "<group>"; };
 		3727C1162934D64E00DD0DA7 /* StudyGroupHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroupHeaderView.swift; sourceTree = "<group>"; };
 		372FEF1F291B700C004F3B16 /* Color + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color + Extension.swift"; sourceTree = "<group>"; };
 		372FEF22291B76A6004F3B16 /* NotoSansKR-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "NotoSansKR-Medium.otf"; sourceTree = "<group>"; };
@@ -386,7 +384,6 @@
 			children = (
 				3779634C292A4ED600B3C89B /* MapView.swift */,
 				3727C11229349ADC00DD0DA7 /* StudyGroupViewCell.swift */,
-				3727C1142934D1A300DD0DA7 /* StudyGroupReusableView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -577,7 +574,6 @@
 				3709774E2924B0D300A6CA52 /* WithdrawalTableViewCell.swift in Sources */,
 				373AFC3B291984380019EB00 /* FirstViewController.swift in Sources */,
 				37EE4FFF2923911F00523BDD /* BackgroundlTableViewCell.swift in Sources */,
-				3727C1152934D1A300DD0DA7 /* StudyGroupReusableView.swift in Sources */,
 				373AFBFA2918ECE00019EB00 /* BaseView.swift in Sources */,
 				370977412923B56D00A6CA52 /* FriendViewController.swift in Sources */,
 				372FEF5E291BF57F004F3B16 /* Layer + Extension.swift in Sources */,
