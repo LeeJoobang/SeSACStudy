@@ -36,11 +36,11 @@ class LoginCodeViewController: BaseViewController {
         loginCodeView.certificationButton.addTarget(self, action: #selector(buttonClicked(button: )), for: .touchUpInside)
     }
     // 로직 검사를 위해 임시적으로 주석처리
-//     @objc func buttonClicked(button: UIButton){
-//         print("button clicked")
-//         let vc = NicknameViewController()
-//         self.navigationController?.pushViewController(vc, animated: true)
-//     }
+    //     @objc func buttonClicked(button: UIButton){
+    //         print("button clicked")
+    //         let vc = NicknameViewController()
+    //         self.navigationController?.pushViewController(vc, animated: true)
+    //     }
     
     // 로직 검사를 위해 임시적으로 주석처리
     @objc func buttonClicked(button: UIButton){
@@ -64,7 +64,7 @@ class LoginCodeViewController: BaseViewController {
                     print("error 발생")
                     return
                 }
-
+                
                 // MARK: 미가입유저 - 회원가입 로직 진행, 가입유저 - 로그인 로직
                 guard let idToken = idToken else { return }
                 if idToken != "" {
@@ -79,8 +79,27 @@ class LoginCodeViewController: BaseViewController {
                             print("🌹 code number: \(code)")
                             print(UserDefaults.standard.string(forKey: "idToken"))
                             UserDefaults.standard.set(1, forKey: "success")
-//                            let vc = BaseTabBarController()
-//                            self.navigationController?.pushViewController(vc, animated: true)
+                            
+                            guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
+                            print(id)
+                            let api = APIService()
+                            api.profile(id: id) { statusCode, userInfo in
+                                guard let userInfo = userInfo else { return }
+                                print("🌹: \(statusCode)")
+                                print("🌹: \(userInfo.nick)")
+                                print("🌹: \(userInfo.ageMax)")
+                                let updateUser = UpdateInfo.shared
+                                updateUser.nick = userInfo.nick
+                                updateUser.ageMax = userInfo.ageMax
+                                updateUser.ageMin = userInfo.ageMin
+                                updateUser.gender = userInfo.gender
+                                updateUser.searchable = userInfo.searchable
+                                updateUser.phoneNumber = userInfo.phoneNumber
+                                updateUser.study = userInfo.study
+                                print("🌹: \(updateUser.nick)")
+                                print("🌹: \(updateUser.ageMax)")
+                            }
+                            
                             let vc = BaseTabBarController()
                             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                             guard let delegate = sceneDelegate else { return }
@@ -89,20 +108,22 @@ class LoginCodeViewController: BaseViewController {
                             print("🌹 code number: \(code)")
                             let vc = NicknameViewController()
                             self.navigationController?.pushViewController(vc, animated: true)
+                            
                         default:
-                            print("오류")
+                            print("error")
                         }
                     }
                 }
             }
         }
-    }
-    
-    func deleteUserDefault(){
-        print("🌹deleteUserDefault - 넣을지 고민중")
-        let keyName = ["nickName", "birth", "email", "gender"]
-        for key in keyName {
-                    UserDefaults.standard.removeObject(forKey: key)
+        
+        func deleteUserDefault(){
+            print("🌹deleteUserDefault - 넣을지 고민중")
+            let keyName = ["nickName", "birth", "email", "gender"]
+            for key in keyName {
+                UserDefaults.standard.removeObject(forKey: key)
+            }
         }
     }
 }
+

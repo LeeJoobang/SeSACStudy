@@ -11,7 +11,7 @@ class InfoViewController: BaseViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         getUserInfo()
-
+        
         self.view = infoTableView
         infoTableView.backgroundColor = .white
         infoTableView.tableView.backgroundColor = .white
@@ -33,6 +33,7 @@ class InfoViewController: BaseViewController{
             switch statusCode {
             case 200:
                 self.updateUserInfo.nick = userInfo?.nick
+                print("🍁updateUserInfo.nick: \(self.updateUserInfo.nick)")
             case 401:
                 print("401 error가 발생하였습니다.")
             default:
@@ -52,9 +53,9 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoTableViewCell.reuseIdentifier, for: indexPath) as! InfoTableViewCell
-        let user = UpdateInfo.shared
-        print("🌕user.nick: \(user.nick)")
-        cell.infoLabel.text = indexPath.row ==  0 ?  user.nick : infoList[indexPath.row]
+        guard let nick = UserDefaults.standard.string(forKey: "nickName") else { return UITableViewCell() }
+        print("🌕UserDefault's nick: \(nick)")
+        cell.infoLabel.text = indexPath.row ==  0 ?  nick : infoList[indexPath.row]
         cell.infoView.contentMode = .scaleAspectFit
         cell.infoView.image = UIImage(named: infoImage[indexPath.row])
         cell.arrowView.image = indexPath.row == 0 ? UIImage(named: "arrow") : nil
