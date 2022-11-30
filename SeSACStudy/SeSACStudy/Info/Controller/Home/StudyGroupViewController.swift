@@ -15,11 +15,15 @@ class StudyGroupViewController: UIViewController{
         "Java"
     ]
     
+    var searchTexts = [String]()
+    
     lazy var collectionView: UICollectionView = {
         let layout = createLayout()
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
         view.register(StudyGroupHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StudyGroupHeaderView.id)
         view.register(StudyGroupViewCell.self, forCellWithReuseIdentifier: StudyGroupViewCell.id)
+        view.register(StudyGroupSecondViewCell.self, forCellWithReuseIdentifier: StudyGroupSecondViewCell.id)
+
         return view
     }()
     
@@ -32,6 +36,7 @@ class StudyGroupViewController: UIViewController{
         let search = UISearchBar(frame: CGRect(x: 0, y: 0, width: 310, height: 0))
         search.placeholder = "띄어쓰기로 복수 입력이 가능해요"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: search)
+        search.delegate = self
         setConstraint()
     }
     
@@ -68,9 +73,7 @@ class StudyGroupViewController: UIViewController{
             make.leading.equalTo(self.view.snp.leading).offset(16)
             make.trailing.equalTo(self.view.snp.trailing).offset(-16)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(0)
-
         }
-        
     }
     
 }
@@ -78,30 +81,49 @@ class StudyGroupViewController: UIViewController{
 extension StudyGroupViewController: UICollectionViewDelegate, UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return text.count
+        switch section {
+        case 0:
+            return text.count
+        case 1:
+            return searchTexts.count
+        default:
+            fatalError()
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyGroupViewCell.id, for: indexPath) as? StudyGroupViewCell else { return UICollectionViewCell() }
+        
         switch indexPath.section{
         case 0:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyGroupViewCell.id, for: indexPath) as? StudyGroupViewCell else { return UICollectionViewCell() }
             switch indexPath.item {
             case 0...2:
                 cell.studyTitleLabel.text = text[indexPath.item]
                 cell.studyTitleLabel.textColor = .red
                 cell.layer.borderColor = UIColor.red.cgColor
+                return cell
+
             case 3...7:
                 cell.studyTitleLabel.text = text[indexPath.item]
+                cell.studyTitleLabel.textColor = .black
                 cell.layer.borderColor = UIColor.customGray4?.cgColor
+                return cell
+
             default:
                 fatalError()
             }
         case 1:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StudyGroupSecondViewCell.id, for: indexPath) as? StudyGroupSecondViewCell else { return UICollectionViewCell() }
+            cell.studyTitleLabel.text = searchTexts[indexPath.item]
+            cell.studyTitleLabel.textColor = .customGreen
+            cell.layer.borderColor = UIColor.customGreen?.cgColor
             print("해당없음")
+            return cell
+
         default:
             fatalError()
         }
-        return cell
+        
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -127,4 +149,13 @@ extension StudyGroupViewController: UICollectionViewDelegate, UICollectionViewDa
             return UICollectionReusableView()
         }
     }
+}
+
+extension StudyGroupViewController: UISearchBarDelegate{
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let searchText = searchBar.text else { return }
+        searchTexts = searchText.components(separatedBy: " ")
+        collectionView.reloadData()
+    }
+    
 }
