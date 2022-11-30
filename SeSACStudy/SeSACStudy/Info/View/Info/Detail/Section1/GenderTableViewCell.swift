@@ -16,9 +16,8 @@ class GenderTableViewCell: BaseTableViewCell {
         button.buttonSize = .small
         button.baseForegroundColor = .black
         button.imagePlacement = .top
-        button.background.strokeWidth = 1
-        button.background.strokeColor = .gray
-        
+//        button.background.strokeWidth = 1
+        button.background.strokeColor = .customGray4
         let view = UIButton(configuration: button)
         return view
     }()
@@ -32,8 +31,8 @@ class GenderTableViewCell: BaseTableViewCell {
         button.buttonSize = .small
         button.baseForegroundColor = .black
         button.imagePlacement = .top
-        button.background.strokeWidth = 1
-        button.background.strokeColor = .gray
+//        button.background.strokeWidth = 1
+        button.background.strokeColor = .customGray4
         let view = UIButton(configuration: button)
         return view
     }()
@@ -86,6 +85,8 @@ class GenderTableViewCell: BaseTableViewCell {
             leftButton.configuration?.baseBackgroundColor = .customGreen
         } else {
             leftButton.configuration?.baseBackgroundColor = .white
+            leftButton.configuration?.background.strokeColor = UIColor.customGray4
+
         }
     }
     
@@ -94,6 +95,8 @@ class GenderTableViewCell: BaseTableViewCell {
             rightButton.configuration?.baseBackgroundColor = .customGreen
         } else {
             rightButton.configuration?.baseBackgroundColor  = .white
+            rightButton.configuration?.background.strokeColor = UIColor.customGray4
+
         }
     }
 }

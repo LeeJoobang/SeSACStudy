@@ -1,5 +1,7 @@
 import UIKit
 
+// 프로토콜을 생성 + 메소드 생성하고
+
 class InfoDetailViewController: BaseViewController{
     
     let infoDetailView = InfoTableView()

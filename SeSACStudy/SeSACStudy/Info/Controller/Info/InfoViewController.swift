@@ -1,5 +1,6 @@
 import UIKit
 
+// 프로토콜을 채택 - 공부해야 함.
 class InfoViewController: BaseViewController{
     
     let infoTableView = InfoTableView()

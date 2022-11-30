@@ -10,6 +10,7 @@ class BackgroundTableViewCell: BaseTableViewCell {
     
     let sesacImage: UIImageView = {
         let image = UIImageView()
+        image.sizeToFit()
         return image
     }()
     
@@ -35,8 +36,10 @@ class BackgroundTableViewCell: BaseTableViewCell {
         }
         
         sesacImage.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.bottom.equalToSuperview()
+            make.centerX.equalTo(self.safeAreaLayoutGuide.snp.centerX)
+            make.height.width.equalTo(184)
+            
         }
         
     }
