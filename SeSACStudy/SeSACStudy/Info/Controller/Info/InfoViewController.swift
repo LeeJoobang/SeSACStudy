@@ -11,7 +11,7 @@ class InfoViewController: BaseViewController{
    
     override func viewDidLoad() {
         super.viewDidLoad()
-        getUserInfo()
+//        getUserInfo()
         
         self.view = infoTableView
         infoTableView.backgroundColor = .white

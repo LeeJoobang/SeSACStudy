@@ -7,7 +7,6 @@ class LoginCodeViewController: BaseViewController {
     
     let loginCodeView = LoginView()
     var verifyID: String?
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = loginCodeView
@@ -51,79 +50,97 @@ class LoginCodeViewController: BaseViewController {
             // data 미입력에 대한 토스트 메세지 출력
             return
         }
-        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: testVerificationCode)
-        Auth.auth().signIn(with: credential) { authData, error in
-            if (error != nil) {
-                print("testVerificationCode incorrect")
+        
+        
+        FCMService.shared.getCredential(verficationID: verificationID, vericationCode: testVerificationCode) { testResult, error in
+            if testResult {
+                print("error: \(String(describing: error))")
                 return
-            }
-            // MARK: sesac 서버로부터 인증번호 - 미가입, 가입 유저 확인
-            let currentUser = Auth.auth().currentUser
-            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-                if let error = error {
-                    print("error 발생")
-                    return
-                }
-                
-                // MARK: 미가입유저 - 회원가입 로직 진행, 가입유저 - 로그인 로직
-                guard let idToken = idToken else { return }
-                if idToken != "" {
-                    // MARK: idToken 값 userDefault 저장
-                    UserDefaults.standard.set(idToken, forKey: "idToken")
-                    // MARK: 가입 유저 유무 확인 로직
-                    let apiService = APIService()
-                    apiService.profile(id: idToken) { code, userInfo in
-                        guard let code = code else { return }
-                        switch code {
-                        case 200...299:
-                            print("🌹 code number: \(code)")
-                            print(UserDefaults.standard.string(forKey: "idToken"))
-                            UserDefaults.standard.set(1, forKey: "success")
-                            
-                            guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
-                            print(id)
-                            let api = APIService()
-                            api.profile(id: id) { statusCode, userInfo in
-                                guard let userInfo = userInfo else { return }
-                                print("🌹: \(statusCode)")
-                                print("🌹: \(userInfo.nick)")
-                                print("🌹: \(userInfo.ageMax)")
-                                let updateUser = UpdateInfo.shared
-                                updateUser.nick = userInfo.nick
-                                updateUser.ageMax = userInfo.ageMax
-                                updateUser.ageMin = userInfo.ageMin
-                                updateUser.gender = userInfo.gender
-                                updateUser.searchable = userInfo.searchable
-                                updateUser.phoneNumber = userInfo.phoneNumber
-                                updateUser.study = userInfo.study
-                                print("🌹: \(updateUser.nick)")
-                                print("🌹: \(updateUser.ageMax)")
-                            }
-                            
-                            let vc = BaseTabBarController()
-                            let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
-                            guard let delegate = sceneDelegate else { return }
-                            delegate.window?.rootViewController = vc
-                        case 400...499:
-                            print("🌹 code number: \(code)")
-                            let vc = NicknameViewController()
-                            self.navigationController?.pushViewController(vc, animated: true)
-                            
-                        default:
-                            print("error")
-                        }
-                    }
-                }
             }
         }
         
-        func deleteUserDefault(){
-            print("🌹deleteUserDefault - 넣을지 고민중")
-            let keyName = ["nickName", "birth", "email", "gender"]
-            for key in keyName {
-                UserDefaults.standard.removeObject(forKey: key)
+        
+        // MARK: refactor
+        //        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: testVerificationCode)
+        //        Auth.auth().signIn(with: credential) { authData, error in
+        //            if (error != nil) {
+        //                print("testVerificationCode incorrect")
+        //                return
+        //            }
+        // MARK: sesac 서버로부터 인증번호 - 미가입, 가입 유저 확인
+        //            let currentUser = Auth.auth().currentUser
+        //            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
+        //                if error != nil {
+        //                    print("error 발생")
+        //                    return
+        //                }
+        
+        FCMService.shared.getIDToken { idToken, error in
+            guard let idToken = idToken else { return }
+            // MARK: idToken 값 userDefault 저장
+            UserDefaults.standard.set(idToken, forKey: "idToken")
+            
+            self.fetchProfile()
+        }
+    }
+    
+    
+    func fetchProfile() {
+        guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
+        let apiService = APIService()
+        apiService.profile(id: id) { code, userInfo in
+            guard let code = code else { return }
+            switch code {
+            case 200...299:
+                print("🌹 code number: \(code)")
+                print(UserDefaults.standard.string(forKey: "idToken"))
+                UserDefaults.standard.set(1, forKey: "success")
+                
+                //                    let api = APIService()
+                //                    api.profile(id: idToken) { statusCode, userInfo in
+                guard let userInfo = userInfo else { return }
+                //                        print("🌹: \(statusCode)")
+                //                        print("🌹: \(userInfo.nick)")
+                //                        print("🌹: \(userInfo.ageMax)")
+                let updateUser = UpdateInfo.shared
+                updateUser.nick = userInfo.nick
+                updateUser.ageMax = userInfo.ageMax
+                updateUser.ageMin = userInfo.ageMin
+                updateUser.gender = userInfo.gender
+                updateUser.searchable = userInfo.searchable
+                updateUser.phoneNumber = userInfo.phoneNumber
+                updateUser.study = userInfo.study
+                //                        print("🌹: \(updateUser.nick)")
+                //                        print("🌹: \(updateUser.ageMax)")
+                let vc = BaseTabBarController()
+                let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
+                guard let delegate = sceneDelegate else { return }
+                delegate.window?.rootViewController = vc
+                
+            case 401: //Firebase Token Erro
+                print("401 error")
+                FCMService.shared.getIDToken { idToken, error in
+                    guard let idToken = idToken else { return }
+                    // MARK: idToken 값 userDefault 저장
+                    UserDefaults.standard.set(idToken, forKey: "idToken")
+                    self.fetchProfile()
+                }
+            default:
+                fatalError()
             }
+            
         }
     }
 }
+
+// MARK: method 수정 - 이건 뭘까?
+//    func deleteUserDefault(){
+//        print("🌹deleteUserDefault - 넣을지 고민중")
+//        let keyName = ["nickName", "birth", "email", "gender"]
+//        for key in keyName {
+//            UserDefaults.standard.removeObject(forKey: key)
+//        }
+//    }
+
+
 

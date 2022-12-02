@@ -58,6 +58,7 @@
 		378C15A4291D23AD0016D72A /* BirthSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 378C15A3291D23AD0016D72A /* BirthSubView.swift */; };
 		37B134242930D1F50071E137 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B134232930D1F50071E137 /* API.swift */; };
 		37D2BC052937791A002127C9 /* StudyGroupSecondViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2BC042937791A002127C9 /* StudyGroupSecondViewCell.swift */; };
+		37D2BC0B2939C810002127C9 /* FCMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2BC0A2939C810002127C9 /* FCMService.swift */; };
 		37E0D48C292CD233005986BE /* UpadateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0D48B292CD233005986BE /* UpadateInfo.swift */; };
 		37EE1729292F628600886FDE /* TestCompositionLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */; };
 		37EE172B292F664D00886FDE /* TestCompostionLayoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */; };
@@ -130,6 +131,7 @@
 		378C15A3291D23AD0016D72A /* BirthSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthSubView.swift; sourceTree = "<group>"; };
 		37B134232930D1F50071E137 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		37D2BC042937791A002127C9 /* StudyGroupSecondViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroupSecondViewCell.swift; sourceTree = "<group>"; };
+		37D2BC0A2939C810002127C9 /* FCMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FCMService.swift; path = ../../../../../../../../../Downloads/FCMService.swift; sourceTree = "<group>"; };
 		37E0D48B292CD233005986BE /* UpadateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpadateInfo.swift; sourceTree = "<group>"; };
 		37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompositionLayoutViewController.swift; sourceTree = "<group>"; };
 		37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompostionLayoutViewCell.swift; sourceTree = "<group>"; };
@@ -459,6 +461,7 @@
 		37F3EECD2920D7ED002F2597 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				37D2BC0A2939C810002127C9 /* FCMService.swift */,
 				37F3EECE2920D800002F2597 /* APIService.swift */,
 				37F3EED729211281002F2597 /* EndPoint.swift */,
 				37E0D48B292CD233005986BE /* UpadateInfo.swift */,
@@ -576,6 +579,7 @@
 				370977462924AF4F00A6CA52 /* GenderTableViewCell.swift in Sources */,
 				3709774E2924B0D300A6CA52 /* WithdrawalTableViewCell.swift in Sources */,
 				373AFC3B291984380019EB00 /* FirstViewController.swift in Sources */,
+				37D2BC0B2939C810002127C9 /* FCMService.swift in Sources */,
 				37EE4FFF2923911F00523BDD /* BackgroundlTableViewCell.swift in Sources */,
 				373AFBFA2918ECE00019EB00 /* BaseView.swift in Sources */,
 				370977412923B56D00A6CA52 /* FriendViewController.swift in Sources */,
@@ -779,9 +783,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.memolease.sesacslp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -812,9 +819,12 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.memolease.sesacslp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

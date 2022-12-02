@@ -105,6 +105,7 @@ class GenderViewController: BaseViewController {
 //                    let vc = BaseTabBarController()
 //                    self.navigationController?.pushViewController(vc, animated: true)
                     UserDefaults.standard.set(1, forKey: "success")
+                    
                     let vc = BaseTabBarController()
                     let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
                     guard let delegate = sceneDelegate else { return }

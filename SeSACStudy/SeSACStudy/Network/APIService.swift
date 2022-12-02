@@ -67,9 +67,9 @@ struct FromQueueDBRequested: Codable {
     let background: Int
 }
 
-class APIService{
+final class APIService{
     // MARK: .get 을 유저 유무를 확인하는 메소드
-    func profile(id idToken: String, completion: @escaping(Int?, User?) -> Void) {
+    public func profile(id idToken: String, completion: @escaping(Int?, User?) -> Void) {
         let apiURL = URL(string: HTTPInfomation.apiBaseURL + HTTPPath.userPath)!
         print("apiURL: \(apiURL)")
         let apiHeaders: HTTPHeaders = [
@@ -87,13 +87,6 @@ class APIService{
                 case .failure(_:):
                     print("실패")
                     print(response.response?.statusCode)
-                    if response.response?.statusCode == 401 {
-                        print("실패 401 - userdefault 값 전체 삭제")
-                        for key in UserDefaults.standard.dictionaryRepresentation().keys {
-                                    UserDefaults.standard.removeObject(forKey: key.description)
-                                }
-
-                    }
                     completion(statusCode, nil)
                 }
             }
