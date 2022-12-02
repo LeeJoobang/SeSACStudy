@@ -59,6 +59,7 @@
 		37B134242930D1F50071E137 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37B134232930D1F50071E137 /* API.swift */; };
 		37D2BC052937791A002127C9 /* StudyGroupSecondViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2BC042937791A002127C9 /* StudyGroupSecondViewCell.swift */; };
 		37D2BC0B2939C810002127C9 /* FCMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2BC0A2939C810002127C9 /* FCMService.swift */; };
+		37D2BC0D293A1053002127C9 /* LaunchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37D2BC0C293A1053002127C9 /* LaunchViewController.swift */; };
 		37E0D48C292CD233005986BE /* UpadateInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37E0D48B292CD233005986BE /* UpadateInfo.swift */; };
 		37EE1729292F628600886FDE /* TestCompositionLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */; };
 		37EE172B292F664D00886FDE /* TestCompostionLayoutViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */; };
@@ -132,6 +133,7 @@
 		37B134232930D1F50071E137 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		37D2BC042937791A002127C9 /* StudyGroupSecondViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudyGroupSecondViewCell.swift; sourceTree = "<group>"; };
 		37D2BC0A2939C810002127C9 /* FCMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FCMService.swift; path = ../../../../../../../../../Downloads/FCMService.swift; sourceTree = "<group>"; };
+		37D2BC0C293A1053002127C9 /* LaunchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchViewController.swift; sourceTree = "<group>"; };
 		37E0D48B292CD233005986BE /* UpadateInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpadateInfo.swift; sourceTree = "<group>"; };
 		37EE1728292F628600886FDE /* TestCompositionLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompositionLayoutViewController.swift; sourceTree = "<group>"; };
 		37EE172A292F664D00886FDE /* TestCompostionLayoutViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestCompostionLayoutViewCell.swift; sourceTree = "<group>"; };
@@ -327,6 +329,7 @@
 				373AFBD92918D8C40019EB00 /* ViewController.swift */,
 				373AFBDB2918D8C40019EB00 /* Main.storyboard */,
 				373AFBDE2918D8C70019EB00 /* Assets.xcassets */,
+				37D2BC0C293A1053002127C9 /* LaunchViewController.swift */,
 				373AFBE02918D8C70019EB00 /* LaunchScreen.storyboard */,
 				373AFBE32918D8C70019EB00 /* Info.plist */,
 			);
@@ -574,6 +577,7 @@
 				372FEF69291C0ACF004F3B16 /* GenderViewController.swift in Sources */,
 				377963432928B37500B3C89B /* AlertViewController.swift in Sources */,
 				37E0D48C292CD233005986BE /* UpadateInfo.swift in Sources */,
+				37D2BC0D293A1053002127C9 /* LaunchViewController.swift in Sources */,
 				3709773F2923B55900A6CA52 /* ShopViewController.swift in Sources */,
 				373AFBEE2918D9BF0019EB00 /* APIKey.swift in Sources */,
 				370977462924AF4F00A6CA52 /* GenderTableViewCell.swift in Sources */,

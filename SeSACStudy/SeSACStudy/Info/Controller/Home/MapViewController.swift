@@ -129,9 +129,7 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let centerLocation = self.mapView.mapView.centerCoordinate
         print(centerLocation.longitude, centerLocation.latitude)
-        // 위치 값이 변화할 때마다
-        
-        
+        // 위치 값이 변화할 때마다        
         let api = APIService()
         api.currentLocation(lat: centerLocation.latitude, long: centerLocation.longitude) { statusCode in
             switch statusCode{

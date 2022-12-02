@@ -25,24 +25,24 @@ class InfoViewController: BaseViewController{
         self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.black.cgColor]
     }
     
-    // MARK: nick 가져오기
-    func getUserInfo(){
-        guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
-        let api = APIService()
-        api.profile(id: id) { statusCode, userInfo in
-            //성공 실패 데이터 받아오기
-            switch statusCode {
-            case 200:
-                self.updateUserInfo.nick = userInfo?.nick
-                print("🍁updateUserInfo.nick: \(self.updateUserInfo.nick)")
-            case 401:
-                print("401 error가 발생하였습니다.")
-            default:
-                fatalError()
-            }
-            
-        }
-    }
+//    // MARK: nick 가져오기
+//    func getUserInfo(){
+//        guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
+//        let api = APIService()
+//        api.profile(id: id) { statusCode, userInfo in
+//            //성공 실패 데이터 받아오기
+//            switch statusCode {
+//            case 200:
+//                self.updateUserInfo.nick = userInfo?.nick
+//                print("🍁updateUserInfo.nick: \(self.updateUserInfo.nick)")
+//            case 401:
+//                print("401 error가 발생하였습니다.")
+//            default:
+//                fatalError()
+//            }
+//            
+//        }
+//    }
     
     
 }
@@ -54,8 +54,10 @@ extension InfoViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: InfoTableViewCell.reuseIdentifier, for: indexPath) as! InfoTableViewCell
-        guard let nick = UserDefaults.standard.string(forKey: "nickName") else { return UITableViewCell() }
-        print("🌕UserDefault's nick: \(nick)")
+//        guard let nick = UserDefaults.standard.string(forKey: "nickName") else { return UITableViewCell() }
+//        print("🌕UserDefault's nick: \(nick)")
+        print("🌕updateUserInfo.nick: \(updateUserInfo.nick)")
+        guard let nick = updateUserInfo.nick else { return UITableViewCell() }
         cell.infoLabel.text = indexPath.row ==  0 ?  nick : infoList[indexPath.row]
         cell.infoView.contentMode = .scaleAspectFit
         cell.infoView.image = UIImage(named: infoImage[indexPath.row])

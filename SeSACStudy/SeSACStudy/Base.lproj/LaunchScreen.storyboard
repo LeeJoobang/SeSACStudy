@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,27 +17,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_logo" translatesAutoresizingMaskIntoConstraints="NO" id="ZWJ-dk-cXG">
-                                <rect key="frame" x="79" y="266" width="233" height="259"/>
+                                <rect key="frame" x="77" y="263" width="220" height="264"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="259" id="mFN-KT-b3a"/>
+                                    <constraint firstAttribute="height" constant="264" id="604-Qo-j0a"/>
+                                    <constraint firstAttribute="width" constant="220" id="kMC-NN-Hwi"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="splash_text" translatesAutoresizingMaskIntoConstraints="NO" id="wPT-8m-DhP">
-                                <rect key="frame" x="39" y="554" width="296" height="109"/>
+                                <rect key="frame" x="41" y="561" width="292" height="101"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="109" id="h6Y-h4-6tj"/>
+                                    <constraint firstAttribute="height" constant="101" id="5P9-ub-0cs"/>
+                                    <constraint firstAttribute="width" constant="292" id="Qwp-nm-oF8"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="ZWJ-dk-cXG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="79" id="4Bd-NY-Low"/>
-                            <constraint firstItem="wPT-8m-DhP" firstAttribute="top" secondItem="ZWJ-dk-cXG" secondAttribute="bottom" constant="29" id="978-cn-wmD"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZWJ-dk-cXG" secondAttribute="trailing" constant="63" id="Lhu-sd-XBp"/>
-                            <constraint firstItem="wPT-8m-DhP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="39" id="U1b-FF-AS1"/>
-                            <constraint firstItem="ZWJ-dk-cXG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="219" id="nH0-jS-IzM"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wPT-8m-DhP" secondAttribute="trailing" constant="40" id="pDL-WG-kgH"/>
+                            <constraint firstItem="ZWJ-dk-cXG" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="77" id="MyO-BE-51h"/>
+                            <constraint firstItem="ZWJ-dk-cXG" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="216" id="NUL-wp-UtZ"/>
+                            <constraint firstItem="wPT-8m-DhP" firstAttribute="top" secondItem="ZWJ-dk-cXG" secondAttribute="bottom" constant="34" id="a1u-wO-1fS"/>
+                            <constraint firstItem="wPT-8m-DhP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="ij1-iY-Tzn"/>
                         </constraints>
                     </view>
                 </viewController>

@@ -85,8 +85,7 @@ final class APIService{
                     print("🌹Singleton Data Input 성공")
                     completion(statusCode, data)
                 case .failure(_:):
-                    print("실패")
-                    print(response.response?.statusCode)
+                     print("🌹실패 code: \(response.response?.statusCode)")
                     completion(statusCode, nil)
                 }
             }

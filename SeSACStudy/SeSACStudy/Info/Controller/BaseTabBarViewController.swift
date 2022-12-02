@@ -3,8 +3,12 @@ import UIKit
 
 class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
 
+    let updateUserInfo = UpdateInfo.shared
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserInfo()
+        
         self.delegate = self
 
         let homeVC = UINavigationController(rootViewController: MapViewController())
@@ -24,5 +28,24 @@ class BaseTabBarController: UITabBarController, UITabBarControllerDelegate {
         infoVC.tabBarItem.title = "내정보"
         
         viewControllers = [homeVC, shopVC, friendVC, infoVC]
+    }
+    
+    // MARK: nick 가져오기
+    func getUserInfo(){
+        guard let id = UserDefaults.standard.string(forKey: "idToken") else { return }
+        let api = APIService()
+        api.profile(id: id) { statusCode, userInfo in
+            //성공 실패 데이터 받아오기
+            switch statusCode {
+            case 200:
+                self.updateUserInfo.nick = userInfo?.nick
+                print("🍁updateUserInfo.nick: \(self.updateUserInfo.nick)")
+            case 401:
+                print("401 error가 발생하였습니다.")
+            default:
+                fatalError()
+            }
+            
+        }
     }
 }

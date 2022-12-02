@@ -51,29 +51,12 @@ class LoginCodeViewController: BaseViewController {
             return
         }
         
-        
         FCMService.shared.getCredential(verficationID: verificationID, vericationCode: testVerificationCode) { testResult, error in
             if testResult {
                 print("error: \(String(describing: error))")
                 return
             }
         }
-        
-        
-        // MARK: refactor
-        //        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: testVerificationCode)
-        //        Auth.auth().signIn(with: credential) { authData, error in
-        //            if (error != nil) {
-        //                print("testVerificationCode incorrect")
-        //                return
-        //            }
-        // MARK: sesac 서버로부터 인증번호 - 미가입, 가입 유저 확인
-        //            let currentUser = Auth.auth().currentUser
-        //            currentUser?.getIDTokenForcingRefresh(true) { idToken, error in
-        //                if error != nil {
-        //                    print("error 발생")
-        //                    return
-        //                }
         
         FCMService.shared.getIDToken { idToken, error in
             guard let idToken = idToken else { return }
@@ -118,13 +101,17 @@ class LoginCodeViewController: BaseViewController {
                 delegate.window?.rootViewController = vc
                 
             case 401: //Firebase Token Erro
-                print("401 error")
+                print("🌹401 error")
                 FCMService.shared.getIDToken { idToken, error in
                     guard let idToken = idToken else { return }
                     // MARK: idToken 값 userDefault 저장
                     UserDefaults.standard.set(idToken, forKey: "idToken")
                     self.fetchProfile()
                 }
+            case 406:
+                print("🌹406 - nickname ViewController 이동")
+                let vc = NicknameViewController()
+                self.navigationController?.pushViewController(vc, animated: true)
             default:
                 fatalError()
             }
