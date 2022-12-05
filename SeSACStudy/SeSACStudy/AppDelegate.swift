@@ -4,7 +4,6 @@ import FirebaseCore
 import FirebaseMessaging
 import IQKeyboardManagerSwift
 
-
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
