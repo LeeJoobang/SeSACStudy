@@ -23,21 +23,34 @@ class StudyGroupViewController: UIViewController{
         view.register(StudyGroupHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: StudyGroupHeaderView.id)
         view.register(StudyGroupViewCell.self, forCellWithReuseIdentifier: StudyGroupViewCell.id)
         view.register(StudyGroupSecondViewCell.self, forCellWithReuseIdentifier: StudyGroupSecondViewCell.id)
-
         return view
+    }()
+    
+    let certificationButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = .customGreen
+        button.layer.cornerRadius = 10
+        button.setTitle("새싹찾기", for: .normal)
+        return button
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         view.addSubview(collectionView)
+        self.tabBarController?.tabBar.isHidden = true
+        collectionView.addSubview(certificationButton)
         collectionView.delegate = self
         collectionView.dataSource = self
         let search = UISearchBar(frame: CGRect(x: 0, y: 0, width: 310, height: 0))
         search.placeholder = "띄어쓰기로 복수 입력이 가능해요"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: search)
         search.delegate = self
+        certificationButton.addTarget(self, action: #selector(buttonClicked), for: .touchUpInside)
         setConstraint()
+    }
+    
+    @objc func buttonClicked(){
     }
     
     func createLayout() -> UICollectionViewLayout {
@@ -51,11 +64,9 @@ class StudyGroupViewController: UIViewController{
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         group.interItemSpacing = .fixed(spacing)
         
-        
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = NSDirectionalEdgeInsets(top: 16+32, leading: 16, bottom: 8, trailing: 16)
         section.interGroupSpacing = spacing
-        
         
         let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .absolute(18)), elementKind: UICollectionView.elementKindSectionHeader, alignment: .top, absoluteOffset: CGPoint(x: 0, y: 32))
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .estimated(40))
@@ -74,12 +85,17 @@ class StudyGroupViewController: UIViewController{
             make.trailing.equalTo(self.view.snp.trailing).offset(-16)
             make.bottom.equalTo(self.view.safeAreaLayoutGuide.snp.bottom).offset(0)
         }
+        
+        certificationButton.snp.makeConstraints { make in
+            make.leading.equalTo(self.view.snp.leading).offset(16)
+            make.trailing.equalTo(self.view.snp.trailing).offset(-16)
+            make.height.equalTo(48)
+            make.bottom.lessThanOrEqualTo(collectionView.keyboardLayoutGuide.snp.top).offset(-10)
+        }
     }
-    
 }
 
 extension StudyGroupViewController: UICollectionViewDelegate, UICollectionViewDataSource{
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0:
@@ -117,7 +133,6 @@ extension StudyGroupViewController: UICollectionViewDelegate, UICollectionViewDa
             cell.studyTitleLabel.text = searchTexts[indexPath.item]
             cell.studyTitleLabel.textColor = .customGreen
             cell.layer.borderColor = UIColor.customGreen?.cgColor
-            print("해당없음")
             return cell
 
         default:
@@ -154,8 +169,42 @@ extension StudyGroupViewController: UICollectionViewDelegate, UICollectionViewDa
 extension StudyGroupViewController: UISearchBarDelegate{
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let searchText = searchBar.text else { return }
-        searchTexts = searchText.components(separatedBy: " ")
+//        var tmp = searchText.components(separatedBy: " ")
+        if searchText.contains(" "){
+            print("🌝띄어쓰기 포함")
+            var temp = searchText.components(separatedBy: " ")
+            for item in temp {
+                if item.count <= 8 {
+                    print("🌝8글자 이하")
+                    if searchTexts.contains(item){
+                        print("이미 포함됨")
+                    } else {
+                        searchTexts.append(item)
+                        print(searchTexts)
+                    }
+                } else {
+                    print("🌝8글자 이상")
+                }
+            }
+        } else if searchText.count <= 8{
+            print("🌞8글자 이하")
+            if searchTexts.contains(searchText){
+                print("이미 포함됨")
+            } else {
+                searchTexts.append(searchText)
+                print(searchTexts)
+
+            }
+        } else {
+            print("🌞8글자 이상")
+        }
         collectionView.reloadData()
     }
-    
+}
+
+extension Array where Element: Hashable {
+    func removeDuplicates() -> [Element] {
+        var addedDict = [Element: Bool]()
+        return filter({ addedDict.updateValue(true, forKey: $0) == nil})
+    }
 }
