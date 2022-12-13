@@ -17,7 +17,7 @@ class WithdrawalTableViewCell: BaseTableViewCell {
     }
     
     override func configure() {
-        self.contentView.addSubview(label)
+        self.addSubview(label)
     }
     
     override func setConstraints() {
