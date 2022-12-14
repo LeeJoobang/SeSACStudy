@@ -170,7 +170,7 @@ final class APIService{
         }
     }
     
-    func currentLocation(lat lat: Double, long long: Double, completion: @escaping(Int?)->Void){
+    func currentLocation(lat lat: Double, long long: Double, completion: @escaping(Int?, SearchResult?)->Void){
         guard let idToken = UserDefaults.standard.string(forKey: "idToken") else { return }
         
         let api = SeSACAPI.currentLocation(lat: lat, long: long) // parameter 받아와야 함.
@@ -178,11 +178,15 @@ final class APIService{
         let apiHeaders: HTTPHeaders = [
             HTTPInfomation.idtokenKey: idToken
         ]
-        
-        AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseString { response in
-            print("🍁response: \(response.response?.statusCode)")
-            print("🍁response: \(response)")
-            completion(response.response?.statusCode)
+    
+        AF.request(apiURL, method: .post, parameters: api.parameters, headers: apiHeaders).responseDecodable(of: SearchResult.self) { response in
+            let statusCode = response.response?.statusCode
+            switch response.result{
+            case .success(let data):
+                completion(statusCode, data)
+            case .failure(_:):
+                completion(statusCode, nil)
+            }
         }
     }
 }

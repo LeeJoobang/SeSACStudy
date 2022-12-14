@@ -8,6 +8,7 @@ class MapViewController: BaseViewController {
     var mapView = MapView()
     
     let loctionManager = CLLocationManager()
+    var fromData: [FromQueueDB]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,8 +22,6 @@ class MapViewController: BaseViewController {
     }
     
     @objc func floatButtonClicked(){
-        
-        print("hi")
         let vc = StudyGroupViewController()
         self.navigationController?.pushViewController(vc, animated: true)
     }
@@ -38,10 +37,6 @@ class MapViewController: BaseViewController {
     func setRegionAndAnnotation(center: CLLocationCoordinate2D){
         let region = MKCoordinateRegion(center: center, latitudinalMeters: 700, longitudinalMeters: 700)
         mapView.mapView.setRegion(region, animated: true)
-       
-        //let annotation = MKPointAnnotation()
-        //annotation.coordinate = center
-        //mapView.mapView.addAnnotation(annotation)
     }
     
 }
@@ -71,7 +66,7 @@ extension MapViewController {
             loctionManager.requestWhenInUseAuthorization()
         case .restricted, .denied:
             print("DENIED, 아이폰 설정으로 유도")
-//            loctionManager.startUpdatingLocation()
+            //            loctionManager.startUpdatingLocation()
             
         case .authorizedWhenInUse:
             print("WHEN IN USE")
@@ -81,7 +76,7 @@ extension MapViewController {
             print("DEFAULT")
         }
     }
-
+    
     func showRequestLocationServiceAlert() {
         let requestLocationServiceAlert = UIAlertController(title: "위치정보 이용", message: "위치 서비스를 사용할 수 없습니다. 기기의 '설정>개인정보 보호'에서 위치 서비스를 켜주세요.", preferredStyle: .alert)
         let goSetting = UIAlertAction(title: "설정으로 이동", style: .destructive) { _ in
@@ -112,7 +107,7 @@ extension MapViewController: CLLocationManagerDelegate {
         print(#function)
         let center = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
         setRegionAndAnnotation(center: center)
-
+        
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -129,12 +124,21 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         let centerLocation = self.mapView.mapView.centerCoordinate
         print(centerLocation.longitude, centerLocation.latitude)
-        // 위치 값이 변화할 때마다        
-        let api = APIService()
-        api.currentLocation(lat: centerLocation.latitude, long: centerLocation.longitude) { statusCode in
+        // 위치 값이 변화할 때마다
+        let api = APIService() // 여기서 지금 받아온 상태 메세지 뿐만 아니라, 새싹의 이미지와 좌표를 받아 올 수 있을까?
+        api.currentLocation(lat: centerLocation.latitude, long: centerLocation.longitude) { statusCode, data in
             switch statusCode{
             case 200:
-                print("🍁성공")
+                // MARK: server로부터 데이터를 받아온 후 위치, nick, sesac 받아옴
+                guard let data = data?.fromQueueDB else { return }
+                self.fromData = data
+                guard let unwrappedFromData = self.fromData else { return }
+                if data.count != 0 {
+                    for item in unwrappedFromData{
+                        print("🍁성공 nick: \(item.nick), sesac: \(item.sesac)")
+                        print("🍁성공 위치 lat: \(item.lat), long: \(item.long)")
+                    }
+                }
             case 401:
                 print("🍁firebase token error")
             case 406:
@@ -147,7 +151,6 @@ extension MapViewController: MKMapViewDelegate {
                 fatalError()
             }
         }
-        
     }
 }
 
