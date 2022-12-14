@@ -7,8 +7,11 @@ class MapViewController: BaseViewController {
     
     var mapView = MapView()
     
+    
     let loctionManager = CLLocationManager()
     var fromData: [FromQueueDB]?
+//    var marker: Marker?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,6 +22,13 @@ class MapViewController: BaseViewController {
         
         mapView.locationButton.addTarget(self, action: #selector(loactionButtonClicked), for: .touchUpInside)
         mapView.floatButton.addTarget(self, action: #selector(floatButtonClicked), for: .touchUpInside)
+        
+        self.mapView.mapView.register(CustomAnnotationView.self, forAnnotationViewWithReuseIdentifier: CustomAnnotationView.identifier)
+    }
+    
+    func addCustomPin(sesac_image: Int, coordinate: CLLocationCoordinate2D) {
+       let pin = Marker(image: sesac_image, coordinate: coordinate)
+        self.mapView.mapView.addAnnotation(pin)
     }
     
     @objc func floatButtonClicked(){
@@ -67,7 +77,6 @@ extension MapViewController {
         case .restricted, .denied:
             print("DENIED, 아이폰 설정으로 유도")
             //            loctionManager.startUpdatingLocation()
-            
         case .authorizedWhenInUse:
             print("WHEN IN USE")
             // 실시간으로 현재 위치를 확인 후 centerimage가 위치할 수 있도록 함.
@@ -107,7 +116,6 @@ extension MapViewController: CLLocationManagerDelegate {
         print(#function)
         let center = CLLocationCoordinate2D(latitude: 37.517819364682694, longitude: 126.88647317074734)
         setRegionAndAnnotation(center: center)
-        
     }
     
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
@@ -130,13 +138,14 @@ extension MapViewController: MKMapViewDelegate {
             switch statusCode{
             case 200:
                 // MARK: server로부터 데이터를 받아온 후 위치, nick, sesac 받아옴
+                // MARK: sesar image type is Int.
                 guard let data = data?.fromQueueDB else { return }
                 self.fromData = data
+                // MARK: 우선 데이터를 담은 후 이미지 추가
                 guard let unwrappedFromData = self.fromData else { return }
                 if data.count != 0 {
                     for item in unwrappedFromData{
-                        print("🍁성공 nick: \(item.nick), sesac: \(item.sesac)")
-                        print("🍁성공 위치 lat: \(item.lat), long: \(item.long)")
+                        self.addCustomPin(sesac_image: item.sesac, coordinate: CLLocationCoordinate2D(latitude: item.lat, longitude: item.long))
                     }
                 }
             case 401:
@@ -152,5 +161,45 @@ extension MapViewController: MKMapViewDelegate {
             }
         }
     }
-}
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        guard let annotation = annotation as? Marker else {
+            return nil
+        }
+           
+        var annotationView = self.mapView.mapView.dequeueReusableAnnotationView(withIdentifier: CustomAnnotationView.identifier)
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: CustomAnnotationView.identifier)
+            annotationView?.canShowCallout = false
+            annotationView?.contentMode = .scaleAspectFit
+            
+        } else {
+            annotationView?.annotation = annotation
+        }
+        
+        let sesacImage: UIImage!
+        let size = CGSize(width: 85, height: 85)
+        UIGraphicsBeginImageContext(size)
+        
+        switch annotation.image {
+        case 0:
+            sesacImage = UIImage(named: "sesac_face_1")
+        case 1:
+            sesacImage = UIImage(named: "sesac_face_2")
+        case 2:
+            sesacImage = UIImage(named: "sesac_face_3")
+        case 3:
+            sesacImage = UIImage(named: "sesac_face_4")
+        default:
+            sesacImage = UIImage(named: "sesac_face_1")
+        }
 
+        sesacImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+        annotationView?.image = resizedImage
+        
+        return annotationView
+    }
+}
