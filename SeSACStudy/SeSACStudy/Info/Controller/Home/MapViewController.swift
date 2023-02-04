@@ -146,6 +146,7 @@ extension MapViewController: MKMapViewDelegate {
                 if data.count != 0 {
                     for item in unwrappedFromData{
                         self.addCustomPin(sesac_image: item.sesac, coordinate: CLLocationCoordinate2D(latitude: item.lat, longitude: item.long))
+                        print("🍁 nick: \(item.nick), status: \(item.sesac)")
                     }
                 }
             case 401:
